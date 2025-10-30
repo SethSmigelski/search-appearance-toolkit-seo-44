@@ -55,10 +55,8 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Intelligent Schema Scanner:** Scans your site for existing structured data from your theme or other plugins, helping you prevent dangerous conflicts and duplicates before you enable schema. 
 * **Include Images and videos:** A built-in tool automatically finds all images and embedded YouTube videos in your content and adds them to the schema, boosting their appearance in search results.
 * **FAQ and How-To Detection:** Enable a smart scanner to detect patterns in your content for FAQ and How-To sections on your website and incorporate this useful format into the schema. 
-* **Modern Output:** Generates schema in the JSON-LD format preferred by search engines.
+* **Modern Output:** All structured data is generated in the modern JSON-LD format preferred by search engines, following the guidelines set by [Schema.org](https://schema.org/).
 * **Granular Control:**  Taylor the Schema settings to fit your site's needs through Enable/disable settings, including on Custom Post Types and Taxonomies.
-
-"All structured data is generated in the modern JSON-LD format and follows the guidelines set by [Schema.org](https://schema.org/)."
 
 = Comprehensive XML Sitemaps =
 * **Full Content Coverage:** Automatically detects all public Custom Post Types and Taxonomies and provides simple checkboxes to let you choose exactly what content to include in your sitemap. 
@@ -69,7 +67,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 = Seamless Migration Tools =
 * **Make the Switch:** Easily migrate from other SEO plugins without losing your work. Simply swap in the meta keys used by your old plugin to have SEO 44 pick up using your existing data. 
 * **One-Click Presets:** Includes presets for popular plugins like All in One SEO, Yoast SEO, Rank Math, and more, which automatically fill in the correct meta keys for you. 
-* **Database Scanner: * **Not sure what meta keys your old plugin used? The built-in scanner can analyze your database, find potential SEO meta keys, and suggest the correct ones to use for a seamless transition. 
+* **Database Scanner:** Not sure what meta keys your old plugin used? The built-in scanner can analyze your database, find potential SEO meta keys, and suggest the correct ones to use for a seamless transition. 
 
 = Advanced Jump Links Block = 
 * **Instant Jump Links List Creation:** Automatically generates a customizable "Table of Contents" block from your page's headings to improve user navigation and earn rich "Jump to" links in Google search results.
