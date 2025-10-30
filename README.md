@@ -97,7 +97,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 ## Frequently Asked Questions
 
 ### What SEO benefits can this plugin provide?
-This plugin gives you control over the technical, on-page SEO factors that help search engines understand and rank your content. Key benefits include:
+Search Appearance Toolkit (SEO 44) gives you control over the technical, on-page SEO factors that help search engines understand and rank your content. Key benefits include:
 * **Optimized Snippets:** Control how your titles and descriptions appear in search results.
 * **Rich Results:** The advanced Schema.org data helps you earn rich results like FAQs, How-Tos, and breadcrumbs in Google.
 * **Crawlability:** A clean and comprehensive XML sitemap ensures search engines can find and index all of your important content and images.
@@ -222,7 +222,7 @@ add_filter( 'seo44_add_schema_parts', 'my_custom_add_local_business_schema', 10,
 
 ##  External Services
 
-This plugin utilizes a couple external, third-party services in order to provide its full range of features.
+Search Appearance Toolkit (SEO 44) utilizes a couple external, third-party services in order to provide its full range of features.
 
 ### Sitemap Ping Services (Google & Bing)
 
