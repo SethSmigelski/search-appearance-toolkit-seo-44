@@ -76,7 +76,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 ### Seamless Migration Tools
 * **Make the Switch:** Easily migrate from other SEO plugins without losing your work. Simply swap in the meta keys used by your old plugin to have SEO 44 pick up using your existing data. 
 * **One-Click Presets:** Includes presets for popular plugins like All in One SEO, Yoast SEO, Rank Math, and more, which automatically fill in the correct meta keys for you. 
-* **Database Scanner: * **Not sure what meta keys your old plugin used? The built-in scanner can analyze your database, find potential SEO meta keys, and suggest the correct ones to use for a seamless transition. 
+* **Database Scanner:** Not sure what meta keys your old plugin used? The built-in scanner can analyze your database, find potential SEO meta keys, and suggest the correct ones to use for a seamless transition. 
 
 ### Advanced Jump Links Block
 * **Instant Jump Links List Creation:** Automatically generates a customizable "Table of Contents" block from your page's headings to improve user navigation and earn rich "Jump to" links in Google search results.
