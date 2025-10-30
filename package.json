@@ -1,0 +1,29 @@
+{
+	"name": "seo-44-jump-links-block",
+	"version": "1.7.0",
+	"description": "Jump links block for SEO 44.",
+	"main": "build/index.js",
+	"private": true,
+  	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.2.0"
+	}
+}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
