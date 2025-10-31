@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "attributes": {
+    "linkColor": { "type": "string", "default": "#0073aa" },
+    "linkBackgroundColor": { "type": "string", "default": "#f0f0f0" },
+    "linkBackgroundColorHover": { "type": "string", "default": "#e0e0e0" }, 
+    "linkBorderColor": { "type": "string", "default": "#dddddd" },
+    "linkBorderRadius": { "type": "number", "default": 10 },
+    "linkPadding": { "type": "string" },
+    "fontSize": {
+      "type": "string"
+    },
+    "headingLevels": {
+      "default": [
+        "h2"
+      ],
+      "type": "array"
+    },
+    "headingText": {
+      "default": "On This Page",
+      "type": "string"
+    },
+    "headings": {
+      "default": [
+      ],
+      "items": {
+        "properties": {
+          "anchor": {
+            "type": "string"
+          },
+          "isVisible": {
+            "type": "boolean"
+          },
+          "linkText": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "isCollapsible": {
+      "default": false,
+      "type": "boolean"
+    },
+    "isEditing": {
+      "default": false,
+      "type": "boolean"
+    },
+    "layout": {
+      "default": "vertical",
+      "type": "string"
+    },
+    "listStyle": {
+      "default": "ul",
+      "type": "string"
+    },
+    "showHeading": {
+      "default": false,
+      "type": "boolean"
+    },
+    "textColor": {
+      "type": "string"
+    }
+  },
+  "category": "text",
+  "description": "Automatically generates a table of contents with links to headings on your page.",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "icon": "list-view",
+  "name": "seo44/jump-links",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "search-appearance-toolkit-seo-44",
+  "title": "SEO 44 Jump Links",
+  "version": "1.7.0",
+  "viewScript": "file:./view.js"
+} 

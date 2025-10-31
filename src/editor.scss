@@ -1,0 +1,51 @@
+@import './style.scss';
+
+/* OTHER EDIT CONTROLS */
+/* This more specific rule will override the default 'display: none' in the editor */
+.block-editor-block-list__block[data-type="seo44/jump-links"].is-collapsible.wp-block-seo44-jump-links .seo-44-show-more {
+    display: inline-block;
+}
+
+/* Make the text input take up the available space */
+.wp-block-seo44-jump-links ol li .components-text-control,
+.wp-block-seo44-jump-links ul li .components-text-control {
+    flex-grow: 1;
+}
+
+/* Style the sidebar layout buttons to look better */
+.components-panel__body .components-button-group {
+    display: flex;
+    width: 100%;
+	gap: 8px;
+	margin-bottom:8px;
+}
+
+.components-panel__body .components-button-group .components-button {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.reorder-buttons .components-button{
+	border: 1px solid #999;
+	border-radius: 6px;
+	margin: 0 5px;
+}
+
+.reorder-buttons .components-button:disabled{
+	display:none;
+	color:transparent;
+}
+
+.wp-block-seo44-jump-links ol li .reorder-buttons,
+.wp-block-seo44-jump-links ul li .reorder-buttons{
+	width:96px
+}
+
+.wp-block-seo44-jump-links ol li .reorder-buttons,
+.wp-block-seo44-jump-links ul li .reorder-buttons,
+.wp-block-seo44-jump-links ol li .components-toggle-control.components-toggle-control,
+.wp-block-seo44-jump-links ul li .components-toggle-control.components-toggle-control {
+    display: inline-block; /* Make TextControl and ToggleControl take full width */
+	margin: 0 5px 10px;
+	vertical-align: middle;
+}
