@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Search Appearance Toolkit (SEO 44)
- * Plugin URI:        https://www.sethcreates.com/plugins-for-wordpress/seo-44/
+ * Plugin URI:        https://www.sethcreates.com/plugins-for-wordpress/search-appearance-toolkit-seo-44/
  * Description:       A lightweight, powerful SEO plugin for essential meta tags, advanced schema, XML sitemaps, jump links, and easy migration from other plugins.
  * Version:           3.9.5
  * Author:            Seth Smigelski
@@ -77,7 +77,7 @@ function seo44_render_tooltip($text) {
  */
 function seo44_check_for_standalone_block() {
     // The path to the standalone plugin's main file.
-    $standalone_plugin = 'jump-links-block/jump-links-block.php';
+    $standalone_plugin = 'jump-links-block-seo-44/jump-links-block.php';
 
     if ( is_plugin_active( $standalone_plugin ) ) {
         // Add a notice to inform the user about the redundancy.
