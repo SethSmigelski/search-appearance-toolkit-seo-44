@@ -10,9 +10,9 @@ A lightweight, feature-packed SEO plugin for essential meta tags, advanced struc
 * **Requires PHP:** 7.4
 * **License:** GPLv2 or later
 * **License URI:** https://www.gnu.org/licenses/gpl-2.0.html
-* **Donate link:** [https://www.paypal.com/donate/?hosted_button_id=M3B2Q94PGVVWL](Paypal.com Donation Page)
-* **Plugin URI:**  [https://www.sethcreates.com/plugins-for-wordpress/seo-44/](sethcreates.com/plugins-for-wordpress/search-appearance-toolkit-seo-44/)
-* **Author URI:**  [https://www.sethcreates.com/plugins-for-wordpress/](sethcreates.com/plugins-for-wordpress/)
+* **Donate link:** https://www.paypal.com/donate/?hosted_button_id=M3B2Q94PGVVWL
+* **Plugin URI:**  https://www.sethcreates.com/plugins-for-wordpress/seo-44/
+* **Author URI:**  https://www.sethcreates.com/plugins-for-wordpress/
 
 ---
 
