@@ -32,13 +32,13 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Helpful Tooltips:**  You will find guidance on different options throughout the settings page. 
 * **Easy to Use Editor Interface:** Manage SEO tags with a clean and straightforward metabox in the post editor. 
  * **Search Results Snippet Preview:** See a live preview of how your content may look in Google search results. 
-* **Character counters:** Keep your titles and descriptions to the recommended length thanks to character counters that warn you if you exceed safe lengths.
+* **Character Counters:** Keep your titles and descriptions to the recommended length thanks to character counters that warn you if you exceed safe lengths.
 
 = SEO Head Tags = 
 * **On-Page SEO Control:** Set custom SEO Titles and Meta Descriptions for posts, pages, custom post types, categories, tags, and your homepage. 
 * **Intelligent Fallback:** If you don't fill in one of the SEO tags for post, page, and taxonomy, the plugin won't output empty SEO tags; instead, it produces useful fallbacks to ensure your site is optimized, even when you don't fill out SEO fields. 
-* **Optional support for Meta Keywords:**  Include keywords if you like them, leave them out if you don't think they are valuable. The choice is yours
-* **Customizable Author tags:**  Give credit to your writers with a few formats for displaying their names. 
+* **Optional Support for Meta Keywords:**  Include keywords if you like them, leave them out if you don't think they are valuable. The choice is yours
+* **Customizable Author Tags:**  Give credit to your writers with a few formats for displaying their names. 
 
 = Social Media Tags = 
 * **Open Graph and Twitter Cards:**  Enable tags for Facebook (Open Graph) and X / Twitter Cards
@@ -53,7 +53,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 
 = Advanced Schema Controls & Tools =
 * **Intelligent Schema Scanner:** Scans your site for existing structured data from your theme or other plugins, helping you prevent dangerous conflicts and duplicates before you enable schema. 
-* **Include Images and videos:** A built-in tool automatically finds all images and embedded YouTube videos in your content and adds them to the schema, boosting their appearance in search results.
+* **Include Images and Videos:** A built-in tool automatically finds all images and embedded YouTube videos in your content and adds them to the schema, boosting their appearance in search results.
 * **FAQ and How-To Detection:** Enable a smart scanner to detect patterns in your content for FAQ and How-To sections on your website and incorporate this useful format into the schema. 
 * **Modern Output:** All structured data is generated in the modern JSON-LD format preferred by search engines, following the guidelines set by [Schema.org](https://schema.org/).
 * **Granular Control:**  Taylor the Schema settings to fit your site's needs through Enable/disable settings, including on Custom Post Types and Taxonomies.
@@ -151,8 +151,8 @@ Yes. For advanced theme development, SEO 44 provides four template tags that all
 * **get_the_seo44_schema():** This function **returns** the JSON-LD schema script tag as a PHP string.
 * **the_seo44_schema():** This function **prints** (echoes) the JSON-LD schema script tag.
 
-= How is the "Search Appearance Toolkit (SEO 44)" plugin different from the standalone "SEO 44 Jump Links Block" plugin? =
-The main **Search Appearance Toolkit (SEO 44)** plugin is a complete suite of tools that includes meta tag optimization, schema generation, XML sitemaps, *and* the Jump Links Block. The standalone **SEO 44 Jump Links Block** plugin offers *only* the Jump Links Block functionality for users who don't need a full SEO suite. You only need one—if you are using the SEO 44 plugin, you do not need the standalone block plugin.
+= How is the "Search Appearance Toolkit (SEO 44)" plugin different from the standalone "Jump Links Block (SEO 44)" plugin? =
+The main **Search Appearance Toolkit (SEO 44)** plugin is a complete suite of tools that includes meta tag optimization, schema generation, XML sitemaps, *and* the Jump Links Block. The standalone **Jump Links Block (SEO 44)** plugin offers *only* the Jump Links Block functionality for users who don't need a full SEO suite. You only need one. If you are using the Search Appearance Toolkit (SEO 44) plugin, you do not need the standalone block plugin.
 
 = How can I save and reuse my custom styles for the Jump Links Block? =
 You can save a fully customized Jump Links block as a Block Pattern to easily reuse it across your site. This is a handy WordPress feature. With Block Patterns, you don't have to repeat the process of manually setting the same style settings for Jump Links blocks on multiple pages. That work is done for you.
@@ -177,7 +177,7 @@ You can save a fully customized Jump Links block as a Block Pattern to easily re
 
 == For Developers ==
 
-SEO 44 is extensible and allows for the addition of custom schema types (like LocalBusiness or Product) via a WordPress filter hook.
+Search Appearance Toolkit (SEO 44) is extensible and allows for the addition of custom schema types (like LocalBusiness or Product) via a WordPress filter hook.
 
 = Adding Custom Schema with the 'seo44_add_schema_parts' Filter =
 
