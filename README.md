@@ -36,7 +36,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
  
 ### Use-Friendly Interface
 * **Tabbed Settings Page:**  The interface is clean and uncluttered. All plugin settings are organized into five clear, easy-to-navigate tabs: Main Settings, Social Media, Schema, XML Sitemaps, and Migration.
-* **Helpful tooltips:**  You will find guidance on different options throughout the settings page. 
+* **Helpful Tooltips:**  You will find guidance on different options throughout the settings page. 
 * **Easy to Use Editor Interface:** Manage SEO tags with a clean and straightforward metabox in the post editor. 
  * **Search Results Snippet Preview:** See a live preview of how your content may look in Google search results. 
 * **Character counters:** Keep your titles and descriptions to the recommended length thanks to character counters that warn you if you exceed safe lengths.
