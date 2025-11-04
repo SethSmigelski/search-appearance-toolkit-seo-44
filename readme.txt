@@ -242,7 +242,7 @@ Search Appearance Toolkit (SEO 44) utilizes a couple external, third-party servi
 6. The comprehensive XML Sitemaps tab.
 7. The Migration settings tab.
 8. The SEO Meta Keys Scanner, showing the scan on a website with no previous SEO keys,  on the Migration Settings tab. 
-9. A category edit screen showing he new SEO fields.
+9. A category edit screen showing the new SEO fields.
 10. Published Vertical Jump Links, expanded and collapsed.
 11. Published Horizontal Jump Links, expanded and collapsed.
 12. The Jump Links Block in Viewing Mode.
