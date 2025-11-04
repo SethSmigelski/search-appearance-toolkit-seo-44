@@ -186,7 +186,7 @@ The seo44_add_schema_parts filter allows for the injection of additional schema 
 Example Usage:
 The following example shows how you could create a small, separate plugin to add LocalBusiness schema to a specific "Contact Us" page.
 
-[php]
+```php
 /**
  * Hooks into the 'seo44_add_schema_parts' filter to add custom schema.
  *
@@ -214,7 +214,7 @@ function my_custom_add_local_business_schema( $schema_parts, $post_id ) {
     return $schema_parts;
 }
 add_filter( 'seo44_add_schema_parts', 'my_custom_add_local_business_schema', 10, 2 );
-[/php]
+```
 
 == Credits ==
 
