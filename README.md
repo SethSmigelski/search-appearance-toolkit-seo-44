@@ -271,45 +271,86 @@ Search Appearance Toolkit (SEO 44) utilizes a couple external, third-party servi
 ## Screenshots
 
 ![The clean and simple SEO metabox in the post editor, with the live snippet preview](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-1.png)
+
 _The clean and simple SEO metabox in the post editor, with the live snippet preview._
 
+---
+
 ![The Main Settings tab, for controlling meta tags and homepage SEO](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-2.png)
+
 _The Main Settings tab, for controlling meta tags and homepage SEO._
 
+---
+
 ![The Social Media settings tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-3.png)
+
 _The Social Media settings tab._
 
+---
+
 ![The Schema Structured Data tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-4.png)
+
 _The Schema Structured Data tab._
 
+---
+
 ![The intelligent Schema Scanner, showing a clean result and a preview, on the Schema Structured Data tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-5.png)
+
 _The intelligent Schema Scanner, showing a clean result and a preview, on the Schema Structured Data tab._
 
+---
+
 ![The comprehensive XML Sitemaps tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-6.png)
+
 _The comprehensive XML Sitemaps tab._
 
+---
+
 ![The Migration settings tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-7.png)
+
 _The Migration settings tab._
 
+---
+
 ![The SEO Meta Keys Scanner, showing the scan on a website with no previous SEO keys,  on the Migration Settings tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-8.png)
+
 _The SEO Meta Keys Scanner, showing the scan on a website with no previous SEO keys,  on the Migration Settings tab._
 
+---
+
 ![A category edit screen showing he new SEO fields](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-9.png)
-_A category edit screen showing he new SEO fields._
+
+_A category edit screen showing the new SEO fields._
+
+---
 
 ![Published Vertical Jump Links, expanded and collapsed](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-10.png)
+
 _Published Vertical Jump Links, expanded and collapsed._
 
+---
+
 ![Published Horizontal Jump Links, expanded and collapsed](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-11.png)
+
 _Published Horizontal Jump Links, expanded and collapsed._
 
+---
+
 ![The Jump Links Block in Viewing Mode](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-12.png)
+
 _The Jump Links Block in Viewing Mode._
 
+---
+
 ![The Jump Links Block in Editing Mode](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-13.png)
+
 _The Jump Links Block in Editing Mode._
 
+---
+
+
 ![The Sidebar controls for the Jump Links Block](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-14.png)
+
 _The Sidebar controls for the Jump Links Block._ 
 
 ---
