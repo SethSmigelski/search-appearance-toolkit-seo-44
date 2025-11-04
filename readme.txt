@@ -77,9 +77,18 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 
 == Installation ==
 
-1. Upload the `search-appearance-toolkit-seo-44` folder to the `/wp-content/plugins/` directory. 
-2. Activate the plugin through the 'Plugins' menu in WordPress. 
-3.  Go to **Settings -> SEO 44** to configure the plugin.
+= From the WordPress Plugin Directory File =
+1.  Log in to your WordPress Admin Dashboard.
+2.  Navigate to **Plugins > Add Plugin** in the left-hand menu.
+3.  Search for the plugin: **Search Appearance Toolkit (SEO 44)**.
+4.  Install the plugin: Once you locate the [correct plugin](https://wordpress.org/plugins/search-appearance-toolkit-seo-44/), click the **"Install Now"** button next to it.
+5.  Activate the plugin: After the installation is complete, click the **"Activate Plugin"** button that appears.
+
+= From a Zip File =
+1.  Download a copy of the plugin, available in the WordPress Plugin Directory [Search Appearance Toolkit SEO 44](https://wordpress.org/plugins/search-appearance-toolkit-seo-44/) webpage. 
+2.  Upload the **search-appearance-toolkit-seo-44** folder to the `/wp-content/plugins/` directory 
+3.  Activate the plugin through the **Plugins** menu in WordPress.
+4.  Navigate to **Settings -> SEO 44** to configure the plugin.
 
 == Frequently Asked Questions ==
 
