@@ -2,6 +2,8 @@
 
 A lightweight, feature-packed SEO plugin for essential meta tags, advanced structured data, XML sitemaps, article jump links, and easy migration.
 
+![SEO 44 Plugin Icon](https://ps.w.org/search-appearance-toolkit-seo-44/assets/icon-256x256.png)
+
 * **Contributors:** sethsm
 * **Tags:** seo, on-page seo, schema, structured data, xml sitemaps
 * **Requires at least:** 5.5
@@ -84,11 +86,22 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 
 ---
 
+![Search Appearance Toolkit Plugin Banner](https://ps.w.org/search-appearance-toolkit-seo-44/assets/banner-1544x500.png)
+
 ## Installation
 
-1. Upload the `search-appearance-toolkit-seo-44` folder to the `/wp-content/plugins/` directory. 
-2. Activate the plugin through the 'Plugins' menu in WordPress. 
-3.  Go to **Settings -> SEO 44** to configure the plugin.
+### From the WordPress Plugin Directory File
+1.  Log in to your WordPress Admin Dashboard.
+2.  Navigate to **Plugins > Add Plugin** in the left-hand menu.
+3.  Search for the plugin: **Search Appearance Toolkit (SEO 44)**.
+4.  Install the plugin: Once you locate the [correct plugin](https://wordpress.org/plugins/search-appearance-toolkit-seo-44/), click the **"Install Now"** button next to it.
+5.  Activate the plugin: After the installation is complete, click the **"Activate Plugin"** button that appears.
+
+### From a Zip File
+1.  Download a copy of the plugin, available in the WordPress Plugin Directory [Search Appearance Toolkit SEO 44](https://wordpress.org/plugins/search-appearance-toolkit-seo-44/) webpage. 
+2.  Upload the **search-appearance-toolkit-seo-44** folder to the `/wp-content/plugins/` directory 
+3.  Activate the plugin through the **Plugins** menu in WordPress.
+4.  Navigate to **Settings -> SEO 44** to configure the plugin.
 
 ---
 
@@ -257,20 +270,47 @@ Search Appearance Toolkit (SEO 44) utilizes a couple external, third-party servi
 
 ## Screenshots
 
-1. The clean and simple SEO metabox in the post editor, with the live snippet preview.
-2. The Main Settings tab, for controlling meta tags and homepage SEO. 
-3. The Social Media settings tab.
-4. The Schema Structured Data tab.
-5. The intelligent Schema Scanner, showing a clean result and a preview, on the Schema Structured Data tab. 
-6. The comprehensive XML Sitemaps tab.
-7. The Migration settings tab.
-8. The SEO Meta Keys Scanner, showing the scan on a website with no previous SEO keys,  on the Migration Settings tab. 
-9. A category edit screen showing he new SEO fields.
-10. Published Vertical Jump Links, expanded and collapsed
-11. Published Horizontal Jump Links, expanded and collapsed
-12. The Jump Links Block in Viewing Mode
-13. The Jump Links Block in Editing Mode
-14. The Sidebar controls for the Jump Links Block 
+![The clean and simple SEO metabox in the post editor, with the live snippet preview](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-1.png)
+_The clean and simple SEO metabox in the post editor, with the live snippet preview._
+
+![The Main Settings tab, for controlling meta tags and homepage SEO](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-2.png)
+_The Main Settings tab, for controlling meta tags and homepage SEO._
+
+![The Social Media settings tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-3.png)
+_The Social Media settings tab._
+
+![The Schema Structured Data tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-4.png)
+_The Schema Structured Data tab._
+
+![The intelligent Schema Scanner, showing a clean result and a preview, on the Schema Structured Data tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-5.png)
+_The intelligent Schema Scanner, showing a clean result and a preview, on the Schema Structured Data tab._
+
+![The comprehensive XML Sitemaps tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-6.png)
+_The comprehensive XML Sitemaps tab._
+
+![The Migration settings tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-7.png)
+_The Migration settings tab._
+
+![The SEO Meta Keys Scanner, showing the scan on a website with no previous SEO keys,  on the Migration Settings tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-8.png)
+_The SEO Meta Keys Scanner, showing the scan on a website with no previous SEO keys,  on the Migration Settings tab._
+
+![A category edit screen showing he new SEO fields](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-9.png)
+_A category edit screen showing he new SEO fields._
+
+![Published Vertical Jump Links, expanded and collapsed](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-10.png)
+_Published Vertical Jump Links, expanded and collapsed._
+
+![Published Horizontal Jump Links, expanded and collapsed](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-11.png)
+_Published Horizontal Jump Links, expanded and collapsed._
+
+![The Jump Links Block in Viewing Mode](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-12.png)
+_The Jump Links Block in Viewing Mode._
+
+![The Jump Links Block in Editing Mode](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-13.png)
+_The Jump Links Block in Editing Mode._
+
+![The Sidebar controls for the Jump Links Block](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-14.png)
+_The Sidebar controls for the Jump Links Block._ 
 
 ---
 
