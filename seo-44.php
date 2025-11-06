@@ -122,8 +122,8 @@ function seo44_jump_links_localize_script() {
 	// Only localize if the script is actually enqueued
 	if ( wp_script_is( $handle, 'enqueued' ) ) {
 		wp_localize_script( $handle, 'seo44JumpLinksL10n', [
-			'showMore' => __( 'Show More', 'jump-links-block-seo-44' ),
-			'showLess' => __( 'Show Less', 'jump-links-block-seo-44' ),
+			'showMore' => __( 'Show More', 'search-appearance-toolkit-seo-44' ),
+			'showLess' => __( 'Show Less', 'search-appearance-toolkit-seo-44' ),
 		] );
 	}
 }
