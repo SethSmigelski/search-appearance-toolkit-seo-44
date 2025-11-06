@@ -45,8 +45,8 @@ const { headings, showHeading, headingText, layout, isCollapsible, listStyle, fo
 		<div {...blockProps}>
 			{showHeading && <RichText.Content tagName="div" className="wp-block-seo44-jump-links-heading" value={headingText} />}
 			{headings && headings.length > 0 && (
-                <>
-                    <ListTag>
+                <nav aria-label={__('Table of contents', 'search-appearance-toolkit-seo-44')}>
+                    <ListTag id="seo44-jump-links-list">
                         {headings.filter(h => h.isVisible !== false).map(h => (
                             <li key={h.anchor}>
                                 <a href={`#${h.anchor}`} style={linkStyle}>{h.linkText}</a>
@@ -54,12 +54,15 @@ const { headings, showHeading, headingText, layout, isCollapsible, listStyle, fo
                         ))}
                     </ListTag>
                     {isCollapsible && (
-						<button type="button" className="seo-44-show-more" aria-label={__('Show More', 'search-appearance-toolkit-seo-44')}>
+						<button type="button" className="seo-44-show-more" aria-label={__('Show More', 'search-appearance-toolkit-seo-44')}
+						    aria-expanded="false"
+                            aria-controls="seo44-jump-links-list"
+						>
 							{arrowDownIcon}
 							{arrowUpIcon}
 						</button>
 					)}
-                </>
+                </nav>
 			)}
 		</div>
 	);
