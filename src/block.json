@@ -4,7 +4,7 @@
   "attributes": {
     "linkColor": { "type": "string", "default": "#0073aa" },
     "linkBackgroundColor": { "type": "string", "default": "#f0f0f0" },
-    "linkBackgroundColorHover": { "type": "string", "default": "#e0e0e0" }, 
+    "linkBackgroundColorHover": { "type": "string", "default": "#e4e4e4" }, 
     "linkBorderColor": { "type": "string", "default": "#dddddd" },
     "linkBorderRadius": { "type": "number", "default": 10 },
     "linkPadding": { "type": "string" },
