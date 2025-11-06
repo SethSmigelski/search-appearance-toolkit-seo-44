@@ -195,35 +195,34 @@ The seo44_add_schema_parts filter allows for the injection of additional schema 
 Example Usage:
 The following example shows how you could create a small, separate plugin to add LocalBusiness schema to a specific "Contact Us" page.
 
-```php
-/**
- * Hooks into the 'seo44_add_schema_parts' filter to add custom schema.
- *
- * @param array $schema_parts The existing array of schema parts from SEO 44.
- * @param int   $post_id The ID of the current post being viewed.
- * @return array The modified array of schema parts.
- */
-function my_custom_add_local_business_schema( $schema_parts, $post_id ) {
-    // The ID of the "Contact Us" page.
-    $contact_page_id = 123;
-
-    // Only add this schema on our specific contact page.
-    if ( $post_id == $contact_page_id ) {
-        $local_business_schema = [
-            '@context'    => 'https://schema.org',
-            '@type'       => 'LocalBusiness',
-            'name'        => 'SEO 44 Global Headquarters',
-            'address'     => '123 Main St, Anytown, USA',
-            'telephone'   => '555-555-1234'
-        ];
-        // Add our new schema to the array.
-        $schema_parts[] = $local_business_schema;
-    }
-    // Always return the array.
-    return $schema_parts;
-}
-add_filter( 'seo44_add_schema_parts', 'my_custom_add_local_business_schema', 10, 2 );
-```
+    <?php
+        /**
+        * Hooks into the 'seo44_add_schema_parts' filter to add custom schema.
+        *
+        * @param array $schema_parts The existing array of schema parts from SEO 44.
+        * @param int   $post_id The ID of the current post being viewed.
+        * @return array The modified array of schema parts.
+        */
+        function my_custom_add_local_business_schema( $schema_parts, $post_id ) {
+            // The ID of the "Contact Us" page.
+            $contact_page_id = 123;
+            // Only add this schema on our specific contact page.
+            if ( $post_id == $contact_page_id ) {
+                $local_business_schema = [
+                    '@context'    => 'https://schema.org',
+                    '@type'       => 'LocalBusiness',
+                    'name'        => 'SEO 44 Global Headquarters',
+                    'address'     => '123 Main St, Anytown, USA',
+                    'telephone'   => '555-555-1234'
+                ];
+                // Add our new schema to the array.
+                $schema_parts[] = $local_business_schema;
+            }
+            // Always return the array.
+            return $schema_parts;
+        }
+        add_filter( 'seo44_add_schema_parts', 'my_custom_add_local_business_schema', 10, 2 );
+    ?>
 
 == Credits ==
 
@@ -259,6 +258,10 @@ Search Appearance Toolkit (SEO 44) utilizes a couple external, third-party servi
 14. The Sidebar controls for the Jump Links Block.
 
 == Changelog ==
+
+= 3.9.6 =
+* ENHANCEMENT: Improved semantics and accessibility by wrapping Jump Links Block content in a `<nav>` landmark with a translatable aria-label.
+* ENHANCEMENT: Added full ARIA support to the Jump Links Block's collapsible button, including aria-expanded, aria-controls, and a dynamic "Show More" / "Show Less" label.
 
 = 3.9.5 =
 * FIX: To eliminate user confusion and create a distinctive name and slug for the WordPress Plugin directory, the plugin has been renamed "Search Appearance Toolkit (SEO 44)" and given the slug, search-appearance-toolkit-seo-44.
