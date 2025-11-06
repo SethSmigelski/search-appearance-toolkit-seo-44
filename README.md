@@ -8,7 +8,7 @@ A lightweight, feature-packed SEO plugin for essential meta tags, advanced struc
 * **Tags:** seo, on-page seo, schema, structured data, xml sitemaps
 * **Requires at least:** 5.5
 * **Tested up to:** 6.8
-* **Stable tag:** 3.9.5
+* **Stable tag:** 3.9.6
 * **Requires PHP:** 7.4
 * **License:** GPLv2 or later
 * **License URI:** https://www.gnu.org/licenses/gpl-2.0.html
@@ -357,123 +357,127 @@ _The Sidebar controls for the Jump Links Block._
 
 ## Changelog
 
+### 3.9.6
+* **ENHANCEMENT:** Improved semantics and accessibility by wrapping Jump Links Block content in a `<nav>` landmark with a translatable aria-label.
+* **ENHANCEMENT:** Added full ARIA support to the Jump Links Block's collapsible button, including aria-expanded, aria-controls, and a dynamic "Show More" / "Show Less" label.
+
 ### 3.9.5
-* FIX: To eliminate user confusion and create a distinctive name and slug for the WordPress Plugin directory, the plugin has been renamed "Search Appearance Toolkit (SEO 44)" and given the slug, search-appearance-toolkit-seo-44.
-* FIX: The text domain has been updated to match the new slug across all PHP files and custom block files for translation.
-* FIX: Repaired the settings page tabs to correctly use the new plugin slug, resolving "Sorry, you are not allowed to access this page" errors when switching tabs.
+* **FIX:** To eliminate user confusion and create a distinctive name and slug for the WordPress Plugin directory, the plugin has been renamed "Search Appearance Toolkit (SEO 44)" and given the slug, search-appearance-toolkit-seo-44.
+* **FIX:** The text domain has been updated to match the new slug across all PHP files and custom block files for translation.
+* **FIX:** Repaired the settings page tabs to correctly use the new plugin slug, resolving "Sorry, you are not allowed to access this page" errors when switching tabs.
 
 ### 3.9.4 
-* FEATURE (Jump Links Block): Added a new "Background Hover" color setting in the Inspector Controls for links in the horizontal layout.
-* ENHANCEMENT (Jump Links Block): Improved the out-of-the-box appearance by setting default colors and a default border-radius in block.json, ensuring the block looks great immediately upon being added.
-* REFACTOR (Jump Links Block): Removed hardcoded default styles from the stylesheets, making the block's settings the single source of truth for its design and improving consistency.
-* CODE QUALITY (Jump Links Block): Refactored editor.scss to import style.scss, eliminating code duplication and making the styles easier to maintain.
-* CODE QUALITY (Jump Links Block): Performed a comprehensive review and refactor of all block source files (.js, .scss, .json). This improves the block's stability, maintainability, and alignment with modern WordPress development best practices.
+* **FEATURE (Jump Links Block):** Added a new "Background Hover" color setting in the Inspector Controls for links in the horizontal layout.
+* **ENHANCEMENT (Jump Links Block):** Improved the out-of-the-box appearance by setting default colors and a default border-radius in block.json, ensuring the block looks great immediately upon being added.
+* **REFACTOR (Jump Links Block):** Removed hardcoded default styles from the stylesheets, making the block's settings the single source of truth for its design and improving consistency.
+* **CODE QUALITY (Jump Links Block):** Refactored editor.scss to import style.scss, eliminating code duplication and making the styles easier to maintain.
+* **CODE QUALITY (Jump Links Block):** Performed a comprehensive review and refactor of all block source files (.js, .scss, .json). This improves the block's stability, maintainability, and alignment with modern WordPress development best practices.
 
 ### 3.9.3
-FIX: Implemented automatic rewrite rule flushing for XML sitemaps. Sitemap URLs now work immediately after plugin activation or when toggling the sitemap feature on/off, eliminating sitemap 404 errors and the need to manually save permalink settings.
+**FIX:** Implemented automatic rewrite rule flushing for XML sitemaps. Sitemap URLs now work immediately after plugin activation or when toggling the sitemap feature on/off, eliminating sitemap 404 errors and the need to manually save permalink settings.
 
 ### 3.9.2
-* REFACTOR: Completely refactored the XML Sitemap generation logic to comply with WordPress.org's "late escaping" security requirements. Sitemaps are now built by echoing escaped data line-by-line instead of using an output buffer.
-* FIX: Resolved unescaped variable output in the sitemap files.
-* SECURITY: Enhanced sitemap security by ensuring every dynamic URL and date is individually escaped with `esc_url()` or `esc_xml()` at the moment of output.
-* ENHANCEMENT: Improved sitemap caching to store structured data arrays instead of raw XML, leading to more efficient generation.
-* FIX: Completed nonce verification to prevent CSRF attacks on tab switching.
-* CHANGE: The default favicon, previously loaded from s.w.org, is now included locally within the plugin's 'images' folder to remove external dependencies.
-* CHANGE (Readme): Removed the "WordPress.org Favicon Service" from the External Services section and added a "Credits" section to properly attribute the locally-hosted favicon.
+* **REFACTOR:** Completely refactored the XML Sitemap generation logic to comply with WordPress.org's "late escaping" security requirements. Sitemaps are now built by echoing escaped data line-by-line instead of using an output buffer.
+* **FIX:** Resolved unescaped variable output in the sitemap files.
+* **SECURITY:** Enhanced sitemap security by ensuring every dynamic URL and date is individually escaped with `esc_url()` or `esc_xml()` at the moment of output.
+* **ENHANCEMENT:** Improved sitemap caching to store structured data arrays instead of raw XML, leading to more efficient generation.
+* **FIX:** Completed nonce verification to prevent CSRF attacks on tab switching.
+* **CHANGE:** The default favicon, previously loaded from s.w.org, is now included locally within the plugin's 'images' folder to remove external dependencies.
+* **CHANGE (Readme):** Removed the "WordPress.org Favicon Service" from the External Services section and added a "Credits" section to properly attribute the locally-hosted favicon.
 
 ### 3.9.1
-* ENHANCEMENT: The Article schema now generates a more robust author profile. If an author has a website URL in their WordPress user profile, the schema will now include url and @id properties, creating a stronger connection between the content and the author's identity for search engines.
-* FIX: Direct $_GET access in settings page navigation
-* ENHANCEMENT: Improved input validation and escaping in admin forms  
-* SECURITY: Added proper capability checks for metabox saving
-* SECURITY: Better CSRF protection and data sanitization
+* **ENHANCEMENT:** The Article schema now generates a more robust author profile. If an author has a website URL in their WordPress user profile, the schema will now include url and @id properties, creating a stronger connection between the content and the author's identity for search engines.
+* **FIX:** Direct $_GET access in settings page navigation
+* **ENHANCEMENT:** Improved input validation and escaping in admin forms  
+* **SECURITY:** Added proper capability checks for metabox saving
+* **SECURITY:** Better CSRF protection and data sanitization
 
 ### 3.9.0
-* FIX: Unescaped JSON-LD output in schema generation following WordPress security standards
-* FIX: Missing variable declaration in media parsing functionality
-* ENHANCEMENT: Added capability checks for taxonomy meta field saving
-* ENHANCEMENT: Better input validation for query parameters with proper sanitization
-* SECURITY: Strengthened nonce verification with user permission checks
-* CODE QUALITY: Improved phpcs compliance with proper security annotations
+* **FIX:** Unescaped JSON-LD output in schema generation following WordPress security standards
+* **FIX:** Missing variable declaration in media parsing functionality
+* **ENHANCEMENT:** Added capability checks for taxonomy meta field saving
+* **ENHANCEMENT:** Better input validation for query parameters with proper sanitization
+* **SECURITY:** Strengthened nonce verification with user permission checks
+* **CODE QUALITY:** Improved phpcs compliance with proper security annotations
 
 ### 3.8.9
-* FIX: SQL injection vulnerability in meta key scanner
-* SECURITY: Enhanced SQL injection protection with proper prepared statements
-* ENHANCEMENT: Explicit placeholder usage, removing the intermediate variable
-* REFACTORED: Simplified SQL query construction for better maintainability
-* FIX: WordPress coding standards compliance for database queries
-* FIX: Unescaped variable output in sitemap generation
-* SECURITY: Implemented proper wpdb::prepare() usage for sitemap transients
-* ENHANCEMENT: Improved database query security following WordPress guidelines
+* **FIX:** SQL injection vulnerability in meta key scanner
+* **SECURITY:** Enhanced SQL injection protection with proper prepared statements
+* **ENHANCEMENT:** Explicit placeholder usage, removing the intermediate variable
+* **REFACTORED:** Simplified SQL query construction for better maintainability
+* **FIX:** WordPress coding standards compliance for database queries
+* **FIX:** Unescaped variable output in sitemap generation
+* **SECURITY:** Implemented proper wpdb::prepare() usage for sitemap transients
+* **ENHANCEMENT:** Improved database query security following WordPress guidelines
 
 ### 3.8.8
-* FIX (Readme): Replaced the broken Terms of Service link in the External Services section for the WordPress.org Favicon Service with a link to the wordpress.org About page.
+* **FIX (Readme):** Replaced the broken Terms of Service link in the External Services section for the WordPress.org Favicon Service with a link to the wordpress.org About page.
 
 ### 3.8.7 
-* ENHANCEMENT: The Homepage SEO fields on the settings page now intelligently use the Site Title and Tagline as default fallbacks for new installations.
-* FIX: Corrected an issue on the settings page where the Homepage SEO snippet preview would display raw PHP code if the fields were empty. The preview now correctly shows the fallback site title and tagline.
-* FIX: Corrected a special character issue when retrieving the site title and tagline for Homepage SEO.
-* ENHANCEMENT: Excluded Jump Links Block meta key from the SEO Meta Keys Scanner for a cleaner and more focused output.  
+* **ENHANCEMENT:** The Homepage SEO fields on the settings page now intelligently use the Site Title and Tagline as default fallbacks for new installations.
+* **FIX:** Corrected an issue on the settings page where the Homepage SEO snippet preview would display raw PHP code if the fields were empty. The preview now correctly shows the fallback site title and tagline.
+* **FIX:** Corrected a special character issue when retrieving the site title and tagline for Homepage SEO.
+* **ENHANCEMENT:** Excluded Jump Links Block meta key from the SEO Meta Keys Scanner for a cleaner and more focused output.  
 
 ### 3.8.6
-* ENHANCEMENT: Added a new option in the XML Sitemaps settings to exclude specific posts or pages by entering a comma-separated list of IDs.
-* ENHANCEMENT (for Developers): Introduced the seo44_add_schema_parts filter, allowing developers to programmatically add custom schema types via add-on plugins.
-* SECURITY: Hardened the database query in the Migration Tools' meta key scanner against SQL injection, per WordPress.org guidelines.
-* SECURITY: Added proper escaping and validation to the XML sitemap and JSON-LD schema output to ensure all front-end data is secure.
-* FIX: Replaced the previous conflict resolution system (which deactivated other plugins) with a new, guideline-compliant method. The main plugin now detects if the standalone Jump Links Block plugin is active and avoids loading its own version to prevent conflicts.
-* FIX: Improved the code readability of the JavaScript file for the settings page (settings-script.js) to comply with WordPress.org's "human-readable" code guidelines.
-* FIX (Readme): Added a required "External Services" section to the readme.txt file, documenting the use of Google and Bing's sitemap ping services and the WordPress.org favicon service.
+* **ENHANCEMENT:** Added a new option in the XML Sitemaps settings to exclude specific posts or pages by entering a comma-separated list of IDs.
+* **ENHANCEMENT (for Developers):** Introduced the seo44_add_schema_parts filter, allowing developers to programmatically add custom schema types via add-on plugins.
+* **SECURITY:** Hardened the database query in the Migration Tools' meta key scanner against SQL injection, per WordPress.org guidelines.
+* **SECURITY:** Added proper escaping and validation to the XML sitemap and JSON-LD schema output to ensure all front-end data is secure.
+* **FIX:** Replaced the previous conflict resolution system (which deactivated other plugins) with a new, guideline-compliant method. The main plugin now detects if the standalone Jump Links Block plugin is active and avoids loading its own version to prevent conflicts.
+* **FIX:** Improved the code readability of the JavaScript file for the settings page (settings-script.js) to comply with WordPress.org's "human-readable" code guidelines.
+* **FIX (Readme):** Added a required "External Services" section to the readme.txt file, documenting the use of Google and Bing's sitemap ping services and the WordPress.org favicon service.
 
 ### 3.8.5
-* ENHANCEMENT: Improved the Homepage SEO section in the settings tab to include a live Search Results Snippet Preview and character counters, as featured in the post editor metabox.
-* FEATURE: Added a conflict resolution system. The main SEO 44 plugin now automatically detects and deactivates a standalone "Jump Links Block" plugin to prevent fatal errors and ensure seamless integration for users.
+* **ENHANCEMENT:** Improved the Homepage SEO section in the settings tab to include a live Search Results Snippet Preview and character counters, as featured in the post editor metabox.
+* **FEATURE:** Added a conflict resolution system. The main SEO 44 plugin now automatically detects and deactivates a standalone "Jump Links Block" plugin to prevent fatal errors and ensure seamless integration for users.
 
 ### 3.8.0
-* FEATURE: Added the "Jump Links Block." This advanced block automatically generates a customizable Table of Contents with a full suite of editing and styling controls.
-* ENHANCEMENT: Updated all plugin code to a modern, object-oriented structure for better performance and maintainability.
+* **FEATURE:** Added the "Jump Links Block." This advanced block automatically generates a customizable Table of Contents with a full suite of editing and styling controls.
+* **ENHANCEMENT:** Updated all plugin code to a modern, object-oriented structure for better performance and maintainability.
 
 ### 3.3.0
-* FEATURE: Added `BreadcrumbList` schema to all singular posts and pages for enhanced search results.
-* ENHANCEMENT: Implemented fallback for post/page meta descriptions using the post excerpt or content.
-* ENHANCEMENT: Implemented smart title truncation for post/page/taxonomy title tags to fit within Google's display limits.
+* **FEATURE:** Added `BreadcrumbList` schema to all singular posts and pages for enhanced search results.
+* **ENHANCEMENT:** Implemented fallback for post/page meta descriptions using the post excerpt or content.
+* **ENHANCEMENT:** Implemented smart title truncation for post/page/taxonomy title tags to fit within Google's display limits.
 
 ### 3.2.0
-* FEATURE: Added intelligent detection for `HowTo` schema in post content.
-* FEATURE: Added the ability to exclude images from sitemaps and schema by adding a `seo44-ignore` CSS class.
-* ENHANCEMENT: Added a "Use Example" button to the metabox to apply the suggested SEO title easily.
-* FIX: Excluded 1x1 tracking pixels from sitemaps.
+* **FEATURE:** Added intelligent detection for `HowTo` schema in post content.
+* **FEATURE:** Added the ability to exclude images from sitemaps and schema by adding a `seo44-ignore` CSS class.
+* **ENHANCEMENT:** Added a "Use Example" button to the metabox to apply the suggested SEO title easily.
+* **FIX:** Excluded 1x1 tracking pixels from sitemaps.
 
 ### 3.1.0
-* FEATURE: Added intelligent detection for `FAQPage` schema in post content and combined it with the base schema using `@graph`.
-* FEATURE: Added a fallback parser for the schema scanner to support the Classic Editor and page builders.
+* **FEATURE:** Added intelligent detection for `FAQPage` schema in post content and combined it with the base schema using `@graph`.
+* **FEATURE:** Added a fallback parser for the schema scanner to support the Classic Editor and page builders.
 
 ### 3.0.0
-* FEATURE: Added an advanced content scanner to find all images and YouTube videos within a post/page and add them to the schema.
+* **FEATURE:** Added an advanced content scanner to find all images and YouTube videos within a post/page and add them to the schema.
 
 ### 2.3.1
-* FIX: Corrected an issue where the "Enable XML Sitemaps" and "Ping Search Engines" settings would not save correctly. 
+* **FIX:** Corrected an issue where the "Enable XML Sitemaps" and "Ping Search Engines" settings would not save correctly. 
 
 ### 2.1.0
-* FEATURE: Added SEO fields to Category and Tag edit screens. 
-* FEATURE: Meta tags and social tags are now output on homepage and taxonomy archive pages.
-* FEATURE: Added Homepage SEO fields to the Main Settings tab. 
-* FIX: Corrected a bug that caused an empty metabox in the post editor. 
+* **FEATURE:** Added SEO fields to Category and Tag edit screens. 
+* **FEATURE:** Meta tags and social tags are now output on homepage and taxonomy archive pages.
+* **FEATURE:** Added Homepage SEO fields to the Main Settings tab. 
+* **FIX:** Corrected a bug that caused an empty metabox in the post editor. 
 
 ### 2.0.0
-* REFACTOR: Converted the entire plugin to a modern, class-based (object-oriented) structure for better performance and maintainability. 
+* **REFACTOR:** Converted the entire plugin to a modern, class-based (object-oriented) structure for better performance and maintainability. 
 
 ### 1.5.0
-* FEATURE: Added a new "Schema" tab with an intelligent scanner to detect and prevent conflicts with other SEO plugins or themes. 
-* FEATURE: Added automatic generation of `Article`, `WebPage`, `WebSite`, and `BreadcrumbList` schema. 
+* **FEATURE:** Added a new "Schema" tab with an intelligent scanner to detect and prevent conflicts with other SEO plugins or themes. 
+* **FEATURE:** Added automatic generation of `Article`, `WebPage`, `WebSite`, and `BreadcrumbList` schema. 
 
 ### 1.4.0
-* FEATURE: Moved beyond the metabox to create a tabbed plugin settings page with site-wide options.
-* FEATURE: Added tabs for main settings, social media settings, and migration settings.
-* FEATURE: Front-end output for SEO Social Media meta tags.
+* **FEATURE:** Moved beyond the metabox to create a tabbed plugin settings page with site-wide options.
+* **FEATURE:** Added tabs for main settings, social media settings, and migration settings.
+* **FEATURE:** Front-end output for SEO Social Media meta tags.
 
 ### 1.0.0
-* FEATURE: Initial development of an SEO metabox for the post editor with fields for title, description and keywords.
-* FEATURE: Character counters and length warnings for SEO titles and descriptions.
+* **FEATURE:** Initial development of an SEO metabox for the post editor with fields for title, description and keywords.
+* **FEATURE:** Character counters and length warnings for SEO titles and descriptions.
 
 ---
 
