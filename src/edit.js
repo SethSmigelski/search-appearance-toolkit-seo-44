@@ -301,73 +301,77 @@ export default function Edit({ attributes, setAttributes }) {
 		        )}
 
 				{savedHeadings.length > 0 ? ( // We now use savedHeadings for a stable display
-					<ListTag>
-						{savedHeadings.map((heading, index) => 
-							isEditing ? (
-								<li key={heading.anchor}>
-									<TextControl
-										value={heading.linkText}
-										onChange={(newText) => updateLinkText(index, newText)}
-									/>
-									<div className="edit-controls-wrapper">
-										<div className="reorder-buttons">
-											<Button
-												icon={arrowUpIcon}
-												label={__('Move Up', 'search-appearance-toolkit-seo-44')}
-												onClick={() => moveItem(index, 'up')}
-												disabled={index === 0}
-											/>
-											<Button
-												icon={arrowDownIcon}
-												label={__('Move Down', 'search-appearance-toolkit-seo-44')}
-												onClick={() => moveItem(index, 'down')}
-												disabled={index === savedHeadings.length - 1}
+					<nav aria-label={__('Table of contents', 'search-appearance-toolkit-seo-44')}>
+                    	<ListTag id="seo44-jump-links-list">
+							{savedHeadings.map((heading, index) => 
+								isEditing ? (
+									<li key={heading.anchor}>
+										<TextControl
+											value={heading.linkText}
+											onChange={(newText) => updateLinkText(index, newText)}
+										/>
+										<div className="edit-controls-wrapper">
+											<div className="reorder-buttons">
+												<Button
+													icon={arrowUpIcon}
+													label={__('Move Up', 'search-appearance-toolkit-seo-44')}
+													onClick={() => moveItem(index, 'up')}
+													disabled={index === 0}
+												/>
+												<Button
+													icon={arrowDownIcon}
+													label={__('Move Down', 'search-appearance-toolkit-seo-44')}
+													onClick={() => moveItem(index, 'down')}
+													disabled={index === savedHeadings.length - 1}
+												/>
+											</div>
+											<ToggleControl
+												label={
+													heading.isVisible !== false 
+													? __('Included', 'search-appearance-toolkit-seo-44') 
+													: __('This Jump Link will not be shown', 'search-appearance-toolkit-seo-44')
+												}
+												checked={heading.isVisible !== false}
+												onChange={() => toggleVisibility(index)}
 											/>
 										</div>
-										<ToggleControl
-											label={
-												heading.isVisible !== false 
-												? __('Included', 'search-appearance-toolkit-seo-44') 
-												: __('This Jump Link will not be shown', 'search-appearance-toolkit-seo-44')
-											}
-											checked={heading.isVisible !== false}
-											onChange={() => toggleVisibility(index)}
-										/>
-									</div>
-								</li>
-							) : (
-								heading.isVisible !== false && (
-									<li key={heading.anchor}>
-										<a href={`#${heading.anchor}`} style={linkStyle} onClick={(e) => e.preventDefault()}>
-											{heading.linkText}
-										</a>
 									</li>
+								) : (
+									heading.isVisible !== false && (
+										<li key={heading.anchor}>
+											<a href={`#${heading.anchor}`} style={linkStyle} onClick={(e) => e.preventDefault()}>
+												{heading.linkText}
+											</a>
+										</li>
+									)
 								)
-							)
-						)}
-					</ListTag>
+							)}
+						</ListTag>
+
+						{/* ADD THIS SIMULATED BUTTON */}
+						{!isEditing && isCollapsible && savedHeadings.length > 0 && (
+		                    <Tooltip text={__('This button is functional on the front-end to expand the list.', 'search-appearance-toolkit-seo-44')}>
+		                        <button
+		                            type="button"
+		                            className="seo-44-show-more"
+		                            aria-label={__('Show More', 'search-appearance-toolkit-seo-44')}
+		                            aria-expanded="false"
+                            		aria-controls="seo44-jump-links-list"
+		                            onClick={() => {
+		                                createInfoNotice(
+		                                    __('The "Show More" button is interactive on the published page.', 'search-appearance-toolkit-seo-44'),
+		                                    { type: 'snackbar' }
+		                                );
+		                            }}
+		                        >
+		                            {expandDownIcon}
+		                        </button>
+		                    </Tooltip>
+		                )}	
+					</nav>
 				) : (
 					<p>{__('No headings found. Select a heading level in the block settings to generate links.', 'search-appearance-toolkit-seo-44')}</p>
-				)}
-				
-				{/* ADD THIS SIMULATED BUTTON */}
-				{!isEditing && isCollapsible && savedHeadings.length > 0 && (
-                    <Tooltip text={__('This button is functional on the front-end to expand the list.', 'search-appearance-toolkit-seo-44')}>
-                        <button
-                            type="button"
-                            className="seo-44-show-more"
-                            aria-label={__('Show More', 'search-appearance-toolkit-seo-44')}
-                            onClick={() => {
-                                createInfoNotice(
-                                    __('The "Show More" button is interactive on the published page.', 'search-appearance-toolkit-seo-44'),
-                                    { type: 'snackbar' }
-                                );
-                            }}
-                        >
-                            {expandDownIcon}
-                        </button>
-                    </Tooltip>
-                )}																				
+				)}																			
 		    </div>
 		</>
 	);
