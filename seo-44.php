@@ -109,7 +109,26 @@ function seo44_register_blocks() {
         register_block_type( __DIR__ . '/build' );
     }
 }
-add_action('init', 'seo44_register_blocks');	
+add_action('init', 'seo44_register_blocks');
+
+/**
+ * Passes translatable strings to the front-end view.js script.
+ */
+function seo44_jump_links_localize_script() {
+	// The script handle is generated from your block.json 'name' (seo44/jump-links)
+	// It becomes 'seo44-jump-links-view-script'
+	$handle = 'seo44-jump-links-view-script';
+
+	// Only localize if the script is actually enqueued
+	if ( wp_script_is( $handle, 'enqueued' ) ) {
+		wp_localize_script( $handle, 'seo44JumpLinksL10n', [
+			'showMore' => __( 'Show More', 'jump-links-block-seo-44' ),
+			'showLess' => __( 'Show Less', 'jump-links-block-seo-44' ),
+		] );
+	}
+}
+// Use a late priority (20) to ensure the script is enqueued first
+add_action( 'wp_enqueue_scripts', 'seo44_jump_links_localize_script', 20 );
 
 
 /**
