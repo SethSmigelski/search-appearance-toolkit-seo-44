@@ -40,8 +40,8 @@
 }
 
 /* Styling for the Collapsible Feature */
-.wp-block-seo44-jump-links.is-collapsible > ul,
-.wp-block-seo44-jump-links.is-collapsible > ol {
+.wp-block-seo44-jump-links.is-collapsible > nav > ul,
+.wp-block-seo44-jump-links.is-collapsible > nav > ol {
     /* If horizontal, allow wrapping so we can see the overflow */
     flex-wrap: wrap;
     /* Limit to roughly one line of text height */
@@ -50,8 +50,8 @@
     transition: max-height 0.3s ease-in-out;
 }
 
-.wp-block-seo44-jump-links.is-collapsible.is-expanded > ul,
-.wp-block-seo44-jump-links.is-collapsible.is-expanded > ol {
+.wp-block-seo44-jump-links.is-collapsible.is-expanded > nav > ul,
+.wp-block-seo44-jump-links.is-collapsible.is-expanded > nav > ol {
     max-height: 1000px; /* A large value to reveal all content */
 }
 
@@ -78,8 +78,8 @@
 
 /* DYNAMIC COLLAPSED HEIGHTS */
 /* Vertical Layout: Collapse to 2 lines */
-.wp-block-seo44-jump-links.is-collapsible:not(.is-layout-horizontal) > ul,
-.wp-block-seo44-jump-links.is-collapsible:not(.is-layout-horizontal) > ol {
+.wp-block-seo44-jump-links.is-collapsible:not(.is-layout-horizontal) > nav > ul,
+.wp-block-seo44-jump-links.is-collapsible:not(.is-layout-horizontal) > nav > ol {
     max-height: calc(var(--jump-link-font-size, 1em) * 1.7 * 2); /* font-size * line-height * 2 lines */
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
@@ -91,34 +91,34 @@
     margin-top: calc(var(--jump-link-font-size, 1em) * 1.8);
 }
 /* Horizontal Layout: Collapse to 1 line */
-.wp-block-seo44-jump-links.is-collapsible.is-layout-horizontal > ul,
-.wp-block-seo44-jump-links.is-collapsible.is-layout-horizontal > ol {
+.wp-block-seo44-jump-links.is-collapsible.is-layout-horizontal > nav > ul,
+.wp-block-seo44-jump-links.is-collapsible.is-layout-horizontal > nav > ol {
     max-height: calc(var(--jump-link-font-size, 1em) * 1.7 + 1.5em); /* font-size * line-height + padding */
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
 
 /* Expanded state for both layouts */
-.wp-block-seo44-jump-links.is-collapsible.is-expanded > ul,
-.wp-block-seo44-jump-links.is-collapsible.is-expanded > ol {
+.wp-block-seo44-jump-links.is-collapsible.is-expanded > nav > ul,
+.wp-block-seo44-jump-links.is-collapsible.is-expanded > nav > ol {
     max-height: 1000px;
 }
 
 /* HORIZONTAL LAYOUT: BUTTON BESIDE LIST */
-.wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible {
+.wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible > nav {
     display: flex;
     align-items: flex-start;
     gap: 0.5em;
     flex-wrap: wrap;
 }
 
-.wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible > ul,
-.wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible > ol {
+.wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible > nav > ul,
+.wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible > nav > ol {
     flex-basis: 0;
     flex-grow: 1;
 }
 
-.wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible .seo-44-show-more {
+.wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible > nav > .seo-44-show-more {
     flex-shrink: 0;
     margin-top: 0.5em;
 }
