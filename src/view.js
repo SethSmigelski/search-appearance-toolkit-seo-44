@@ -25,14 +25,28 @@ window.addEventListener('load', function () {
             if (button) {
                 button.style.display = 'inline-block'; // Always show the button if the feature is on.
 
+				// Get translated strings from PHP, with a fallback
+                const l10n = window.seo44JumpLinksL10n || {};
+                const showMoreText = l10n.showMore || 'Show More';
+                const showLessText = l10n.showLess || 'Show Less';
+
+                // Set initial aria-label just in case (though save.js should do it)
+                button.setAttribute('aria-label', showMoreText);
+
                 button.addEventListener('click', function () {
                     block.classList.toggle('is-expanded');
+					
+					// Check the new state
+                    const isExpanded = block.classList.contains('is-expanded');
+					// 1. UPDATE aria-expanded on the button
+                    button.setAttribute('aria-expanded', isExpanded);
 
+                    // 2. UPDATE the button's aria-label using our new strings
                     // This handles the icon change via CSS.
-					if (block.classList.contains('is-expanded')) {
-						button.setAttribute('aria-label', 'Show Less');
+					if (isExpanded) {
+						button.setAttribute('aria-label', showLessText);
 					} else {
-						button.setAttribute('aria-label', 'Show More');
+						button.setAttribute('aria-label', showMoreText);
 					}
                 });
             }
