@@ -104,32 +104,33 @@ function seo44_show_standalone_active_notice() {
 */
 function seo44_register_blocks() {
     // Check if the standalone plugin's main function exists.
-    // This is a safe way to check without knowing the file path.
     if ( ! function_exists('jump_links_block_register') ) {
+        
+        // 1. Register the block
         register_block_type( __DIR__ . '/build' );
+
+        /**
+         * Passes translatable strings to the front-end view.js script
+         * (Only for the main plugin's block)
+         */
+        function seo44_jump_links_localize_script() {
+            // The script handle is generated from your block.json 'name' (seo44/jump-links)
+            // It becomes 'seo44-jump-links-view-script'
+            $handle = 'seo44-jump-links-view-script';
+
+            // Only localize if the script is actually enqueued
+            if ( wp_script_is( $handle, 'enqueued' ) ) {
+                wp_localize_script( $handle, 'seo44JumpLinksL10n', [
+                    'showMore' => __( 'Show More', 'search-appearance-toolkit-seo-44' ),
+                    'showLess' => __( 'Show Less', 'search-appearance-toolkit-seo-44' ),
+                ] );
+            }
+        }
+        // 2. Add the action for the function
+        add_action( 'wp_enqueue_scripts', 'seo44_jump_links_localize_script', 20 );
     }
 }
 add_action('init', 'seo44_register_blocks');
-
-/**
- * Passes translatable strings to the front-end view.js script.
- */
-function seo44_jump_links_localize_script() {
-	// The script handle is generated from your block.json 'name' (seo44/jump-links)
-	// It becomes 'seo44-jump-links-view-script'
-	$handle = 'seo44-jump-links-view-script';
-
-	// Only localize if the script is actually enqueued
-	if ( wp_script_is( $handle, 'enqueued' ) ) {
-		wp_localize_script( $handle, 'seo44JumpLinksL10n', [
-			'showMore' => __( 'Show More', 'search-appearance-toolkit-seo-44' ),
-			'showLess' => __( 'Show Less', 'search-appearance-toolkit-seo-44' ),
-		] );
-	}
-}
-// Use a late priority (20) to ensure the script is enqueued first
-add_action( 'wp_enqueue_scripts', 'seo44_jump_links_localize_script', 20 );
-
 
 /**
  * Template tag to get the SEO 44 meta tags as a string.
