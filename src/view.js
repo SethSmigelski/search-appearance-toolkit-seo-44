@@ -13,6 +13,25 @@ window.addEventListener('load', function () {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
+
+                    // --- PUSH LOGIC for Google Tag Manager with Search Appearance Toolkit (SEO 44) ---
+                    
+                    // 1. Check if tracking is enabled (from our localized PHP variable)
+                    const l10n = window.seo44JumpLinksL10n || {};
+                    const isTrackingEnabled = l10n.trackClicks;
+        
+                    // 2. Check the toggle AND the dataLayer's existence
+                    if (isTrackingEnabled && window.dataLayer && typeof window.dataLayer.push === 'function') {
+                        
+                        // 3. Push the event
+                        // Note: We use 'this.textContent' because 'this' refers to the link that was clicked
+                        window.dataLayer.push({
+                            'event': 'jump_link_click',
+                            'click_text': this.textContent,
+                            'click_anchor': targetId
+                        });
+                    }
+                    // --- End of event tracking logic ---
                 }
             });
         });
