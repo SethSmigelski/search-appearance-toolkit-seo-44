@@ -3,7 +3,7 @@
  * Plugin Name:       Search Appearance Toolkit (SEO 44)
  * Plugin URI:        https://www.sethcreates.com/plugins-for-wordpress/search-appearance-toolkit-seo-44/
  * Description:       A lightweight, powerful SEO plugin for essential meta tags, advanced schema, XML sitemaps, jump links, and easy migration from other plugins.
- * Version:           3.9.6
+ * Version:           3.9.7
  * Author:            Seth Smigelski
  * Author URI:  	  https://www.sethcreates.com/plugins-for-wordpress/
  * License:           GPL-2.0+
@@ -120,9 +120,18 @@ function seo44_register_blocks() {
 
             // Only localize if the script is actually enqueued
             if ( wp_script_is( $handle, 'enqueued' ) ) {
+
+                // Get the GTM tracking setting from your main plugin options
+                $track_clicks = seo44_get_option('enable_jump_link_tracking', 0); 
+
+				
                 wp_localize_script( $handle, 'seo44JumpLinksL10n', [
+					// ShowMore text localization
                     'showMore' => __( 'Show More', 'search-appearance-toolkit-seo-44' ),
                     'showLess' => __( 'Show Less', 'search-appearance-toolkit-seo-44' ),
+					
+					// Click event tracking check
+                    'trackClicks' => (bool) $track_clicks
                 ] );
             }
         }
