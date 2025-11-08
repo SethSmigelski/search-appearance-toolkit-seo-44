@@ -57,67 +57,81 @@ export default function Edit({ attributes, setAttributes }) {
 	
 	// Use useEffect to process the blocks.
 	// This hook runs whenever the blocks on the page change or the user toggles a heading level
-	// NEW: Reconciling logic to avoid re-ordering conflict
+	// Reconciling logic to avoid re-ordering conflict
+	// NEW: Robust, single-pass reconciliation and de-duping engine.
 
-	useEffect(() => {
-    // 1. Get all current heading blocks and ensure they have an anchor.
-    const currentBlocks = blocks
-        .filter(block => block.name === 'core/heading' && headingLevels.includes(`h${block.attributes.level}`));
+useEffect(() => {
+        // 1. Get all current heading blocks
+        const currentBlocks = blocks
+            .filter(block => block.name === 'core/heading' && headingLevels.includes(`h${block.attributes.level}`));
 
+        // --- NEW: Tools for de-duping and warning ---
+        const seenAnchors = new Set();
+        let wasDuplicateFound = false;
+        // --- End New ---
 
-	currentBlocks.forEach(block => {
-        if (!block.attributes.anchor) {
-            const text = stripHtml(block.attributes.content);
-            if (text) {
-                const anchor = text.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
-                updateBlockAttributes(block.clientId, { anchor });
+        // Create a Map of the old headings for fast lookup to preserve customizations
+        const savedHeadingsMap = new Map(savedHeadings.map(h => [h.anchor, h]));
+        
+        const newHeadings = [];
+
+        // 2. Process all blocks in a single, robust pass
+        for (const block of currentBlocks) {
+            const originalText = stripHtml(block.attributes.content);
+            
+            // 3. Generate a base anchor
+            let baseAnchor = block.attributes.anchor || originalText.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
+            
+            // 4. --- THIS IS THE CRITICAL DE-DUPING STEP ---
+            let uniqueAnchor = baseAnchor;
+            let counter = 2;
+            
+            // Keep checking until we find a unique ID
+            while (seenAnchors.has(uniqueAnchor)) {
+                uniqueAnchor = `${baseAnchor}-${counter}`;
+                counter++;
+                wasDuplicateFound = true; // Set the flag!
             }
-        }
-    });
+            seenAnchors.add(uniqueAnchor);
+            // --- END DE-DUPE ---
 
-    // Create a map of the current headings on the page for easy lookup.
-    const currentHeadingsMap = new Map(
-        currentBlocks.map(block => {
-            const anchor = block.attributes.anchor || stripHtml(block.attributes.content).toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
-            return [anchor, { text: stripHtml(block.attributes.content) }];
-        })
-    );
-	
-    // 2. UPDATE & FILTER: Start with your saved list. Remove any headings that no longer exist
-    // and UPDATE the text of any that have changed.
-    let reconciledHeadings = savedHeadings
-        .filter(savedHeading => currentHeadingsMap.has(savedHeading.anchor))
-        .map(savedHeading => {
-            const currentHeading = currentHeadingsMap.get(savedHeading.anchor);
-            const newText = currentHeading.text;
-            const wasLinkTextManuallyEdited = savedHeading.text !== savedHeading.linkText;
+            // 5. Update the block in the editor if its anchor is now different
+            if (block.attributes.anchor !== uniqueAnchor) {
+                updateBlockAttributes(block.clientId, { anchor: uniqueAnchor });
+            }
 
-            return {
-                ...savedHeading, // Keeps isVisible, custom order, etc.
-                text: newText, // Update the base text to the new version from the page.
-                linkText: wasLinkTextManuallyEdited ? savedHeading.linkText : newText, // Update linkText only if it wasn't already customized.
-            };
-        });
-	
-    // 3. ADD: Find any brand new headings and add them to the end of the list.
-    currentBlocks.forEach(block => {
-        const { anchor, content } = block.attributes;
-        if (anchor && !reconciledHeadings.some(h => h.anchor === anchor)) {
-            const text = stripHtml(content);
-            reconciledHeadings.push({
-                anchor: anchor,
-                text: text,
-                linkText: text,
-                isVisible: true,
+            // 6. Reconcile with saved state to preserve custom link text and visibility
+            // Try to find the old state using either the block's original anchor or the new unique one
+            const oldState = savedHeadingsMap.get(block.attributes.anchor) || savedHeadingsMap.get(uniqueAnchor);
+            
+            const wasLinkTextManuallyEdited = oldState && oldState.linkText !== oldState.text;
+            const linkText = wasLinkTextManuallyEdited ? oldState.linkText : originalText;
+            const isVisible = oldState ? oldState.isVisible : true;
+
+            // 7. Add to our new list
+            newHeadings.push({
+                anchor: uniqueAnchor,
+                text: originalText,
+                linkText: linkText,
+                isVisible: isVisible,
             });
         }
-    });
 
-    // 4. Only update attributes if the final list is different.
-    if (JSON.stringify(reconciledHeadings) !== JSON.stringify(savedHeadings)) {
-        setAttributes({ headings: reconciledHeadings });
-    }
-}, [blocks, headingLevels, savedHeadings, setAttributes, updateBlockAttributes]);
+        // 8. Only update attributes if the final list is different.
+        if (JSON.stringify(newHeadings) !== JSON.stringify(savedHeadings)) {
+            setAttributes({ headings: newHeadings });
+        }
+
+        // 9. Inform the user via a SNACKBAR message
+        // If we duplicates are found, show a snackbar warning.
+        if (wasDuplicateFound) {
+            createInfoNotice(
+            	__('Jump Links Block: Duplicate headings were found. Unique IDs have been auto-generated, but this may be a sign of redundancy. Please review your headings for clarity.', 'search-appearance-toolkit-seo-44'),
+            	{ To: 'snackbar' }
+            );
+        }
+
+    }, [blocks, headingLevels, savedHeadings, setAttributes, updateBlockAttributes, createInfoNotice]);
 	
 	// useEffect to handle conditional logic to force list style for the horizontal layout
 	useEffect(() => {
