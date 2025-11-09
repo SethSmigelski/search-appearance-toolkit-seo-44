@@ -35,7 +35,18 @@ class SEO44_Core {
         add_action('wp_ajax_seo44_save_social_image', [$this, 'ajax_save_social_image']);
         add_action('wp_ajax_seo44_scan_site_for_schema', [$this, 'ajax_scan_site_for_schema']);
         add_action('wp_ajax_seo44_purge_sitemap_cache', [$this, 'ajax_purge_sitemap_cache']);
-//		add_filter('content_save_pre', [$this, 'add_ids_to_headings']);
+        
+        // --- NEW GTM & INTEGRATIONS HOOKS ---
+        // Inject Webmaster Tags (high priority)
+        add_action('wp_head', [$this, 'inject_webmaster_verification_tags'], 2);
+        // Push SEO dataLayer (run before GTM script)
+        add_action('wp_head', [$this, 'push_seo_datalayer'], 5);
+        // Inject GTM <head> script
+        add_action('wp_head', [$this, 'inject_gtm_head'], 10);
+        // Inject GTM <body> (noscript) script
+        add_action('wp_body_open', [$this, 'inject_gtm_body']);
+        // Enqueue the new global JS file for tracking events
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_global_tracking_script']);
     }
 
     private function init_classes() {
@@ -65,6 +76,123 @@ class SEO44_Core {
             wp_localize_script('seo44-settings-script', 'seo44_ajax_object', [ 'ajax_url' => admin_url('admin-ajax.php'), 'nonce' => wp_create_nonce('seo44_scan_nonce'), 'scanning_text' => __('Scanning...', 'search-appearance-toolkit-seo-44') ]);
         }
     }
+
+// --- NEW: INTEGRATIONS FUNCTIONS ---
+
+    /**
+     * Injects the Google Tag Manager <head> script.
+     */
+    public function inject_gtm_head() {
+        if (seo44_get_option('enable_gtm_integration')) {
+            $gtm_id = esc_js(seo44_get_option('gtm_id'));
+            if (empty($gtm_id) || strpos($gtm_id, 'GTM-') !== 0) return;
+            
+            echo "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','" . $gtm_id . "');</script>
+            \n";
+        }
+    }
+
+    /**
+     * Injects the Google Tag Manager <body> (noscript) snippet.
+     */
+    public function inject_gtm_body() {
+        if (seo44_get_option('enable_gtm_integration')) {
+            $gtm_id = esc_js(seo44_get_option('gtm_id'));
+            if (empty($gtm_id) || strpos($gtm_id, 'GTM-') !== 0) return;
+
+            echo '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' . $gtm_id . '"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            \n';
+        }
+    }
+
+    /**
+     * Pushes SEO-rich data to the dataLayer.
+     */
+    public function push_seo_datalayer() {
+        if (seo44_get_option('enable_gtm_integration') && seo44_get_option('enable_seo_datalayer')) {
+            $data = ['event' => 'seoDataPushed']; // Always lead with an event
+
+            if (is_front_page()) {
+                $data['page_type'] = 'front_page';
+            } elseif (is_singular()) {
+                $data['page_type'] = get_post_type();
+                $data['post_author'] = get_the_author();
+                $categories = get_the_category();
+                if (!empty($categories)) {
+                    $data['post_category'] = $categories[0]->name;
+                }
+                $tags = get_the_tags();
+                if ($tags) {
+                    $data['post_tags'] = wp_list_pluck($tags, 'name');
+                }
+            } elseif (is_category()) {
+                $data['page_type'] = 'category';
+                $data['category_name'] = single_cat_title('', false);
+            }
+            // (You can add more conditions for is_tag(), is_author(), etc.)
+            
+            echo "<script>
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(" . wp_json_encode($data) . ");
+            </script>\n";
+        }
+    }
+
+    /**
+     * Injects Webmaster Verification meta tags into the <head>.
+     */
+    public function inject_webmaster_verification_tags() {
+        $google_code = seo44_get_option('google_site_verification');
+        $bing_code = seo44_get_option('bing_site_verification');
+
+        if (!empty($google_code)) {
+            printf(
+                '<meta name="google-site-verification" content="%s" />' . "\n",
+                esc_attr($google_code)
+            );
+        }
+        if (!empty($bing_code)) {
+            printf(
+                '<meta name="msvalidate.01" content="%s" />' . "\n",
+                esc_attr($bing_code)
+            );
+        }
+    }
+
+    /**
+     * Enqueues the new global tracking script and passes settings to it.
+     */
+    public function enqueue_global_tracking_script() {
+        // Only enqueue if at least one tracking feature is enabled
+        if (
+            !seo44_get_option('enable_jump_link_tracking') && 
+            !seo44_get_option('enable_external_link_tracking') && 
+            !seo44_get_option('enable_scroll_depth_tracking')
+        ) {
+            return;
+        }
+
+        wp_enqueue_script(
+            'seo44-global-tracker', 
+            plugins_url('../js/global-tracker.js', __FILE__), 
+            [], 
+            SEO44_VERSION, 
+            true
+        );
+
+        // Localize it with ALL our GTM toggle settings
+        wp_localize_script('seo44-global-tracker', 'seo44_tracking_settings', [
+            'trackJumpLinks' => (bool) seo44_get_option('enable_jump_link_tracking'),
+            'trackOutboundLinks' => (bool) seo44_get_option('enable_external_link_tracking'),
+            'trackScrollDepth' => (bool) seo44_get_option('enable_scroll_depth_tracking')
+        ]);
+    }
+    // End Integrations Functions
 
     /**
      * This function has been updated to use a fully prepared SQL query
