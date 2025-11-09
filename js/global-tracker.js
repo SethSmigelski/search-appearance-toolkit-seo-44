@@ -10,18 +10,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get all our toggle settings
     const settings = window.seo44_tracking_settings || {};
 
-    // 1. Jump Link Tracking (This can be moved from view.js to here)
+    // 1. Jump Link Tracking
     if (settings.trackJumpLinks) {
-        // Find all jump link blocks
-        document.querySelectorAll('.wp-block-seo44-jump-links a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                // (Your existing view.js logic for pushing to dataLayer)
+        // Use event delegation for jump links, which is more efficient
+        document.body.addEventListener('click', function(e) {
+            // Check if the clicked element is a jump link inside our block
+            const jumpLink = e.target.closest('.wp-block-seo44-jump-links a[href^="#"]');
+            if (jumpLink) {
                 window.dataLayer.push({
                     'event': 'jump_link_click',
-                    'click_text': e.target.textContent,
-                    'click_anchor': e.target.getAttribute('href')
+                    'click_text': jumpLink.textContent,
+                    'click_anchor': jumpLink.getAttribute('href')
                 });
-            });
+            }
         });
     }
 
@@ -29,9 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (settings.trackOutboundLinks) {
         document.body.addEventListener('click', function(e) {
             const link = e.target.closest('a');
-            if (link && link.hostname && link.hostname !== window.location.hostname) {
+            // Check if it's a link, has a hostname, and is not a jump link
+            if (link && link.hostname && link.hostname !== window.location.hostname && !link.getAttribute('href').startsWith('#')) {
                 let eventType = 'external_link_click';
-                if (link.getAttribute('rel') === 'sponsored') {
+                if (link.getAttribute('rel') && link.getAttribute('rel').includes('sponsored')) {
                     eventType = 'affiliate_link_click';
                 }
                 window.dataLayer.push({
@@ -44,9 +46,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 3. Scroll Depth Tracking
     if (settings.trackScrollDepth) {
-        // (This logic is more complex, it involves checking scroll position
-        // and using a 'Set' to only fire each event once)
-        console.log('Scroll Depth Tracking Enabled');
-        // ... logic to track 25%, 50%, 75%, 100% ...
+        
+        // --- NEW SCROLL LOGIC ---
+
+        // Helper function to throttle scroll events for performance
+        let throttleTimer;
+        const throttle = (callback, time) => {
+            if (throttleTimer) return;
+            throttleTimer = true;
+            setTimeout(() => {
+                callback();
+                throttleTimer = false;
+            }, time);
+        };
+
+        // A Set to store percentages we've already fired
+        const firedPercentages = new Set();
+        const percentagesToTrack = [25, 50, 75, 100];
+
+        const handleScroll = () => {
+            // Get scroll depth
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (window.scrollY / docHeight) * 100;
+
+            for (const percent of percentagesToTrack) {
+                // If user passed the percentage AND we haven't fired it yet
+                if (scrollPercent >= percent && !firedPercentages.has(percent)) {
+                    
+                    // 1. Fire the event
+                    window.dataLayer.push({
+                        'event': 'scroll_depth',
+                        'scroll_percentage': percent
+                    });
+
+                    // 2. Add it to the Set so we don't fire it again
+                    firedPercentages.add(percent);
+                }
+            }
+        };
+
+        // Attach the throttled event listener
+        window.addEventListener('scroll', () => throttle(handleScroll, 200));
+        // --- END NEW SCROLL LOGIC ---
     }
 });
