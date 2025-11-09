@@ -119,19 +119,11 @@ function seo44_register_blocks() {
             $handle = 'seo44-jump-links-view-script';
 
             // Only localize if the script is actually enqueued
-            if ( wp_script_is( $handle, 'enqueued' ) ) {
-
-                // Get the GTM tracking setting from your main plugin options
-                $track_clicks = seo44_get_option('enable_jump_link_tracking', 0); 
-
-				
+            if ( wp_script_is( $handle, 'enqueued' ) ) {                
                 wp_localize_script( $handle, 'seo44JumpLinksL10n', [
-					// ShowMore text localization
+                    // ShowMore text localization
                     'showMore' => __( 'Show More', 'search-appearance-toolkit-seo-44' ),
                     'showLess' => __( 'Show Less', 'search-appearance-toolkit-seo-44' ),
-					
-					// Click event tracking check
-                    'trackClicks' => (bool) $track_clicks
                 ] );
             }
         }
