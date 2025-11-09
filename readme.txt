@@ -62,7 +62,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Full Content Coverage:** Automatically detects all public Custom Post Types and Taxonomies and provides simple checkboxes to let you choose exactly what content to include in your sitemap. 
 * **Image Sitemaps:** Includes options to add both Featured Images and images found within your post content to your sitemaps, providing more context to search engines. 
 * **Custom Types:** Automatically detects and includes all public Custom Post Types and Custom Taxonomies. 
-* **Performance Conscious:** The sitemap is cached for high performance and includes a "Purge Cache" button for manual regeneration. It also automatically pings search engines when you publish new content. 
+* **Performance Conscious:** The sitemap is cached for high performance and includes a "Purge Cache" button for manual regeneration. It also automatically pings search engines when you publish new content.
 
 = Seamless Migration Tools =
 * **Make the Switch:** Easily migrate from other SEO plugins without losing your work. Simply swap in the meta keys used by your old plugin to have SEO 44 pick up using your existing data. 
@@ -74,6 +74,23 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Full Customization:** Features "Viewing" and "Editing" modes right in the editor. In Editing Mode, you can change link text, reorder links with up/down arrows, and exclude specific headings from the list.
 * **Complete Styling Control:** Use the sidebar controls to change the layout (vertical or horizontal), list style (bullets, numbers, or none), font size, and colors. For the horizontal layout, you can also style the link background, border, and border-radius.
 * **Front-End Interactivity:** Includes built-in smooth scrolling and an optional "Show More" button to collapse long link lists elegantly.
+
+== Integrations & Advanced Analytics ==
+
+The Search Appearance Toolkit serves as a hub for connecting your site to essential third-party services, helping you to create valuable analytics data and site insights.
+
+= Google Tag Manager (GTM) Integration =
+Stop worrying about editing your theme's `header.php` file. Just paste your `GTM-XXXXXXX` ID into the settings, and the plugin will correctly and safely inject the GTM scripts into your site's `<head>` and `<body>` on every page.
+
+= Sophisticated GTM Event Tracking =
+Once GTM is enabled, you can flip toggles to automatically push rich, valuable events to the `dataLayer` for your analytics. This is where the power of integration shines through. 
+* **Rich SEO dataLayer:** Automatically pushes critical page data (like post category, author, tags, and page type) on every page load. This is a powerful feature for advanced users who want to create granular analytics triggers in GTM (e.g., "Fire this conversion pixel *only* on the 'Products' category").
+* **Scroll Depth Tracking:** Find out how much of your content is being viewed by visitors. This feature pushes `scroll_depth` events as users scroll 25%, 50%, 75%, and 100% down a page.
+* **Outbound & Affiliate Link Click Tracking:** Automatically detects when a user clicks a link to leave your site and pushes an `external_link_click` event, conditionally identifing affiliate links (with `rel="sponsored"`) and then pushing a separate `affiliate_link_click` event.
+* **Jump Link Click Tracking:** Tracks engagement with your Jump Links Block by pushing a `jump_link_click` event, letting you see which sections your users are most interested in.
+
+= Webmaster Verification =
+Easily verify your site with search engines. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the approproate feilds in the analytics tab and the plugin handles the rest, adding the meta tags to your site's header, so you never have to worry about them being removed during a theme update.
 
 == Installation ==
 
@@ -260,7 +277,16 @@ Search Appearance Toolkit (SEO 44) utilizes a couple external, third-party servi
 == Changelog ==
 
 = 3.9.8 =
-* FEATURE  (Jump Links Block): Introduced localization and jump link event tracking code for Google Tag Manager integration 
+* FEATURE: Added a new "Integrations" tab for third-party services like Google Tag Manager and Webmaster Tools.
+* FEATURE: Added Google Tag Manager (GTM) integration. The plugin can now automatically inject the GTM container script into the site's <head> and <body> based on your ID.
+* FEATURE: Added Webmaster Verification. You can now add your Google Search Console and Bing Webmaster Tools verification codes directly from the plugin settings.
+* FEATURE: Added automatic GTM event tracking. When enabled, the plugin can push the following events to the dataLayer:
+    * **Rich SEO dataLayer:** Pushes page type, category, author, and tags on page load for advanced GTM triggers.
+    * **Scroll Depth Tracking:** Pushes 'scroll_depth' events at 25%, 50%, 75%, and 100% of the page.
+    * **External & Affiliate Clicks:** Pushes 'external_link_click' or 'affiliate_link_click' (for `rel="sponsored"` links).
+    * **Jump Link Clicks:** Pushes a 'jump_link_click' event when a user clicks a link in the Jump Links Block.
+* ENHANCEMENT: Centralized all GTM event tracking into a new, efficient `global-tracker.js` file that uses event delegation for better performance.
+* TWEAK: Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips.
 
 = 3.9.7 =
 * ENHANCEMENT (Jump Links Block): Implemented a robust de-duping engine to prevent invalid HTML from duplicate headings. The block now automatically appends a number (e.g., `my-heading-2`) to any heading with a conflicting text or manual anchor ID.
