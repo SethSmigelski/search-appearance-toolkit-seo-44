@@ -115,6 +115,123 @@ class SEO44_Settings {
         ]);
         add_settings_field('sitemap_instructions', __('Submission Instructions', 'search-appearance-toolkit-seo-44'), [$this, 'render_sitemap_instructions'], 'seo-44_sitemaps', 'seo44_sitemaps_section');
         add_settings_field('sitemap_purge_cache', __('Sitemap Cache', 'search-appearance-toolkit-seo-44'), [$this, 'render_purge_cache_field'], 'seo-44_sitemaps', 'seo44_sitemaps_section');
+    
+        // --- NEW: INTEGRATIONS SETTINGS ---
+        add_settings_section(
+            'seo44_integrations_section', 
+            __('Google Tag Manager (GTM)', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'integrations_section_callback'], 
+            'seo-44_integrations'
+        );
+        add_settings_field(
+            'enable_gtm_integration', 
+            __('Enable Google Tag Manager', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_checkbox_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section', 
+            [
+                'id' => 'enable_gtm_integration', 
+                'label' => 'Inject the GTM container script into your site.',
+                'tooltip' => 'This will add the GTM scripts to your site\'s <head> and <body>.'
+            ]
+        );
+        add_settings_field(
+            'gtm_id', 
+            __('Google Tag Manager ID', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_text_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section', 
+            [
+                'id' => 'gtm_id', 
+                'desc' => __('Enter your GTM Container ID (e.g., GTM-XXXXXXX).', 'search-appearance-toolkit-seo-44')
+            ]
+        );
+        // --- GTM Event Tracking Header ---
+        add_settings_field(
+            'seo44_gtm_tracking_header', 
+            __('Automatic GTM Event Tracking', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_gtm_tracking_header_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section'
+        );
+        add_settings_field(
+            'enable_seo_datalayer', 
+            __('Enable Rich SEO dataLayer', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_checkbox_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section', 
+            [
+                'id' => 'enable_seo_datalayer', 
+                'label' => 'Push page data (category, author, etc.) to the dataLayer.',
+                'tooltip' => 'This is required for advanced users who want to create granular analytics triggers in GTM.'
+            ]
+        );
+        add_settings_field(
+            'enable_jump_link_tracking', 
+            __('Enable Jump Link Click Tracking', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_checkbox_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section', 
+            [
+                'id' => 'enable_jump_link_tracking', 
+                'label' => 'Push a "jump_link_click" event when a Jump Links Block link is clicked.'
+            ]
+        );
+        add_settings_field(
+            'enable_external_link_tracking', 
+            __('Enable External Link Tracking', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_checkbox_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section', 
+            [
+                'id' => 'enable_external_link_tracking', 
+                'label' => 'Push an "external_link_click" or "affiliate_link_click" event when a user clicks a link to another website.'
+            ]
+        );
+        add_settings_field(
+            'enable_scroll_depth_tracking', 
+            __('Enable Scroll Depth Tracking', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_checkbox_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section', 
+            [
+                'id' => 'enable_scroll_depth_tracking', 
+                'label' => 'Push "scroll_depth" events as users scroll 25%, 50%, 75%, and 100% down a page.'
+            ]
+        );
+        // --- Webmaster Verification Header ---
+        add_settings_field(
+            'seo44_webmaster_header', 
+            __('Webmaster Verification Tags', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_webmaster_header_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section'
+        );
+        add_settings_field(
+            'google_site_verification', 
+            __('Google Search Console', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_text_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section', 
+            [
+                'id' => 'google_site_verification', 
+                'desc' => __('Enter your Google site verification code.', 'search-appearance-toolkit-seo-44'),
+                'tooltip' => 'This will add a <meta> tag to your site\'s head for permanent verification.'
+            ]
+        );
+        add_settings_field(
+            'bing_site_verification', 
+            __('Bing Webmaster Tools', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_text_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section', 
+            [
+                'id' => 'bing_site_verification', 
+                'desc' => __('Enter your Bing site verification code.', 'search-appearance-toolkit-seo-44'),
+                'tooltip' => 'This will add a <meta> tag to your site\'s head for permanent verification.'
+            ]
+        );
+        // --- end of settings_init ---
     }
 	
     public function sanitize_settings($input) {
@@ -125,13 +242,26 @@ class SEO44_Settings {
             'enable_og_tags', 'enable_twitter_tags', 
             'enable_schema', 'scan_content_for_schema', 'enable_advanced_schema', 'enable_schema_on_cpts', 'enable_schema_on_taxonomies', 
             'enable_sitemaps', 'enable_sitemap_ping', 
-            'sitemap_include_images', 'sitemap_include_content_images'
+            'sitemap_include_images', 'sitemap_include_content_images',
+            'enable_gtm_integration', 'enable_seo_datalayer', 'enable_jump_link_tracking', 
+            'enable_external_link_tracking', 'enable_scroll_depth_tracking'
         ];
 		foreach ($checkboxes as $cb) { 
             $new_input[$cb] = isset($input[$cb]) ? 1 : 0; 
         }
 		
-        $text_fields = ['fb_app_id', 'twitter_handle', 'title_key', 'description_key', 'keywords_key', 'homepage_title','sitemap_exclude_posts'];
+        $text_fields = [
+            'fb_app_id',
+            'twitter_handle',
+            'title_key',
+            'description_key',
+            'keywords_key',
+            'homepage_title',
+            'sitemap_exclude_posts',
+            'gtm_id',
+            'google_site_verification',
+            'bing_site_verification'
+        ];
 		foreach ($text_fields as $tf) { 
 			if (isset($input[$tf])) { 
 				// A SPECIAL CHECK FOR THE SITEMAP EXCLUSION FIELD
@@ -142,9 +272,18 @@ class SEO44_Settings {
 					$value = preg_replace('/[^0-9,]/', '', $value);
 					// Remove any duplicate commas
 					$new_input[$tf] = preg_replace('/,{2,}/', ',', $value);
-				} else {
-					$new_input[$tf] = sanitize_text_field($input[$tf]);
-				}
+				} else if ($tf === 'gtm_id') {
+                    // Sanitize GTM ID: remove whitespace, force uppercase
+                    $value = strtoupper(trim(sanitize_text_field($input[$tf])));
+                    // Prepend GTM- if it's missing but looks like a GTM ID
+                    if (strpos($value, 'GTM-') !== 0) {
+                        $value = 'GTM-' . $value;
+                    }
+                    // If it's just "GTM-", clear it.
+                    $new_input[$tf] = ($value === 'GTM-') ? '' : $value;
+                } else {
+                    $new_input[$tf] = sanitize_text_field($input[$tf]);
+                }
 			} 
 		}
         
@@ -414,6 +553,19 @@ public function render_homepage_description_field() {
         echo '</ul>';
     }
 
+    // --- NEW: INTEGRATIONS CALLBACKS ---
+    public function integrations_section_callback() { 
+        echo '<p>' . esc_html__('Configure integrations with third-party services like Google Tag Manager and Webmaster Tools.', 'search-appearance-toolkit-seo-44') . '</p>'; 
+    }
+    public function render_gtm_tracking_header_field() {
+        echo '<hr><h4>' . esc_html__('Automatic GTM Event Tracking', 'search-appearance-toolkit-seo-44') . '</h4>';
+        echo '<p class="description" style="margin-bottom: 1em;">' . esc_html__('These toggles will automatically push events to the dataLayer if GTM is enabled.', 'search-appearance-toolkit-seo-44') . '</p>';
+    }
+    public function render_webmaster_header_field() {
+        echo '<hr><h4>' . esc_html__('Site Verification Tags', 'search-appearance-toolkit-seo-44') . '</h4>';
+        echo '<p class="description" style="margin-bottom: 1em;">' . esc_html__('These tags are required to prove you own your site to search engines. They will be permanently added to your site\'s <head>.', 'search-appearance-toolkit-seo-44') . '</p>';
+    }
+
 	public function settings_page_html() {
 		if (!current_user_can('manage_options')) {
 			return;
@@ -434,7 +586,7 @@ public function render_homepage_description_field() {
 			$active_tab = 'main_settings';
 		}
 	
-		$allowed_tabs = ['main_settings', 'social_settings', 'schema_settings', 'sitemaps_settings', 'migration_settings'];
+		$allowed_tabs = ['main_settings', 'social_settings', 'schema_settings', 'sitemaps_settings', 'integrations_settings', 'migration_settings'];
 		if (!in_array($active_tab, $allowed_tabs)) {
 			$active_tab = 'main_settings';
 		}
@@ -448,12 +600,14 @@ public function render_homepage_description_field() {
                 $social_url   = wp_nonce_url(admin_url('options-general.php?page=search-appearance-toolkit-seo-44&tab=social_settings'), $nonce_action, $nonce_name);
                 $schema_url   = wp_nonce_url(admin_url('options-general.php?page=search-appearance-toolkit-seo-44&tab=schema_settings'), $nonce_action, $nonce_name);
                 $sitemaps_url = wp_nonce_url(admin_url('options-general.php?page=search-appearance-toolkit-seo-44&tab=sitemaps_settings'), $nonce_action, $nonce_name);
+                $integrations_url = wp_nonce_url(admin_url('options-general.php?page=search-appearance-toolkit-seo-44&tab=integrations_settings'), $nonce_action, $nonce_name);
                 $migration_url= wp_nonce_url(admin_url('options-general.php?page=search-appearance-toolkit-seo-44&tab=migration_settings'), $nonce_action, $nonce_name);
                 ?>
                 <a href="<?php echo esc_url($main_url); ?>" class="nav-tab <?php echo esc_attr($active_tab === 'main_settings' ? 'nav-tab-active' : ''); ?>"><?php esc_html_e('Main Settings', 'search-appearance-toolkit-seo-44'); ?></a>
                 <a href="<?php echo esc_url($social_url); ?>" class="nav-tab <?php echo esc_attr($active_tab === 'social_settings' ? 'nav-tab-active' : ''); ?>"><?php esc_html_e('Social Media', 'search-appearance-toolkit-seo-44'); ?></a>
                 <a href="<?php echo esc_url($schema_url); ?>" class="nav-tab <?php echo esc_attr($active_tab === 'schema_settings' ? 'nav-tab-active' : ''); ?>"><?php esc_html_e('Schema Structured Data', 'search-appearance-toolkit-seo-44'); ?></a>
                 <a href="<?php echo esc_url($sitemaps_url); ?>" class="nav-tab <?php echo esc_attr($active_tab === 'sitemaps_settings' ? 'nav-tab-active' : ''); ?>"><?php esc_html_e('XML Sitemaps', 'search-appearance-toolkit-seo-44'); ?></a>
+                <a href="<?php echo esc_url($integrations_url); ?>" class="nav-tab <?php echo esc_attr($active_tab === 'integrations_settings' ? 'nav-tab-active' : ''); ?>"><?php esc_html_e('Integrations', 'search-appearance-toolkit-seo-44'); ?></a>
                 <a href="<?php echo esc_url($migration_url); ?>" class="nav-tab <?php echo esc_attr($active_tab === 'migration_settings' ? 'nav-tab-active' : ''); ?>"><?php esc_html_e('Migration Settings', 'search-appearance-toolkit-seo-44'); ?></a>
             </h2>
             <form action="options.php" method="post" class="seo44-form">
@@ -462,6 +616,7 @@ public function render_homepage_description_field() {
                 <div id="social_settings" class="tab-content" style="display: <?php echo $active_tab === 'social_settings' ? 'block' : 'none'; ?>;"><table class="form-table"><?php do_settings_sections('seo-44_social'); ?></table></div>
                 <div id="schema_settings" class="tab-content" style="display: <?php echo $active_tab === 'schema_settings' ? 'block' : 'none'; ?>;"><table class="form-table"><?php do_settings_sections('seo-44_schema'); ?></table></div>
                 <div id="sitemaps_settings" class="tab-content" style="display: <?php echo $active_tab === 'sitemaps_settings' ? 'block' : 'none'; ?>;"><table class="form-table"><?php do_settings_sections('seo-44_sitemaps'); ?></table></div>
+                <div id="integrations_settings" class="tab-content" style="display: <?php echo $active_tab === 'integrations_settings' ? 'block' : 'none'; ?>;"><table class="form-table"><?php do_settings_sections('seo-44_integrations'); ?></table></div>
                 <div id="migration_settings" class="tab-content" style="display: <?php echo $active_tab === 'migration_settings' ? 'block' : 'none'; ?>;"><table class="form-table"><?php do_settings_sections('seo-44_migration'); ?></table></div>
                 <?php submit_button(__('Save Settings', 'search-appearance-toolkit-seo-44')); ?>
             </form>
