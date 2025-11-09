@@ -119,9 +119,16 @@ class SEO44_Settings {
         // --- NEW: INTEGRATIONS SETTINGS ---
         add_settings_section(
             'seo44_integrations_section', 
-            __('Google Tag Manager (GTM)', 'search-appearance-toolkit-seo-44'), 
+            __('Analytics Integrations', 'search-appearance-toolkit-seo-44'), 
             [$this, 'integrations_section_callback'], 
             'seo-44_integrations'
+        );
+        add_settings_field(
+            'seo44_gtm_header',
+            '', // An empty string for the left-column label
+            [$this, 'render_gtm_header_field'], 
+            'seo-44_integrations', 
+            'seo44_integrations_section'
         );
         add_settings_field(
             'enable_gtm_integration', 
@@ -149,7 +156,7 @@ class SEO44_Settings {
         // --- GTM Event Tracking Header ---
         add_settings_field(
             'seo44_gtm_tracking_header', 
-            __('Automatic GTM Event Tracking', 'search-appearance-toolkit-seo-44'), 
+            '', // Empty left-column label
             [$this, 'render_gtm_tracking_header_field'], 
             'seo-44_integrations', 
             'seo44_integrations_section'
@@ -174,7 +181,8 @@ class SEO44_Settings {
             'seo44_integrations_section', 
             [
                 'id' => 'enable_jump_link_tracking', 
-                'label' => 'Push a "jump_link_click" event when a Jump Links Block link is clicked.'
+                'label' => 'Push a "jump_link_click" event when a Jump Links Block link is clicked.',
+                'tooltip' => 'Adds a "jump_link_click" event. Use this in GTM to see which jump links your visitors are using the most.'
             ]
         );
         add_settings_field(
@@ -185,7 +193,8 @@ class SEO44_Settings {
             'seo44_integrations_section', 
             [
                 'id' => 'enable_external_link_tracking', 
-                'label' => 'Push an "external_link_click" or "affiliate_link_click" event when a user clicks a link to another website.'
+                'label' => 'Push an "external_link_click" or "affiliate_link_click" event when a user clicks a link to another website.',
+                'tooltip' => 'Adds an "external_link_click" event. Use this to track when users click links to leave your site.'
             ]
         );
         add_settings_field(
@@ -196,13 +205,14 @@ class SEO44_Settings {
             'seo44_integrations_section', 
             [
                 'id' => 'enable_scroll_depth_tracking', 
-                'label' => 'Push "scroll_depth" events as users scroll 25%, 50%, 75%, and 100% down a page.'
+                'label' => 'Push "scroll_depth" events as users scroll 25%, 50%, 75%, and 100% down a page.',
+                'tooltip' => 'Pushes "scroll_depth" events (e.g., 25%, 50%). Use this to see how far users read your content and judge engagement.'
             ]
         );
         // --- Webmaster Verification Header ---
         add_settings_field(
             'seo44_webmaster_header', 
-            __('Webmaster Verification Tags', 'search-appearance-toolkit-seo-44'), 
+            '', // Empty left-column label
             [$this, 'render_webmaster_header_field'], 
             'seo-44_integrations', 
             'seo44_integrations_section'
@@ -554,16 +564,19 @@ public function render_homepage_description_field() {
     }
 
     // --- NEW: INTEGRATIONS CALLBACKS ---
-    public function integrations_section_callback() { 
-        echo '<p>' . esc_html__('Configure integrations with third-party services like Google Tag Manager and Webmaster Tools.', 'search-appearance-toolkit-seo-44') . '</p>'; 
+    public function integrations_section_callback() {
+        echo '<p>' . esc_html__('Configure integrations with third-party services like Google Tag Manager and Webmaster Tools.', 'search-appearance-toolkit-seo-44') . '</p>';
     }
+    public function render_gtm_header_field() {
+    echo '<h3>' . esc_html__('Google Tag Manager (GTM)', 'search-appearance-toolkit-seo-44') . '</h3>';
+}
     public function render_gtm_tracking_header_field() {
-        echo '<hr><h4>' . esc_html__('Automatic GTM Event Tracking', 'search-appearance-toolkit-seo-44') . '</h4>';
-        echo '<p class="description" style="margin-bottom: 1em;">' . esc_html__('These toggles will automatically push events to the dataLayer if GTM is enabled.', 'search-appearance-toolkit-seo-44') . '</p>';
+        echo '<hr><h4>' . esc_html__('Automatic GTM Event Tracking for Google Analytics', 'search-appearance-toolkit-seo-44') . '</h4>';
+        echo '<p class="description">' . esc_html__('When checked, these options will automatically push events to the dataLayer if GTM is enabled.', 'search-appearance-toolkit-seo-44') . '</p>';
     }
     public function render_webmaster_header_field() {
-        echo '<hr><h4>' . esc_html__('Site Verification Tags', 'search-appearance-toolkit-seo-44') . '</h4>';
-        echo '<p class="description" style="margin-bottom: 1em;">' . esc_html__('These tags are required to prove you own your site to search engines. They will be permanently added to your site\'s <head>.', 'search-appearance-toolkit-seo-44') . '</p>';
+        echo '<h3>' . esc_html__('Site Verification Tags', 'search-appearance-toolkit-seo-44') . '</h3>';
+        echo '<p class="description">' . esc_html__('These tags are used to prove you own your site to search engines. Paste in your verification codes here and they will be added to your site\'s <head>.', 'search-appearance-toolkit-seo-44') . '</p>';
     }
 
 	public function settings_page_html() {
