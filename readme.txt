@@ -259,9 +259,17 @@ Search Appearance Toolkit (SEO 44) utilizes a couple external, third-party servi
 
 == Changelog ==
 
+= 3.9.8 =
+* FEATURE  (Jump Links Block): Introduced localization and jump link event tracking code for Google Tag Manager integration 
+
+= 3.9.7 =
+* ENHANCEMENT (Jump Links Block): Implemented a robust de-duping engine to prevent invalid HTML from duplicate headings. The block now automatically appends a number (e.g., `my-heading-2`) to any heading with a conflicting text or manual anchor ID.
+* FEATURE (Jump Links Block): Added a snackbar warning that notifies the user when duplicate headings have been found and auto-corrected, prompting them to review their content for clarity.
+* FIX (Jump Links Block): Ensured that all user customizations (custom link text, visibility, and ordering) are correctly preserved during the new de-duping and reconciliation process.
+
 = 3.9.6 =
-* ENHANCEMENT: Improved semantics and accessibility by wrapping Jump Links Block content in a `<nav>` landmark with a translatable aria-label.
-* ENHANCEMENT: Added full ARIA support to the Jump Links Block's collapsible button, including aria-expanded, aria-controls, and a dynamic "Show More" / "Show Less" label.
+* ENHANCEMENT (Jump Links Block): Improved semantics and accessibility by wrapping Jump Links Block content in a `<nav>` landmark with a translatable aria-label.
+* ENHANCEMENT (Jump Links Block): Added full ARIA support to the Jump Links Block's collapsible button, including aria-expanded, aria-controls, and a dynamic "Show More" / "Show Less" label.
 
 = 3.9.5 =
 * FIX: To eliminate user confusion and create a distinctive name and slug for the WordPress Plugin directory, the plugin has been renamed "Search Appearance Toolkit (SEO 44)" and given the slug, search-appearance-toolkit-seo-44.
