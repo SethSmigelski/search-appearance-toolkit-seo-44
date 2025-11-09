@@ -138,7 +138,7 @@ jQuery(document).ready(function($) {
         });
     	$('#seo44_scan_results_container').slideUp();
     
-    	// NEW: Pause briefly, then simulate a click on the main "Save Settings" button
+    	// Pause briefly, then simulate a click on the main "Save Settings" button
     	setTimeout(function() {
         $('#submit').click(); 
     	}, 25); // 25ms pause
@@ -277,7 +277,7 @@ jQuery(document).ready(function($) {
         });
     });
 
-    // --- NEW: Sitemap Cache Purge Button ---
+    // --- Sitemap Cache Purge Button ---
     $('#seo44_purge_sitemap_cache_btn').on('click', function() {
         var button = $(this);
         var original_text = button.text();
@@ -308,4 +308,28 @@ jQuery(document).ready(function($) {
             }
         });
     });
+
+    // --- GTM Auto-Enable Logic ---
+    
+    // 1. Define all the relevant elements
+    const $mainGtmToggle = $('#enable_gtm_integration');
+    const $gtmIdField = $('#gtm_id');
+    const $subToggles = $('#enable_seo_datalayer, #enable_jump_link_tracking, #enable_external_link_tracking, #enable_scroll_depth_tracking');
+
+    // 2. Trigger 1: When user types/pastes in the ID field
+    $gtmIdField.on('keyup paste change', function() {
+        // If the field has a value (and it's longer than just "GTM-")
+        if ($(this).val().length > 4) {
+             $mainGtmToggle.prop('checked', true);
+        }
+    });
+
+    // 3. Trigger 2: When user clicks a sub-toggle
+    $subToggles.on('change', function() {
+        // If *any* of the sub-toggles are now checked
+        if ($subToggles.is(':checked')) {
+            $mainGtmToggle.prop('checked', true);
+        }
+    });
+    // --- End GTM Logic ---
 });
