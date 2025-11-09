@@ -201,6 +201,18 @@ You can save a fully customized Jump Links block as a Block Pattern to easily re
 
 6.  **Reuse Your Pattern:** To use it on another page, click the main block inserter (+), go to the Patterns tab, and select the "My patterns" category. You will see your saved design, ready to be inserted with one click.
 
+== How do I install Google Tag Manager (GTM)? ==
+The Search Appearance Toolkit makes this easy. You do **not** need to copy the large code snippets from Google.
+	1	In your Google Tag Manager account, find and copy your **Container** ID (it looks like `GTM-XXXXXXX`).
+	2	In your WordPress dashboard, go to **Settings > SEO 44** and click the **"Integrations"** tab.
+	3	Paste your Container ID into the **"Google Tag Manager ID"** field. Your plugin will even help sanitize the format for you.
+	4	Check the **"Enable Google Tag Manager"** box.
+	5	Click **"Save Settings."**
+
+That's it. The plugin will now automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
+
+When you add a new site to Google tag manager, you will receive instructions to (1) paste one block of code as high in the `<head>` of the page as possible and (2) paste another block of code immediately after the opening `<body>` tag. The plugin will handle this assignment for you. All you need to do is copy the GTM code and paste it into the field in the integrations tab.
+
 == For Developers ==
 
 Search Appearance Toolkit (SEO 44) is extensible and allows for the addition of custom schema types (like LocalBusiness or Product) via a WordPress filter hook.
