@@ -213,6 +213,39 @@ That's it. The plugin will now automatically add both the required `<head>` scri
 
 When you add a new site to Google tag manager, you will receive instructions to (1) paste one block of code as high in the `<head>` of the page as possible and (2) paste another block of code immediately after the opening `<body>` tag. The plugin will handle this assignment for you. All you need to do is copy the GTM code and paste it into the field in the integrations tab.
 
+== How do I add my Google Search Console verification code? ==
+
+This plugin uses the "HTML tag" verification method, which is the most common and reliable way. You only need to copy the code, not the full tag.
+
+1.  Sign in to [Google Search Console](https://search.google.com/search-console).
+2.  Add your website as a "Property" if you haven't already.
+3.  In the verification settings for your property, find and select the **"HTML tag"** method.
+4.  Google will show you a full meta tag, like this:
+    `
+    <meta name="google-site-verification" content="YOUR_UNIQUE_CODE_GOES_HERE" />
+    `
+5.  Copy **only the code** inside the `content="..."` attribute.
+6.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
+7.  Paste your code into the **"Google Search Console"** field.
+8.  Click **"Save Settings"** at the bottom of the page.
+9.  Go back to the Google Search Console page and click the **"Verify"** button. Google will now be able to see the tag on your site.
+
+== How do I add my Bing Webmaster Tools verification code? ==
+
+Similar to Google, Bing uses an "HTML meta tag" to verify your site. You only need to copy the specific code from the tag.
+
+1.  Sign in to [Bing Webmaster Tools](https://www.bing.com/webmasters/about).
+2.  Add your site. When prompted for a verification method, select **"HTML meta tag"**.
+3.  Bing will provide a tag that looks like this:
+    `
+    <meta name="msvalidate.01" content="YOUR_UNIQUE_CODE_GOES_HERE" />
+    `
+4.  Copy **only the code** inside the `content="..."` attribute.
+5.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
+6.  Paste your code into the **"Bing Webmaster Tools"** field.
+7.  Click **"Save Settings"** at the bottom of the page.
+8.  Go back to the Bing Webmaster Tools page and click the **"Verify"** button.
+
 == For Developers ==
 
 Search Appearance Toolkit (SEO 44) is extensible and allows for the addition of custom schema types (like LocalBusiness or Product) via a WordPress filter hook.
@@ -259,12 +292,27 @@ The following example shows how you could create a small, separate plugin to add
 
 == External Services ==
 
-Search Appearance Toolkit (SEO 44) utilizes a couple external, third-party services in order to provide its full range of features.
+Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services in order to provide its full range of features. All of these features are optional.
 
-= Sitemap Ping Services (Google & Bing) =
+== Google Tag Manager (GTM) Integration ==
+
+* **Service Description:** This plugin can automatically inject the Google Tag Manager (GTM) container script into your website's `<head>` and `<body>`. This allows you to manage all your third-party tracking scripts (like Google Analytics) from a single GTM dashboard.
+* **Data Sent and Conditions:** This feature is **off by default**. If you enable the "Enable Google Tag Manager" option in the Integrations tab and provide your GTM Container ID (e.g., `GTM-XXXXXXX`), the plugin will add Google's official GTM script to every page of your site. This script will then download and run tracking code from Google's servers.
+* **Service Provider Links:**
+    * **Google:** [Terms of Service](https://policies.google.com/terms), [Privacy Policy](https://policies.google.com/privacy)
+
+== Site Verification Tags (Google & Bing) ==
+
+* **Service Description:** To prove you own your site to search engines, this plugin allows you to add their required verification meta tags to your site's `<head>`.
+* **Data Sent and Conditions:** This feature is **off by default**. It is only active if you paste a verification code into the "Google Search Console" or "Bing Webmaster Tools" fields in the Integrations tab. The plugin does not actively "send" this data; it simply adds a `<meta>` tag to your site's HTML, which Google's and Bing's crawlers will look for to verify your ownership.
+* **Service Provider Links:**
+    * **Google:** [Terms of Service](https://policies.google.com/terms), [Privacy Policy](https://policies.google.com/privacy)
+    * **Bing (Microsoft):** [Microsoft Services Agreement](https://www.microsoft.com/en-us/servicesagreement/), [Microsoft Privacy Statement](https://privacy.microsoft.com/en-us/privacystatement)
+
+== Sitemap Ping Services (Google & Bing) ==
 
 * **Service Description:** To help your content get indexed faster, this plugin can automatically notify (or "ping") major search engines when your XML sitemap is updated. This feature uses the public ping services provided by Google and Bing.
-* **Data Sent and Conditions:** This feature is **off by default**. If you enable the "Ping Search Engines" option in the XML Sitemaps settings tab, the plugin will send the URL of your website's sitemap (e.g., `https://yourwebsite.com/sitemap.xml`) to Google and Bing. This happens automatically only when you publish a new post. No other data is sent.
+* **Data Sent and Conditions:** This feature is **on by default** and can be disabled from the "XML Sitemaps" settings tab. If enabled, the plugin will send the URL of your website's sitemap (e.g., `https://yourwebsite.com/sitemap.xml`) to Google and Bing. This happens automatically only when you publish a new post. No other data is sent.
 * **Service Provider Links:**
     * **Google:** [Terms of Service](https://policies.google.com/terms), [Privacy Policy](https://policies.google.com/privacy)
     * **Bing (Microsoft):** [Microsoft Services Agreement](https://www.microsoft.com/en-us/servicesagreement/), [Microsoft Privacy Statement](https://privacy.microsoft.com/en-us/privacystatement)
