@@ -121,7 +121,14 @@ class SEO44_Core {
                 $data['page_type'] = 'front_page';
             } elseif (is_singular()) {
                 $data['page_type'] = get_post_type();
-                $data['post_author'] = get_the_author();
+
+				if (is_a($post, 'WP_Post')) {
+                    // Use the post's author ID to get the display name
+                    $data['post_author'] = get_the_author_meta('display_name', $post->post_author);
+                } else {
+                    $data['post_author'] = ''; // Fallback
+                }
+					
                 $categories = get_the_category();
                 if (!empty($categories)) {
                     $data['post_category'] = $categories[0]->name;
