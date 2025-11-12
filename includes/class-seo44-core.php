@@ -120,13 +120,17 @@ class SEO44_Core {
             if (is_front_page()) {
                 $data['page_type'] = 'front_page';
             } elseif (is_singular()) {
+				
+                // Get the post object directly from the main query
+                $post_object = get_queried_object(); 
+                
                 $data['page_type'] = get_post_type();
 
-				if (is_a($post, 'WP_Post')) {
-                    // Use the post's author ID to get the display name
-                    $data['post_author'] = get_the_author_meta('display_name', $post->post_author);
+                if (is_a($post_object, 'WP_Post')) {
+                    // Use the post object's author ID to get the display name
+                    $data['post_author'] = get_the_author_meta('display_name', $post_object->post_author);
                 } else {
-                    $data['post_author'] = ''; // Fallback
+                    $data['post_author'] = ''; // Fallback in case something is wrong
                 }
 					
                 $categories = get_the_category();
