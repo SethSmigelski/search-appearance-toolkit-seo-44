@@ -1,0 +1,540 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2025-11-11 23:27:52",
+    "containerVersion": {
+        "path": "accounts/6322945997/containers/234870241/versions/0",
+        "accountId": "6322945997",
+        "containerId": "234870241",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6322945997/containers/234870241",
+            "accountId": "6322945997",
+            "containerId": "234870241",
+            "name": "SEO 44 Recipe Builder",
+            "publicId": "GTM-M7ZDNKFN",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1762903429875",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6322945997/containers/234870241/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-M7ZDNKFN"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "tagId": "6",
+                "name": "GA4 Event - External Link Click",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "outbound_url"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{dlv - outbound_url}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "external_link_click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{GA4 - Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1762903475728",
+                "firingTriggerId": [
+                    "5"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "tagId": "8",
+                "name": "GA4 Event - Affiliate Link Click",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "outbound_url"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{dlv - outbound_url}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "affiliate_link_click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{GA4 - Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1762903475729",
+                "firingTriggerId": [
+                    "7"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "tagId": "11",
+                "name": "GA4 Event - Scroll Depth",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "scroll_percentage"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{dlv - scroll_percentage}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "scroll_depth"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{GA4 - Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1762903475729",
+                "firingTriggerId": [
+                    "9"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "tagId": "15",
+                "name": "GA4 Event - Jump Link Click",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "false"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "click_text"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{dlv - click_text}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "click_anchor"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{dlv - click_anchor}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "jump_link_click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "{{GA4 - Measurement ID}}"
+                    }
+                ],
+                "fingerprint": "1762903475729",
+                "firingTriggerId": [
+                    "13"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "triggerId": "5",
+                "name": "Event - external_link_click",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "external_link_click"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1762903475728"
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "triggerId": "7",
+                "name": "Event - affiliate_link_click",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "affiliate_link_click"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1762903475728"
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "triggerId": "9",
+                "name": "Event - scroll_depth",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "scroll_depth"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1762903475729"
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "triggerId": "13",
+                "name": "Event - jump_link_click",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "jump_link_click"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1762903475729"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "variableId": "3",
+                "name": "dlv - outbound_url",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "outbound_url"
+                    }
+                ],
+                "fingerprint": "1762903475727",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "variableId": "4",
+                "name": "GA4 - Measurement ID",
+                "type": "c",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "value",
+                        "value": "PASTE-YOUR-GA4-MEASUREMENT-ID-HERE"
+                    }
+                ],
+                "fingerprint": "1762903620851",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "variableId": "10",
+                "name": "dlv - scroll_percentage",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "scroll_percentage"
+                    }
+                ],
+                "fingerprint": "1762903475729",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "variableId": "12",
+                "name": "dlv - click_text",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "click_text"
+                    }
+                ],
+                "fingerprint": "1762903475729",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "variableId": "14",
+                "name": "dlv - click_anchor",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "click_anchor"
+                    }
+                ],
+                "fingerprint": "1762903475729",
+                "formatValue": {}
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "6322945997",
+                "containerId": "234870241",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "1762903672118",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6322945997/containers/234870241/versions/0?apiLink=version"
+    }
+}
