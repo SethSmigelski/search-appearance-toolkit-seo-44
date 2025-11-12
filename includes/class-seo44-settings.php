@@ -569,10 +569,43 @@ public function render_homepage_description_field() {
     }
     public function render_gtm_header_field() {
     echo '<h3>' . esc_html__('Google Tag Manager (GTM)', 'search-appearance-toolkit-seo-44') . '</h3>';
-}
+	}
     public function render_gtm_tracking_header_field() {
         echo '<hr><h4>' . esc_html__('Automatic GTM Event Tracking for Google Analytics', 'search-appearance-toolkit-seo-44') . '</h4>';
         echo '<p class="description">' . esc_html__('When checked, these options will automatically push events to the dataLayer if GTM is enabled.', 'search-appearance-toolkit-seo-44') . '</p>';
+    
+        // --- Download Button & Instructions ---
+        // 1. Get the URL to your new JSON file
+        $recipe_url = plugins_url('json/seo44-gtm-recipe.json', dirname(__FILE__));
+        // 2. Create the download button and instruction link
+        $download_text = sprintf(
+            wp_kses(
+                /* translators: %1$s: Download button, %2$s: Link to FAQ. */
+                __('%1$s to pre-configure GTM, then follow the %2$s.', 'search-appearance-toolkit-seo-44'),
+                [
+                    'a' => ['href' => [], 'class' => [], 'download' => []],
+                    'strong' => [],
+                ]
+            ),
+            // The Download Button
+            sprintf(
+                '<a href="%s" class="button button-secondary" download="seo44-gtm-recipe-importer.json">%s</a>',
+                esc_url($recipe_url),
+                esc_html__('Download GTM Import File', 'search-appearance-toolkit-seo-44')
+            ),
+            // The Instructions Link
+            sprintf(
+                '<a href="%s" target="_blank">%s</a>',
+                // This creates a link to YOUR plugin's FAQ tab on wordpress.org
+                esc_url('https://wordpress.org/plugins/search-appearance-toolkit-seo-44/faq/'),
+                esc_html__('setup instructions', 'search-appearance-toolkit-seo-44')
+            )
+        );
+        // 3. Print the Download Button & Instructions section
+        echo '<div class="gtm-recipe-helper">';
+        echo '<strong>' . esc_html__('GTM Setup:', 'search-appearance-toolkit-seo-44') . '</strong> ';
+        echo '<p class="description">' . $download_text . '</p>';
+        echo '</div>';
     }
     public function render_webmaster_header_field() {
         echo '<h3>' . esc_html__('Site Verification Tags', 'search-appearance-toolkit-seo-44') . '</h3>';
