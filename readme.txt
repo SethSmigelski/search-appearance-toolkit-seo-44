@@ -3,7 +3,7 @@ Contributors: sethsm
 Tags: seo, on-page seo, schema, structured data, xml sitemaps
 Requires at least: 5.5
 Tested up to: 6.8
-Stable tag: 3.9.7
+Stable tag: 4.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -28,7 +28,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 == Key Features ==
  
 = Use-Friendly Interface =
-* **Tabbed Settings Page:**  The interface is clean and uncluttered. All plugin settings are organized into five clear, easy-to-navigate tabs: Main Settings, Social Media, Schema, XML Sitemaps, and Migration.
+* **Tabbed Settings Page:**  The interface is clean and uncluttered. All plugin settings are organized into six clear, easy-to-navigate tabs: Main Settings, Social Media, Schema, XML Sitemaps, Integrations, and Migration.
 * **Helpful Tooltips:**  You will find guidance on different options throughout the settings page. 
 * **Easy to Use Editor Interface:** Manage SEO tags with a clean and straightforward metabox in the post editor. 
  * **Search Results Snippet Preview:** See a live preview of how your content may look in Google search results. 
@@ -86,11 +86,11 @@ Stop worrying about editing your theme's `header.php` file. Just paste your `GTM
 Once GTM is enabled, you can flip toggles to automatically push rich, valuable events to the `dataLayer` for your analytics. This is where the power of integration shines through. 
 * **Rich SEO dataLayer:** Automatically pushes critical page data (like post category, author, tags, and page type) on every page load. This is a powerful feature for advanced users who want to create granular analytics triggers in GTM (e.g., "Fire this conversion pixel *only* on the 'Products' category").
 * **Scroll Depth Tracking:** Find out how much of your content is being viewed by visitors. This feature pushes `scroll_depth` events as users scroll 25%, 50%, 75%, and 100% down a page.
-* **Outbound & Affiliate Link Click Tracking:** Automatically detects when a user clicks a link to leave your site and pushes an `external_link_click` event, conditionally identifing affiliate links (with `rel="sponsored"`) and then pushing a separate `affiliate_link_click` event.
+* **Outbound & Affiliate Link Click Tracking:** Automatically detects when a user clicks a link to leave your site and pushes an `external_link_click` event, conditionally identifying affiliate links (with `rel="sponsored"`) and then pushing a separate `affiliate_link_click` event.
 * **Jump Link Click Tracking:** Tracks engagement with your Jump Links Block by pushing a `jump_link_click` event, letting you see which sections your users are most interested in.
 
 = Webmaster Verification =
-Easily verify your site with search engines. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the approproate feilds in the analytics tab and the plugin handles the rest, adding the meta tags to your site's header, so you never have to worry about them being removed during a theme update.
+Easily verify your site with search engines. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the corresponding fields in the Integrations tab. The plugin handles the rest, adding the meta tags to your site's header, so you never have to worry about them being removed during a theme update.
 
 == Installation ==
 
@@ -173,7 +173,7 @@ The Search Appearance Toolkit makes this easy. You do **not** need to copy the l
 
 That's it. The plugin will now automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
 
-When you add a new site to Google tag manager, you will receive instructions to (1) paste one block of code as high in the `<head>` of the page as possible and (2) paste another block of code immediately after the opening `<body>` tag. The plugin will handle this assignment for you. All you need to do is copy the GTM code and paste it into the field in the integrations tab.
+**New to Google Tag Manager?** When you create a new site in Google Tag Manager, you will receive instructions to (1) paste one block of code as high in the `<head>` of the page as possible and (2) paste another block of code immediately after the opening `<body>` tag. **You do not need to follow these instructions to add code manually.** The plugin handles this assignment for you. All you need to do is copy the GTM Container ID and paste it into the field in the integrations tab.  The plugin will do the rest!
 
 == How do I set up Google Tag Manager (GTM) tracking for events (the easy way)? ==
 
@@ -185,7 +185,7 @@ This setup is a two-part process. First, you'll configure GTM, then you'll confi
 
 1.  **In your WordPress admin,** go to **Settings > SEO 44 > Integrations**.
 2.  Click the **"Download GTM Import File"** button to save the `seo44-gtm-recipe-importer.json` file. The download button is located below the field where you enter your Google Tag Manager ID.
-3.  **In Google Tab manager,** Open the GTM container for your website and go to **Admin > Import Container**.
+3.  **In Google Tab Manager,** Open the GTM container for your website and go to **Admin > Import Container**.
 4.  **Choose container file:** Upload the `seo44-gtm-recipe-importer.json` file.
 5.  **Choose workspace:** Select your existing workspace.
 6.  **Choose an import option (CRITICAL):**
@@ -390,10 +390,11 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
 12. The Jump Links Block in Viewing Mode.
 13. The Jump Links Block in Editing Mode.
 14. The Sidebar controls for the Jump Links Block.
+15. The Integrations tab with Google Tag Manager and Site Tool settings.
 
 == Changelog ==
 
-= 3.9.8 =
+= 4.0.0 =
 * FEATURE: Added a new "Integrations" tab for third-party services like Google Tag Manager and Webmaster Tools.
 * FEATURE: Added Google Tag Manager (GTM) integration. The plugin can now automatically inject the GTM container script into the site's <head> and <body> based on your ID.
 * FEATURE: Added Webmaster Verification. You can now add your Google Search Console and Bing Webmaster Tools verification codes directly from the plugin settings.
@@ -403,7 +404,8 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
     * **External & Affiliate Clicks:** Pushes 'external_link_click' or 'affiliate_link_click' (for `rel="sponsored"` links).
     * **Jump Link Clicks:** Pushes a 'jump_link_click' event when a user clicks a link in the Jump Links Block.
 * ENHANCEMENT: Centralized all GTM event tracking into a new, efficient `global-tracker.js` file that uses event delegation for better performance.
-* TWEAK: Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips.
+* TWEAK: Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips, and a file downloader.
+* FEATURE: Added A Google Tag Manager Recipe Import file and instructions to handle click events in GTM and GA.
 
 = 3.9.7 =
 * ENHANCEMENT (Jump Links Block): Implemented a robust de-duping engine to prevent invalid HTML from duplicate headings. The block now automatically appends a number (e.g., `my-heading-2`) to any heading with a conflicting text or manual anchor ID.
