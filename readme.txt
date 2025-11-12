@@ -163,6 +163,108 @@ The benefit of this is that Google can use this structured data to display your 
 = Will this plugin create duplicate schema if my theme already adds them? =
 No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.  
 
+== How do I install Google Tag Manager (GTM)? ==
+The Search Appearance Toolkit makes this easy. You do **not** need to copy the large code snippets from Google.
+	1	In your Google Tag Manager account, find and copy your **Container** ID (it looks like `GTM-XXXXXXX`).
+	2	In your WordPress dashboard, go to **Settings > SEO 44** and click the **"Integrations"** tab.
+	3	Paste your Container ID into the **"Google Tag Manager ID"** field. Your plugin will even help sanitize the format for you.
+	4	Check the **"Enable Google Tag Manager"** box.
+	5	Click **"Save Settings."**
+
+That's it. The plugin will now automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
+
+When you add a new site to Google tag manager, you will receive instructions to (1) paste one block of code as high in the `<head>` of the page as possible and (2) paste another block of code immediately after the opening `<body>` tag. The plugin will handle this assignment for you. All you need to do is copy the GTM code and paste it into the field in the integrations tab.
+
+== How do I set up Google Tag Manager (GTM) tracking for events (the easy way)? ==
+
+To save you time and eliminate errors, your plugin provides a "GTM Import File." This recipe contains all the tags, triggers, and variables needed for GTM to listen for your plugin's custom events (like `jump_link_click` and `scroll_depth`) and send them to Google Analytics.
+
+This setup is a two-part process. First, you'll configure GTM, then you'll configure Google Analytics.
+
+**Part 1: Configure Google Tag Manager (GTM)**
+
+1.  **In your WordPress admin,** go to **Settings > SEO 44 > Integrations**.
+2.  Click the **"Download GTM Import File"** button to save the `seo44-gtm-recipe-importer.json` file. The download button is located below the field where you enter your Google Tag Manager ID.
+3.  **In Google Tab manager,** Open the GTM container for your website and go to **Admin > Import Container**.
+4.  **Choose container file:** Upload the `seo44-gtm-recipe-importer.json` file.
+5.  **Choose workspace:** Select your existing workspace.
+6.  **Choose an import option (CRITICAL):**
+    * Select the **"Merge"** option.
+    * **NEVER **select "Overwrite," as this will delete all of your existing GTM tags.
+7.  **Confirm Preview:** GTM will show you a preview of all the new tags, triggers, and variables. Click **Confirm.**
+8.  Go to **Variables** and click on the **"GA4 - Measurement ID"** variable. Replace the `PASTE-YOUR-GA4-MEASUREMENT-ID-HERE` placeholder with your own GA4 Measurement ID (e.g., `G-XXXXXXXXXX`).
+9.  Finally, **Submit** and **Publish** your container.
+
+**Part 2: Configure Google Analytics (GA4)**
+
+With GTM now configured using the `seo44-gtm-recipe-importer.json` file, you must next tell Google Analytics to "listen for" and "display" the custom data.
+
+Important: You must manually register these new Custom Dimensions in GA4. If you skip this step, you will only see the count of the events, not the valuable data (like which link was clicked).
+
+1.  Go to the **Admin** area in Google Analytics (by clicking on the gear icon in the bottom left).
+2.  In the "Property" column, find **Data display > Custom definitions**.
+3.  Click the blue **"Create custom dimensions"** button.
+4.  You will need to create **four** new dimensions, one by one.  Use the exact "Event parameter" names listed below. 
+    * **Dimension 1:**
+        * **Dimension name:** `click_text`
+        * **Scope:** `Event`
+        * **Event parameter:** `click_text`
+        * Click **Save.**
+
+    * **Dimension 2:**
+        * **Dimension name:** `click_anchor`
+        * **Scope:** `Event`
+        * **Event parameter:** `click_anchor`
+        * Click **Save.**
+
+    * **Dimension 3:**
+        * **Dimension name:** `scroll_percentage`
+        * **Scope:** `Event`
+        * **Event parameter:** `scroll_percentage`
+        * Click **Save.**
+
+    * **Dimension 4:**
+        * **Dimension name:** `outbound_url`
+        * **Scope:** `Event`
+        * **Event parameter:** `outbound_url`
+        * Click **Save.**
+
+After completing these steps (and waiting 24-48 hours for Google Analytics to process the data), you will be able to see all your new events and their associated data (like which links were clicked and how far users scrolled) in your main Events report.
+
+== How do I add my Google Search Console verification code? ==
+
+This plugin uses the "HTML tag" verification method, which is the most common and reliable way. You only need to copy the code, not the full tag.
+
+1.  Sign in to [Google Search Console](https://search.google.com/search-console).
+2.  Add your website as a "Property" if you haven't already.
+3.  In the verification settings for your property, find and select the **"HTML tag"** method.
+4.  Google will show you a full meta tag, like this:
+    `
+    <meta name="google-site-verification" content="YOUR_UNIQUE_CODE_GOES_HERE" />
+    `
+5.  Copy **only the code** inside the `content="..."` attribute.
+6.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
+7.  Paste your code into the **"Google Search Console"** field.
+8.  Click **"Save Settings"** at the bottom of the page.
+9.  Go back to the Google Search Console page and click the **"Verify"** button. Google will now be able to see the tag on your site.
+
+== How do I add my Bing Webmaster Tools verification code? ==
+
+Similar to Google, Bing uses an "HTML meta tag" to verify your site. You only need to copy the specific code from the tag.
+
+1.  Sign in to [Bing Webmaster Tools](https://www.bing.com/webmasters/about).
+2.  Add your site. When prompted for a verification method, select **"HTML meta tag"**.
+3.  Bing will provide a tag that looks like this:
+    `
+    <meta name="msvalidate.01" content="YOUR_UNIQUE_CODE_GOES_HERE" />
+    `
+4.  Copy **only the code** inside the `content="..."` attribute.
+5.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
+6.  Paste your code into the **"Bing Webmaster Tools"** field.
+7.  Click **"Save Settings"** at the bottom of the page.
+8.  Go back to the Bing Webmaster Tools page and click the **"Verify"** button.
+
+
 = Why can't I see the images in my sitemap? =
 You can! The XML sitemap is a code file meant for search engines, so browsers don't display images directly. To verify that your images are included, go to your sitemap (e.g., yourwebsite.com/sitemap.xml), right-click, and select "View Page Source." You will see the image URLs listed within <image:image> tags for each relevant post or page.
 
@@ -200,51 +302,6 @@ You can save a fully customized Jump Links block as a Block Pattern to easily re
 5.  **Click Create:** Your custom pattern is now saved!
 
 6.  **Reuse Your Pattern:** To use it on another page, click the main block inserter (+), go to the Patterns tab, and select the "My patterns" category. You will see your saved design, ready to be inserted with one click.
-
-== How do I install Google Tag Manager (GTM)? ==
-The Search Appearance Toolkit makes this easy. You do **not** need to copy the large code snippets from Google.
-	1	In your Google Tag Manager account, find and copy your **Container** ID (it looks like `GTM-XXXXXXX`).
-	2	In your WordPress dashboard, go to **Settings > SEO 44** and click the **"Integrations"** tab.
-	3	Paste your Container ID into the **"Google Tag Manager ID"** field. Your plugin will even help sanitize the format for you.
-	4	Check the **"Enable Google Tag Manager"** box.
-	5	Click **"Save Settings."**
-
-That's it. The plugin will now automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
-
-When you add a new site to Google tag manager, you will receive instructions to (1) paste one block of code as high in the `<head>` of the page as possible and (2) paste another block of code immediately after the opening `<body>` tag. The plugin will handle this assignment for you. All you need to do is copy the GTM code and paste it into the field in the integrations tab.
-
-== How do I add my Google Search Console verification code? ==
-
-This plugin uses the "HTML tag" verification method, which is the most common and reliable way. You only need to copy the code, not the full tag.
-
-1.  Sign in to [Google Search Console](https://search.google.com/search-console).
-2.  Add your website as a "Property" if you haven't already.
-3.  In the verification settings for your property, find and select the **"HTML tag"** method.
-4.  Google will show you a full meta tag, like this:
-    `
-    <meta name="google-site-verification" content="YOUR_UNIQUE_CODE_GOES_HERE" />
-    `
-5.  Copy **only the code** inside the `content="..."` attribute.
-6.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
-7.  Paste your code into the **"Google Search Console"** field.
-8.  Click **"Save Settings"** at the bottom of the page.
-9.  Go back to the Google Search Console page and click the **"Verify"** button. Google will now be able to see the tag on your site.
-
-== How do I add my Bing Webmaster Tools verification code? ==
-
-Similar to Google, Bing uses an "HTML meta tag" to verify your site. You only need to copy the specific code from the tag.
-
-1.  Sign in to [Bing Webmaster Tools](https://www.bing.com/webmasters/about).
-2.  Add your site. When prompted for a verification method, select **"HTML meta tag"**.
-3.  Bing will provide a tag that looks like this:
-    `
-    <meta name="msvalidate.01" content="YOUR_UNIQUE_CODE_GOES_HERE" />
-    `
-4.  Copy **only the code** inside the `content="..."` attribute.
-5.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
-6.  Paste your code into the **"Bing Webmaster Tools"** field.
-7.  Click **"Save Settings"** at the bottom of the page.
-8.  Go back to the Bing Webmaster Tools page and click the **"Verify"** button.
 
 == For Developers ==
 
