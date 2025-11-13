@@ -605,7 +605,7 @@ public function render_homepage_description_field() {
         echo '<div class="gtm-recipe-helper">';
 		echo '<p class="description">';
         echo '<strong>' . esc_html__('Google Tag Manager Configure Required:', 'search-appearance-toolkit-seo-44') . '</strong> ';
-        echo '<span class="description-body">' . $download_text . '</span>';
+        echo '<span class="description-body">' . wp_kses_post( $download_text ) . '</span>';
         echo '</p>';
 		echo '</div>';
     }
