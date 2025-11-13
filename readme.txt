@@ -19,11 +19,26 @@ Search Appearance Toolkit (SEO 44) is a lightweight and complete SEO plugin for 
 
 Whether you're setting up a new site or looking for a lightweight alternative, SEO 44 gives you control over your on-page SEO, social media appearance, Schema.org structured data, XML sitemaps, and article jump links. 
 
-The interface is clean and user-friendly. Under the hood, the plugin packs powerful features to automatically scan your content and generate valuable resources for SEO - leaving you with more time to create great content. Within the block editor, the SEO 44 Jump Links Block scans for headings and automatically generates customizable jump links for improved user navigation and richer search results.
+The interface is clean and user-friendly. Under the hood, the plugin packs powerful features to scan your content and automatically generate valuable resources for SEO, freeing up more time for you to create great content. Within the block editor, the SEO 44 Jump Links Block scans for headings and generates customizable jump links that enhance user navigation and search results.
 
 == Why use SEO 44? ==
 
-Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users who want a complete set of powerful, essential SEO features without the performance impact, upsells, and dashboard clutter common with larger plugins. Its intelligent schema scanner and powerful migration tools also make it an excellent choice for users looking to switch from a bloated plugin to a more lightweight solution.
+Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users who want a complete set of powerful, essential SEO features without the performance impact, upsells, and dashboard clutter commonly found in larger plugins. Its intelligent schema scanner and powerful migration tools also make it an excellent choice for users looking to switch from a bloated plugin to a more lightweight solution.
+
+== Installation ==
+
+= From the WordPress Plugin Directory File =
+1.  Log in to your WordPress Admin Dashboard.
+2.  Navigate to **Plugins > Add Plugin** in the left-hand menu.
+3.  Search for the plugin: **Search Appearance Toolkit (SEO 44)**.
+4.  Install the plugin: Once you locate the [correct plugin](https://wordpress.org/plugins/search-appearance-toolkit-seo-44/), click the **"Install Now"** button next to it.
+5.  Activate the plugin: After the installation is complete, click the **"Activate Plugin"** button that appears.
+
+= From a Zip File =
+1.  Download a copy of the plugin, available in the WordPress Plugin Directory [Search Appearance Toolkit SEO 44](https://wordpress.org/plugins/search-appearance-toolkit-seo-44/) webpage. 
+2.  Upload the **search-appearance-toolkit-seo-44** folder to the `/wp-content/plugins/` directory 
+3.  Activate the plugin through the **Plugins** menu in WordPress.
+4.  Navigate to **Settings -> SEO 44** to configure the plugin.
 
 == Key Features ==
  
@@ -92,21 +107,6 @@ Once GTM is enabled, you can flip toggles to automatically push rich, valuable e
 
 = Webmaster Verification =
 Easily verify your site with search engines. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the corresponding fields in the Integrations tab. The plugin handles the rest, adding the meta tags to your site's header, so you never have to worry about them being removed during a theme update.
-
-== Installation ==
-
-= From the WordPress Plugin Directory File =
-1.  Log in to your WordPress Admin Dashboard.
-2.  Navigate to **Plugins > Add Plugin** in the left-hand menu.
-3.  Search for the plugin: **Search Appearance Toolkit (SEO 44)**.
-4.  Install the plugin: Once you locate the [correct plugin](https://wordpress.org/plugins/search-appearance-toolkit-seo-44/), click the **"Install Now"** button next to it.
-5.  Activate the plugin: After the installation is complete, click the **"Activate Plugin"** button that appears.
-
-= From a Zip File =
-1.  Download a copy of the plugin, available in the WordPress Plugin Directory [Search Appearance Toolkit SEO 44](https://wordpress.org/plugins/search-appearance-toolkit-seo-44/) webpage. 
-2.  Upload the **search-appearance-toolkit-seo-44** folder to the `/wp-content/plugins/` directory 
-3.  Activate the plugin through the **Plugins** menu in WordPress.
-4.  Navigate to **Settings -> SEO 44** to configure the plugin.
 
 == Frequently Asked Questions ==
 
@@ -412,9 +412,9 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
     * Scroll Depth Tracking: Pushes 'scroll_depth' events at 25%, 50%, 75%, and 100% of the page.
     * External & Affiliate Clicks:* Pushes 'external_link_click' or 'affiliate_link_click' (for `rel="sponsored"` links).
     * Jump Link Clicks: Pushes a 'jump_link_click' event when a user clicks a link in the Jump Links Block.
+* FEATURE: Added a Google Tag Manager recipe import file (`seo44-gtm-recipe-importer.json`) and new FAQ instructions to fully configure GTM and GA4 event tracking.
 * ENHANCEMENT: Centralized all GTM event tracking into a new, efficient `global-tracker.js` file that uses event delegation for better performance.
 * TWEAK: Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips, and a file downloader.
-* FEATURE: Added A Google Tag Manager Recipe Import file and instructions to handle click events in GTM and GA.
 
 = 3.9.7 =
 * ENHANCEMENT (Jump Links Block): Implemented a robust de-duping engine to prevent invalid HTML from duplicate headings. The block now automatically appends a number (e.g., `my-heading-2`) to any heading with a conflicting text or manual anchor ID.
