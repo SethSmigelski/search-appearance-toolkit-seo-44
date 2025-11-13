@@ -509,6 +509,7 @@ class SEO44_Frontend {
             return $this->parse_blocks_for_special_schema($post_id, parse_blocks($post->post_content));
         } else {
             // Use the HTML fallback for classic editor or page builder content
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
             $rendered_content = apply_filters('the_content', $post->post_content);
             return $this->parse_html_for_special_schema($post_id, $rendered_content);
         }
