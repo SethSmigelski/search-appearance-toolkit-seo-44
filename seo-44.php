@@ -136,8 +136,8 @@ add_action('init', 'seo44_register_blocks');
 /**
  * Template tag to get the SEO 44 meta tags as a string.
  */
-function get_the_seo44_tags() {
-    // We need to call the method from our frontend class instance
+function seo44_get_the_tags() { 
+    // Call the method from the frontend class instance
     ob_start();
     if ( function_exists('seo44') && ! empty( seo44()->frontend ) ) {
         seo44()->frontend->output_header_tags();
@@ -148,21 +148,21 @@ function get_the_seo44_tags() {
 /**
  * Template tag to echo the SEO 44 meta tags.
  */
-function the_seo44_tags() {
-	$allowed_tags = [
-		'meta' => [
-			'name'     => [],
-			'property' => [],
-			'content'  => [],
-		],
-	];
-	echo wp_kses( get_the_seo44_tags(), $allowed_tags );
+function seo44_the_tags() { 
+    $allowed_tags = [
+        'meta' => [
+            'name'     => [],
+            'property' => [],
+            'content'  => [],
+        ],
+    ];
+    echo wp_kses( seo44_get_the_tags(), $allowed_tags ); 
 }
 
 /**
  * Template tag to get the SEO 44 Schema JSON-LD as a string.
  */
-function get_the_seo44_schema() {
+function seo44_get_the_schema() { 
     ob_start();
     if ( function_exists('seo44') && ! empty( seo44()->frontend ) ) {
         seo44()->frontend->output_schema_json_ld();
@@ -173,15 +173,13 @@ function get_the_seo44_schema() {
 /**
  * Template tag to echo the SEO 44 Schema JSON-LD.
  */
-function the_seo44_schema() {
+function seo44_the_schema() { 
     $allowed_tags = [
         'script' => [
             'type' => [],
         ],
     ];
-    // We can't escape the content of the script tag, so we just allow the tag itself.
-    // The content is already safe from wp_json_encode().
-    echo wp_kses( get_the_seo44_schema(), $allowed_tags );
+    echo wp_kses( seo44_get_the_schema(), $allowed_tags ); 
 }
 
 // --- Activation & Deactivation Hooks ---
