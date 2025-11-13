@@ -11,7 +11,7 @@
     * Jump Link Clicks: Pushes a 'jump_link_click' event when a user clicks a link in the Jump Links Block.
 * FEATURE: Added a Google Tag Manager recipe import file (`seo44-gtm-recipe-importer.json`) and new FAQ instructions to fully configure GTM and GA4 event tracking.
 * ENHANCEMENT: Centralized all GTM event tracking into a new, efficient `global-tracker.js` file that uses event delegation for better performance.
-* TWEAK: Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips, and a file downloader.
+* TWEAK: Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips and a file downloader.
 
 = 3.9.7 =
 * ENHANCEMENT (Jump Links Block): Implemented a robust de-duping engine to prevent invalid HTML from duplicate headings. The block now automatically appends a number (e.g., `my-heading-2`) to any heading with a conflicting text or manual anchor ID.
