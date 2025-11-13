@@ -417,3 +417,8 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
 * TWEAK: Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips and a file downloader.
 
 For a complete list of changes, please see the [full changelog](https://github.com/SethSmigelski/search-appearance-toolkit-seo-44/blob/main/changelog.txt) or the `changelog.txt` file included with the plugin.
+
+== Upgrade Notice ==
+
+= 4.0.0 =
+Template tags renamed with plugin prefix.
