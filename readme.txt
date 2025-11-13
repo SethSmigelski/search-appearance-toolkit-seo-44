@@ -278,14 +278,6 @@ You can! The XML sitemap is a code file meant for search engines, so browsers do
 = My sitemap shows a "404 Not Found" error. How do I fix it? =
 This can occur when WordPress has not yet recognized the new sitemap URL. To fix it, go to **Settings -> Permalinks** in your WordPress admin and click the "Save Changes" button. This will refresh your site's rewrite rules and make the sitemap visible. The sitemap generator also automatically disables the default WordPress sitemap. 
 
-= Does SEO 44 offer template tags for theme developers? =
-Yes. For advanced theme development, SEO 44 provides four template tags that allow you to place the SEO and schema output in custom locations in your theme files.
-
-* **`seo44_get_the_tags()`:** This function **returns** the complete block of HTML meta tags as a PHP string.
-* **`seo44_the_tags()`:**  This function **prints** (echoes) the complete block of HTML meta tags, wrapped in wp_kses to ensure security.
-* **`seo44_get_the_schema()`:** This function **returns** the JSON-LD schema script tag as a PHP string.
-* **`seo44_the_schema()`:** This function **prints** (echoes) the JSON-LD schema script tag.
-
 = How is the "Search Appearance Toolkit (SEO 44)" plugin different from the standalone "Jump Links Block (SEO 44)" plugin? =
 The main **Search Appearance Toolkit (SEO 44)** plugin is a complete suite of tools that includes meta tag optimization, schema generation, XML sitemaps, *and* the Jump Links Block. The standalone **Jump Links Block (SEO 44)** plugin offers *only* the Jump Links Block functionality for users who don't need a full SEO suite. You only need one. If you are using the Search Appearance Toolkit (SEO 44) plugin, you do not need the standalone block plugin.
 
@@ -311,12 +303,20 @@ You can save a fully customized Jump Links block as a Block Pattern to easily re
 6.  **Reuse Your Pattern:** To use it on another page, click the main block inserter (+), go to the Patterns tab, and select the "My patterns" category. You will see your saved design, ready to be inserted with one click.
 
 == For Developers ==
+For advanced theme development, SEO 44 provides four template tags and a filter hook.
 
-Search Appearance Toolkit (SEO 44) is extensible and allows for the addition of custom schema types (like LocalBusiness or Product) via a WordPress filter hook.
+= Using Template Tags =
+The Search Appearance Toolkit (SEO 44) empowers Theme Developers with four template tags to place SEO and schema output in custom locations within theme files.
 
-= Adding Custom Schema with the 'seo44_add_schema_parts' Filter =
+* **`seo44_get_the_tags()`:** This function **returns** the complete block of HTML meta tags as a PHP string.
+* **`seo44_the_tags()`:**  This function **prints** (echoes) the complete block of HTML meta tags, wrapped in wp_kses to ensure security.
+* **`seo44_get_the_schema()`:** This function **returns** the JSON-LD schema script tag as a PHP string.
+* **`seo44_the_schema()`:** This function **prints** (echoes) the JSON-LD schema script tag.
 
-The `seo44_add_schema_parts` filter allows for the injection of additional schema arrays into the final @graph output.
+= Adding Custom Schema  =
+The schema output created by Search Appearance Toolkit (SEO 44) is extensible using the 'seo44_add_schema_parts' Filter, which allows for the addition of custom schema types (like LocalBusiness or Product).
+
+The `seo44_add_schema_parts` filter allows for the injection of additional schema arrays into the final @graph output via a WordPress filter hook.
 
 Example Usage:
 The following example shows how you could create a small, separate plugin to add LocalBusiness schema to a specific "Contact Us" page.
