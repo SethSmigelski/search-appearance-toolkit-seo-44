@@ -314,6 +314,7 @@ The seo44_add_schema_parts filter allows for the injection of additional schema 
 
 Example Usage:
 The following example shows how you could create a small, separate plugin to add LocalBusiness schema to a specific "Contact Us" page.
+
     `
     <?php
         /**
@@ -344,6 +345,7 @@ The following example shows how you could create a small, separate plugin to add
         add_filter( 'seo44_add_schema_parts', 'my_custom_add_local_business_schema', 10, 2 );
     ?>
     `
+
 == Credits ==
 
 **WordPress.org:** The default placeholder favicon used in the "Search Results Snippet Preview" is based on the official WordPress logo. The image file is included locally within the plugin to comply with repository guidelines. 
