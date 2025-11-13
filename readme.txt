@@ -84,6 +84,7 @@ Stop worrying about editing your theme's `header.php` file. Just paste your `GTM
 
 = Sophisticated GTM Event Tracking =
 Once GTM is enabled, you can flip toggles to automatically push rich, valuable events to the `dataLayer` for your analytics. This is where the power of integration shines through. 
+
 * **Rich SEO dataLayer:** Automatically pushes critical page data (like post category, author, tags, and page type) on every page load. This is a powerful feature for advanced users who want to create granular analytics triggers in GTM (e.g., "Fire this conversion pixel *only* on the 'Products' category").
 * **Scroll Depth Tracking:** Find out how much of your content is being viewed by visitors. This feature pushes `scroll_depth` events as users scroll 25%, 50%, 75%, and 100% down a page.
 * **Outbound & Affiliate Link Click Tracking:** Automatically detects when a user clicks a link to leave your site and pushes an `external_link_click` event, conditionally identifying affiliate links (with `rel="sponsored"`) and then pushing a separate `affiliate_link_click` event.
@@ -192,8 +193,9 @@ This setup is a two-part process. First, you'll configure GTM, then you'll confi
     * Select the **"Merge"** option.
     * **NEVER** select "Overwrite," as this will delete all of your existing GTM tags.
 7.  **Confirm Preview:** GTM will show you a preview of all the new tags, triggers, and variables. Click **Confirm.**
-8.  Go to **Variables** and click on the **"GA4 - Measurement ID"** variable. Replace the `PASTE-YOUR-GA4-MEASUREMENT-ID-HERE` placeholder with your own GA4 Measurement ID (e.g., `G-XXXXXXXXXX`).
-9.  Finally, **Submit** and **Publish** your container.
+8.  Go to **Variables** and click on the **"GA4 - Measurement ID"** variable. 
+9.  Replace the **`PASTE-YOUR-GA4-MEASUREMENT-ID-HERE`** placeholder with your own GA4 Measurement ID (e.g., `G-XXXXXXX`).
+10. Finally, **Submit** and **Publish** your container.
 
 **Part 2: Configure Google Analytics (GA4)**
 
@@ -204,31 +206,35 @@ Important: You must manually register these new Custom Dimensions in GA4. If you
 1.  Go to the **Admin** area in Google Analytics (by clicking on the gear icon in the bottom left).
 2.  In the "Property" column, find **Data display > Custom definitions**.
 3.  Click the blue **"Create custom dimensions"** button.
-4.  You will need to create **four** new dimensions, one by one.  Use the exact "Event parameter" names listed below. 
-    
-* **Dimension 1:**
-    * **Dimension name:** `click_text`
-    * **Scope:** `Event`
-    * **Event parameter:** `click_text`
-    * Click **Save.**
-    
-* **Dimension 2:**
-    * **Dimension name:** `click_anchor`
-    * **Scope:** `Event`
-    * **Event parameter:** `click_anchor`
-    * Click **Save.**
-    
-* **Dimension 3:**
-    * **Dimension name:** `scroll_percentage`
-    * **Scope:** `Event`
-    * **Event parameter:** `scroll_percentage`
-    * Click **Save.**
-    
-* **Dimension 4:**
-    * **Dimension name:** `outbound_url`
-    * **Scope:** `Event`
-    * **Event parameter:** `outbound_url`
-    * Click **Save.**
+4.  You will need to create **four** new dimensions, one by one.  Use the exact "Event parameter" names listed below.
+
+**Dimension 1:**
+
+* **Dimension name:** `click_text`
+* **Scope:** `Event`
+* **Event parameter:** `click_text`
+* Click **Save.**
+	
+**Dimension 2:**
+
+* **Dimension name:** `click_anchor`
+* **Scope:** `Event`
+* **Event parameter:** `click_anchor`
+* Click **Save.**
+	
+**Dimension 3:**
+
+* **Dimension name:** `scroll_percentage`
+* **Scope:** `Event`
+* **Event parameter:** `scroll_percentage`
+* Click **Save.**
+	
+**Dimension 4:**
+
+* **Dimension name:** `outbound_url`
+* **Scope:** `Event`
+* **Event parameter:** `outbound_url`
+* Click **Save.**
 
 After completing these steps (and waiting 24-48 hours for Google Analytics to process the data), you will be able to see all your new events and their associated data (like which links were clicked and how far users scrolled) in your main Events report.
 
@@ -310,7 +316,7 @@ Search Appearance Toolkit (SEO 44) is extensible and allows for the addition of 
 
 = Adding Custom Schema with the 'seo44_add_schema_parts' Filter =
 
-The seo44_add_schema_parts filter allows for the injection of additional schema arrays into the final @graph output.
+The `seo44_add_schema_parts` filter allows for the injection of additional schema arrays into the final @graph output.
 
 Example Usage:
 The following example shows how you could create a small, separate plugin to add LocalBusiness schema to a specific "Contact Us" page.
