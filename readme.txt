@@ -281,10 +281,10 @@ This can occur when WordPress has not yet recognized the new sitemap URL. To fix
 = Does SEO 44 offer template tags for theme developers? =
 Yes. For advanced theme development, SEO 44 provides four template tags that allow you to place the SEO and schema output in custom locations in your theme files.
 
-* **`get_the_seo44_tags()`:** This function **returns** the complete block of HTML meta tags as a PHP string.
-* **`the_seo44_tags()`:**  This function **prints** (echoes) the complete block of HTML meta tags, wrapped in wp_kses to ensure security.
-* **`get_the_seo44_schema()`:** This function **returns** the JSON-LD schema script tag as a PHP string.
-* **`the_seo44_schema()`:** This function **prints** (echoes) the JSON-LD schema script tag.
+* **`seo44_get_the_tags()`:** This function **returns** the complete block of HTML meta tags as a PHP string.
+* **`seo44_the_tags()`:**  This function **prints** (echoes) the complete block of HTML meta tags, wrapped in wp_kses to ensure security.
+* **`seo44_get_the_schema()`:** This function **returns** the JSON-LD schema script tag as a PHP string.
+* **`seo44_the_schema()`:** This function **prints** (echoes) the JSON-LD schema script tag.
 
 = How is the "Search Appearance Toolkit (SEO 44)" plugin different from the standalone "Jump Links Block (SEO 44)" plugin? =
 The main **Search Appearance Toolkit (SEO 44)** plugin is a complete suite of tools that includes meta tag optimization, schema generation, XML sitemaps, *and* the Jump Links Block. The standalone **Jump Links Block (SEO 44)** plugin offers *only* the Jump Links Block functionality for users who don't need a full SEO suite. You only need one. If you are using the Search Appearance Toolkit (SEO 44) plugin, you do not need the standalone block plugin.
