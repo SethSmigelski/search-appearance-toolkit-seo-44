@@ -82,16 +82,17 @@ class SEO44_Core {
     /**
      * Injects the Google Tag Manager <head> script.
      */
-    public function inject_gtm_head() {
+	public function inject_gtm_head() {
         if (seo44_get_option('enable_gtm_integration')) {
-            $gtm_id = esc_js(seo44_get_option('gtm_id'));
+            $gtm_id = seo44_get_option('gtm_id'); // Get the RAW ID
             if (empty($gtm_id) || strpos($gtm_id, 'GTM-') !== 0) return;
             
+            // We use esc_js() here because the ID is being inserted into a JavaScript string
             echo "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','" . $gtm_id . "');</script>
+            })(window,document,'script','dataLayer','" . esc_js($gtm_id) . "');</script>
             \n";
         }
     }
@@ -99,12 +100,16 @@ class SEO44_Core {
     /**
      * Injects the Google Tag Manager <body> (noscript) snippet.
      */
-    public function inject_gtm_body() {
+	public function inject_gtm_body() {
         if (seo44_get_option('enable_gtm_integration')) {
-            $gtm_id = esc_js(seo44_get_option('gtm_id'));
+            $gtm_id = seo44_get_option('gtm_id'); // Get the RAW ID
             if (empty($gtm_id) || strpos($gtm_id, 'GTM-') !== 0) return;
 
-            echo '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' . $gtm_id . '"
+            // Build the full URL first
+            $iframe_url = 'https://www.googletagmanager.com/ns.html?id=' . $gtm_id;
+
+            // We use esc_url() here because we are outputting a URL into an 'src' attribute
+            echo '<noscript><iframe src="' . esc_url($iframe_url) . '"
             height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             \n';
         }
