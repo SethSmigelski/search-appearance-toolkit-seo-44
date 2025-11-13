@@ -31,7 +31,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Tabbed Settings Page:**  The interface is clean and uncluttered. All plugin settings are organized into six clear, easy-to-navigate tabs: Main Settings, Social Media, Schema, XML Sitemaps, Integrations, and Migration.
 * **Helpful Tooltips:**  You will find guidance on different options throughout the settings page. 
 * **Easy to Use Editor Interface:** Manage SEO tags with a clean and straightforward metabox in the post editor. 
- * **Search Results Snippet Preview:** See a live preview of how your content may look in Google search results. 
+* **Search Results Snippet Preview:** See a live preview of how your content may look in Google search results. 
 * **Character Counters:** Keep your titles and descriptions to the recommended length thanks to character counters that warn you if you exceed safe lengths.
 
 = SEO Head Tags = 
@@ -190,7 +190,7 @@ This setup is a two-part process. First, you'll configure GTM, then you'll confi
 5.  **Choose workspace:** Select your existing workspace.
 6.  **Choose an import option (CRITICAL):**
     * Select the **"Merge"** option.
-    * **NEVER **select "Overwrite," as this will delete all of your existing GTM tags.
+    * **NEVER** select "Overwrite," as this will delete all of your existing GTM tags.
 7.  **Confirm Preview:** GTM will show you a preview of all the new tags, triggers, and variables. Click **Confirm.**
 8.  Go to **Variables** and click on the **"GA4 - Measurement ID"** variable. Replace the `PASTE-YOUR-GA4-MEASUREMENT-ID-HERE` placeholder with your own GA4 Measurement ID (e.g., `G-XXXXXXXXXX`).
 9.  Finally, **Submit** and **Publish** your container.
@@ -205,29 +205,30 @@ Important: You must manually register these new Custom Dimensions in GA4. If you
 2.  In the "Property" column, find **Data display > Custom definitions**.
 3.  Click the blue **"Create custom dimensions"** button.
 4.  You will need to create **four** new dimensions, one by one.  Use the exact "Event parameter" names listed below. 
-    * **Dimension 1:**
-        * **Dimension name:** `click_text`
-        * **Scope:** `Event`
-        * **Event parameter:** `click_text`
-        * Click **Save.**
-
-    * **Dimension 2:**
-        * **Dimension name:** `click_anchor`
-        * **Scope:** `Event`
-        * **Event parameter:** `click_anchor`
-        * Click **Save.**
-
-    * **Dimension 3:**
-        * **Dimension name:** `scroll_percentage`
-        * **Scope:** `Event`
-        * **Event parameter:** `scroll_percentage`
-        * Click **Save.**
-
-    * **Dimension 4:**
-        * **Dimension name:** `outbound_url`
-        * **Scope:** `Event`
-        * **Event parameter:** `outbound_url`
-        * Click **Save.**
+    
+* **Dimension 1:**
+    * **Dimension name:** `click_text`
+    * **Scope:** `Event`
+    * **Event parameter:** `click_text`
+    * Click **Save.**
+    
+* **Dimension 2:**
+    * **Dimension name:** `click_anchor`
+    * **Scope:** `Event`
+    * **Event parameter:** `click_anchor`
+    * Click **Save.**
+    
+* **Dimension 3:**
+    * **Dimension name:** `scroll_percentage`
+    * **Scope:** `Event`
+    * **Event parameter:** `scroll_percentage`
+    * Click **Save.**
+    
+* **Dimension 4:**
+    * **Dimension name:** `outbound_url`
+    * **Scope:** `Event`
+    * **Event parameter:** `outbound_url`
+    * Click **Save.**
 
 After completing these steps (and waiting 24-48 hours for Google Analytics to process the data), you will be able to see all your new events and their associated data (like which links were clicked and how far users scrolled) in your main Events report.
 
@@ -274,10 +275,10 @@ This can occur when WordPress has not yet recognized the new sitemap URL. To fix
 = Does SEO 44 offer template tags for theme developers? =
 Yes. For advanced theme development, SEO 44 provides four template tags that allow you to place the SEO and schema output in custom locations in your theme files.
 
-* **get_the_seo44_tags():** This function **returns** the complete block of HTML meta tags as a PHP string.
-* **the_seo44_tags():**  This function **prints** (echoes) the complete block of HTML meta tags, wrapped in wp_kses to ensure security.
-* **get_the_seo44_schema():** This function **returns** the JSON-LD schema script tag as a PHP string.
-* **the_seo44_schema():** This function **prints** (echoes) the JSON-LD schema script tag.
+* **`get_the_seo44_tags()`:** This function **returns** the complete block of HTML meta tags as a PHP string.
+* **`the_seo44_tags()`:**  This function **prints** (echoes) the complete block of HTML meta tags, wrapped in wp_kses to ensure security.
+* **`get_the_seo44_schema()`:** This function **returns** the JSON-LD schema script tag as a PHP string.
+* **`the_seo44_schema()`:** This function **prints** (echoes) the JSON-LD schema script tag.
 
 = How is the "Search Appearance Toolkit (SEO 44)" plugin different from the standalone "Jump Links Block (SEO 44)" plugin? =
 The main **Search Appearance Toolkit (SEO 44)** plugin is a complete suite of tools that includes meta tag optimization, schema generation, XML sitemaps, *and* the Jump Links Block. The standalone **Jump Links Block (SEO 44)** plugin offers *only* the Jump Links Block functionality for users who don't need a full SEO suite. You only need one. If you are using the Search Appearance Toolkit (SEO 44) plugin, you do not need the standalone block plugin.
@@ -295,9 +296,9 @@ You can save a fully customized Jump Links block as a Block Pattern to easily re
 
 4.  **Name and Configure:** Give your pattern a name (e.g., "Super Stylish Jump Links"). You will see a toggle for **Synced**. This is an important choice:
 
-* **Avoid Synced (ON):** Don't use this setting, which will prevent you from accessing the Jump Link Block's customization features, like being able to re-order or rename the jump links.
+    * **Avoid Synced (ON):** Don't use this setting, which will prevent you from accessing the Jump Link Block's customization features, like being able to re-order or rename the jump links.
 
-* **Use Synced (OFF):** Turn synced off before saving your custom pattern. This will create a regular pattern that, when added to other posts, renders a Jump Links Block with all your favorite styles preloaded. This independent copy of your original styled block, created through your new pattern, has full customization controls. Synced Off is the way to go!
+    * **Use Synced (OFF):** Turn synced off before saving your custom pattern. This will create a regular pattern that, when added to other posts, renders a Jump Links Block with all your favorite styles preloaded. This independent copy of your original styled block, created through your new pattern, has full customization controls. Synced Off is the way to go!
 
 5.  **Click Create:** Your custom pattern is now saved!
 
@@ -313,7 +314,7 @@ The seo44_add_schema_parts filter allows for the injection of additional schema 
 
 Example Usage:
 The following example shows how you could create a small, separate plugin to add LocalBusiness schema to a specific "Contact Us" page.
-
+    `
     <?php
         /**
         * Hooks into the 'seo44_add_schema_parts' filter to add custom schema.
@@ -342,7 +343,7 @@ The following example shows how you could create a small, separate plugin to add
         }
         add_filter( 'seo44_add_schema_parts', 'my_custom_add_local_business_schema', 10, 2 );
     ?>
-
+    `
 == Credits ==
 
 **WordPress.org:** The default placeholder favicon used in the "Search Results Snippet Preview" is based on the official WordPress logo. The image file is included locally within the plugin to comply with repository guidelines. 
@@ -399,10 +400,10 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
 * FEATURE: Added Google Tag Manager (GTM) integration. The plugin can now automatically inject the GTM container script into the site's <head> and <body> based on your ID.
 * FEATURE: Added Webmaster Verification. You can now add your Google Search Console and Bing Webmaster Tools verification codes directly from the plugin settings.
 * FEATURE: Added automatic GTM event tracking. When enabled, the plugin can push the following events to the dataLayer:
-    * **Rich SEO dataLayer:** Pushes page type, category, author, and tags on page load for advanced GTM triggers.
-    * **Scroll Depth Tracking:** Pushes 'scroll_depth' events at 25%, 50%, 75%, and 100% of the page.
-    * **External & Affiliate Clicks:** Pushes 'external_link_click' or 'affiliate_link_click' (for `rel="sponsored"` links).
-    * **Jump Link Clicks:** Pushes a 'jump_link_click' event when a user clicks a link in the Jump Links Block.
+    * Rich SEO dataLayer: Pushes page type, category, author, and tags on page load for advanced GTM triggers.
+    * Scroll Depth Tracking: Pushes 'scroll_depth' events at 25%, 50%, 75%, and 100% of the page.
+    * External & Affiliate Clicks:* Pushes 'external_link_click' or 'affiliate_link_click' (for `rel="sponsored"` links).
+    * Jump Link Clicks: Pushes a 'jump_link_click' event when a user clicks a link in the Jump Links Block.
 * ENHANCEMENT: Centralized all GTM event tracking into a new, efficient `global-tracker.js` file that uses event delegation for better performance.
 * TWEAK: Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips, and a file downloader.
 * FEATURE: Added A Google Tag Manager Recipe Import file and instructions to handle click events in GTM and GA.
