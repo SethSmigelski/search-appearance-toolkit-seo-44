@@ -166,13 +166,13 @@ The benefit of this is that Google can use this structured data to display your 
 = Will this plugin create duplicate schema if my theme already adds them? =
 No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.  
 
-= How do I install Google Tag Manager (GTM)? =
-The Search Appearance Toolkit makes this easy. You do **not** need to copy the large code snippets from Google.
-	1	In your Google Tag Manager account, find and copy your **Container** ID (it looks like `GTM-XXXXXXX`).
-	2	In your WordPress dashboard, go to **Settings > SEO 44** and click the **"Integrations"** tab.
-	3	Paste your Container ID into the **"Google Tag Manager ID"** field. Your plugin will even help sanitize the format for you.
-	4	Check the **"Enable Google Tag Manager"** box.
-	5	Click **"Save Settings."**
+= How do I add Google Tag Manager (GTM)? =
+The Search Appearance Toolkit (SEO 44) makes this easy. All you need is your Container ID. 
+1.  In your Google Tag Manager account, find and copy your **Container** ID (it looks like `GTM-XXXXXXX`).
+2.  In your WordPress dashboard, go to **Settings > SEO 44** and click the **"Integrations"** tab.
+3.  Paste your Container ID into the **"Google Tag Manager ID"** field.
+4.  Check the **"Enable Google Tag Manager"** box.
+5.  Click **"Save Settings."**
 
 That's it. The plugin will now automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
 
@@ -180,7 +180,7 @@ That's it. The plugin will now automatically add both the required `<head>` scri
 
 = How do I set up Google Tag Manager (GTM) tracking for events (the easy way)? =
 
-To save you time and eliminate errors, your plugin provides a "GTM Import File." This recipe contains all the tags, triggers, and variables needed for GTM to listen for your plugin's custom events (like `jump_link_click` and `scroll_depth`) and send them to Google Analytics.
+To save you time and eliminate errors, your plugin provides a "GTM Import File." This recipe contains all the tags, triggers, and variables necessary for GTM to listen for your plugin's custom events (like `jump_link_click` and `scroll_depth`) and send them to Google Analytics.
 
 This setup is a two-part process. First, you'll configure GTM, then you'll configure Google Analytics.
 
@@ -201,9 +201,9 @@ This setup is a two-part process. First, you'll configure GTM, then you'll confi
 
 **Part 2: Configure Google Analytics (GA4)**
 
-With GTM now configured using the `seo44-gtm-recipe-importer.json` file, you must next tell Google Analytics to "listen for" and "display" the custom data.
+With GTM now configured, you must next tell Google Analytics to "listen for" and "display" the custom data.
 
-Important: You must manually register these new Custom Dimensions in GA4. If you skip this step, you will only see the count of the events, not the valuable data (like which link was clicked).
+**Important:** You must manually register these new Custom Dimensions in GA4. If you skip this step, you will only see the count of the events, not the valuable data (like which link was clicked).
 
 1.  Go to the **Admin** area in Google Analytics (by clicking on the gear icon in the bottom left).
 2.  In the "Property" column, find **Data display > Custom definitions**.
@@ -238,7 +238,7 @@ Important: You must manually register these new Custom Dimensions in GA4. If you
 * **Event parameter:** `outbound_url`
 * Click **Save.**
 
-After completing these steps (and waiting 24-48 hours for Google Analytics to process the data), you will be able to see all your new events and their associated data (like which links were clicked and how far users scrolled) in your main Events report.
+After completing these steps (and waiting 24-48 hours for Google Analytics to process the data), you will be able to see all your new events and their associated data (like which links were clicked and how far users scrolled) in your Events report.
 
 = How do I add my Google Search Console verification code? =
 
@@ -249,7 +249,7 @@ This plugin uses the "HTML tag" verification method, which is the most common an
 3.  In the verification settings for your property, find and select the **"HTML tag"** method.
 4.  Google will show you a full meta tag, like this:
     `
-    <meta name="google-site-verification" content="YOUR_UNIQUE_CODE_GOES_HERE" />
+    <meta name="google-site-verification" content="YOUR_UNIQUE_CODE_TO_COPY" />
     `
 5.  Copy **only the code** inside the `content="..."` attribute.
 6.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
@@ -265,7 +265,7 @@ Similar to Google, Bing uses an "HTML meta tag" to verify your site. You only ne
 2.  Add your site. When prompted for a verification method, select **"HTML meta tag"**.
 3.  Bing will provide a tag that looks like this:
     `
-    <meta name="msvalidate.01" content="YOUR_UNIQUE_CODE_GOES_HERE" />
+    <meta name="msvalidate.01" content="YOUR_UNIQUE_BING_CODE_TO_COPY" />
     `
 4.  Copy **only the code** inside the `content="..."` attribute.
 5.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
