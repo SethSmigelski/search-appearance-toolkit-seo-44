@@ -11,7 +11,7 @@ Donate link: https://www.paypal.com/donate/?hosted_button_id=M3B2Q94PGVVWL
 Plugin URI:  https://www.sethcreates.com/plugins-for-wordpress/search-appearance-toolkit-seo-44/
 Author URI:  https://www.sethcreates.com/plugins-for-wordpress/
 
-A lightweight, feature-packed SEO plugin for essential meta tags, advanced structured data, XML sitemaps, article jump links, and easy migration.
+A lightweight, feature-packed SEO plugin for essential meta tags, advanced structured data, XML sitemaps, article jump links, integrations, and easy migration.
 
 == Description ==
 
@@ -23,7 +23,7 @@ The interface is clean and user-friendly. Under the hood, the plugin packs power
 
 == Why use SEO 44? ==
 
-Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users who want a complete set of powerful, essential SEO features without the performance impact, upsells, and dashboard clutter commonly found in larger plugins. Its intelligent schema scanner and powerful migration tools also make it an excellent choice for users looking to switch from a bloated plugin to a more lightweight solution.
+Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users who want a complete set of powerful, essential SEO features and automated optimization without the performance impact, upsells, and dashboard clutter commonly found in some plugins. SEO 44 features intelligent scanners to generate schema and easy migration tools, making it an excellent choice for users looking to switch from a bloated plugin to a lightweight solution.
 
 == Installation ==
 
@@ -95,18 +95,20 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 The Search Appearance Toolkit serves as a hub for connecting your site to essential third-party services, helping you to create valuable analytics data and site insights.
 
 = Google Tag Manager (GTM) Integration =
-Stop worrying about editing your theme's `header.php` file. Just paste your `GTM-XXXXXXX` ID into the settings, and the plugin will correctly and safely inject the GTM scripts into your site's `<head>` and `<body>` on every page.
+Easily integrate with Google Tag Manager by pasting your `GTM-XXXXXXX` ID into the settings field. The plugin will correctly and safely inject the GTM scripts into your site's `<head>` and `<body>` on every page. No coding required.
 
 = Sophisticated GTM Event Tracking =
-Once GTM is enabled, you can flip toggles to automatically push rich, valuable events to the `dataLayer` for your analytics. This is where the power of integration shines through. 
+With GTM enabled, you can check four boxes to start gathering important insights about site visitors: 
 
-* **Rich SEO dataLayer:** Automatically pushes critical page data (like post category, author, tags, and page type) on every page load. This is a powerful feature for advanced users who want to create granular analytics triggers in GTM (e.g., "Fire this conversion pixel *only* on the 'Products' category").
+* **Rich SEO dataLayer:** Push foundational page data (like post category, author, tags, and page type) on every page load, allowing advanced users to create granular analytics triggers in GTM (e.g., "Fire this conversion pixel *only* on the 'Products' category").
 * **Scroll Depth Tracking:** Find out how much of your content is being viewed by visitors. This feature pushes `scroll_depth` events as users scroll 25%, 50%, 75%, and 100% down a page.
-* **Outbound & Affiliate Link Click Tracking:** Automatically detects when a user clicks a link to leave your site and pushes an `external_link_click` event, conditionally identifying affiliate links (with `rel="sponsored"`) and then pushing a separate `affiliate_link_click` event.
+* **Outbound & Affiliate Link Click Tracking:** Measure when users click on links to leave your site, pushing an `external_link_click` event, conditionally identifying affiliate links (with `rel="sponsored"`) and pushing a separate `affiliate_link_click` event.
 * **Jump Link Click Tracking:** Tracks engagement with your Jump Links Block by pushing a `jump_link_click` event, letting you see which sections your users are most interested in.
 
+SEO 44's integration with Google Tag Manager pushes valuable events to the `dataLayer` for use in Google Analytics. The plugin provides an import file and detailed instructions for setting up Google Tag Manager and Google Analytics to receive event tracking data. 
+
 = Webmaster Verification =
-Easily verify your site with search engines. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the corresponding fields in the Integrations tab. The plugin handles the rest, adding the meta tags to your site's header, so you never have to worry about them being removed during a theme update.
+Verify your site with search engines quickly and easily. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the corresponding fields in the Integrations tab. The plugin handles the rest (no coding required), adding the meta tags to your site's header, so you never have to worry about them being removed during a theme update.
 
 == Frequently Asked Questions ==
 
@@ -164,7 +166,7 @@ The benefit of this is that Google can use this structured data to display your 
 = Will this plugin create duplicate schema if my theme already adds them? =
 No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.  
 
-== How do I install Google Tag Manager (GTM)? ==
+= How do I install Google Tag Manager (GTM)? =
 The Search Appearance Toolkit makes this easy. You do **not** need to copy the large code snippets from Google.
 	1	In your Google Tag Manager account, find and copy your **Container** ID (it looks like `GTM-XXXXXXX`).
 	2	In your WordPress dashboard, go to **Settings > SEO 44** and click the **"Integrations"** tab.
@@ -176,7 +178,7 @@ That's it. The plugin will now automatically add both the required `<head>` scri
 
 **New to Google Tag Manager?** When you create a new site in Google Tag Manager, you will receive instructions to (1) paste one block of code as high in the `<head>` of the page as possible and (2) paste another block of code immediately after the opening `<body>` tag. **You do not need to follow these instructions to add code manually.** The plugin handles this assignment for you. All you need to do is copy the GTM Container ID and paste it into the field in the integrations tab.  The plugin will do the rest!
 
-== How do I set up Google Tag Manager (GTM) tracking for events (the easy way)? ==
+= How do I set up Google Tag Manager (GTM) tracking for events (the easy way)? =
 
 To save you time and eliminate errors, your plugin provides a "GTM Import File." This recipe contains all the tags, triggers, and variables needed for GTM to listen for your plugin's custom events (like `jump_link_click` and `scroll_depth`) and send them to Google Analytics.
 
@@ -238,7 +240,7 @@ Important: You must manually register these new Custom Dimensions in GA4. If you
 
 After completing these steps (and waiting 24-48 hours for Google Analytics to process the data), you will be able to see all your new events and their associated data (like which links were clicked and how far users scrolled) in your main Events report.
 
-== How do I add my Google Search Console verification code? ==
+= How do I add my Google Search Console verification code? =
 
 This plugin uses the "HTML tag" verification method, which is the most common and reliable way. You only need to copy the code, not the full tag.
 
@@ -255,7 +257,7 @@ This plugin uses the "HTML tag" verification method, which is the most common an
 8.  Click **"Save Settings"** at the bottom of the page.
 9.  Go back to the Google Search Console page and click the **"Verify"** button. Google will now be able to see the tag on your site.
 
-== How do I add my Bing Webmaster Tools verification code? ==
+= How do I add my Bing Webmaster Tools verification code? =
 
 Similar to Google, Bing uses an "HTML meta tag" to verify your site. You only need to copy the specific code from the tag.
 
@@ -270,7 +272,6 @@ Similar to Google, Bing uses an "HTML meta tag" to verify your site. You only ne
 6.  Paste your code into the **"Bing Webmaster Tools"** field.
 7.  Click **"Save Settings"** at the bottom of the page.
 8.  Go back to the Bing Webmaster Tools page and click the **"Verify"** button.
-
 
 = Why can't I see the images in my sitemap? =
 You can! The XML sitemap is a code file meant for search engines, so browsers don't display images directly. To verify that your images are included, go to your sitemap (e.g., yourwebsite.com/sitemap.xml), right-click, and select "View Page Source." You will see the image URLs listed within <image:image> tags for each relevant post or page.
@@ -360,14 +361,14 @@ The following example shows how you could create a small, separate plugin to add
 
 Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services in order to provide its full range of features. All of these features are optional.
 
-== Google Tag Manager (GTM) Integration ==
+= Google Tag Manager (GTM) Integration =
 
 * **Service Description:** This plugin can automatically inject the Google Tag Manager (GTM) container script into your website's `<head>` and `<body>`. This allows you to manage all your third-party tracking scripts (like Google Analytics) from a single GTM dashboard.
 * **Data Sent and Conditions:** This feature is **off by default**. If you enable the "Enable Google Tag Manager" option in the Integrations tab and provide your GTM Container ID (e.g., `GTM-XXXXXXX`), the plugin will add Google's official GTM script to every page of your site. This script will then download and run tracking code from Google's servers.
 * **Service Provider Links:**
     * **Google:** [Terms of Service](https://policies.google.com/terms), [Privacy Policy](https://policies.google.com/privacy)
 
-== Site Verification Tags (Google & Bing) ==
+= Site Verification Tags (Google & Bing) =
 
 * **Service Description:** To prove you own your site to search engines, this plugin allows you to add their required verification meta tags to your site's `<head>`.
 * **Data Sent and Conditions:** This feature is **off by default**. It is only active if you paste a verification code into the "Google Search Console" or "Bing Webmaster Tools" fields in the Integrations tab. The plugin does not actively "send" this data; it simply adds a `<meta>` tag to your site's HTML, which Google's and Bing's crawlers will look for to verify your ownership.
@@ -375,7 +376,7 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
     * **Google:** [Terms of Service](https://policies.google.com/terms), [Privacy Policy](https://policies.google.com/privacy)
     * **Bing (Microsoft):** [Microsoft Services Agreement](https://www.microsoft.com/en-us/servicesagreement/), [Microsoft Privacy Statement](https://privacy.microsoft.com/en-us/privacystatement)
 
-== Sitemap Ping Services (Google & Bing) ==
+= Sitemap Ping Services (Google & Bing) =
 
 * **Service Description:** To help your content get indexed faster, this plugin can automatically notify (or "ping") major search engines when your XML sitemap is updated. This feature uses the public ping services provided by Google and Bing.
 * **Data Sent and Conditions:** This feature is **on by default** and can be disabled from the "XML Sitemaps" settings tab. If enabled, the plugin will send the URL of your website's sitemap (e.g., `https://yourwebsite.com/sitemap.xml`) to Google and Bing. This happens automatically only when you publish a new post. No other data is sent.
