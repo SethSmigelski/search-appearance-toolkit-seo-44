@@ -108,7 +108,7 @@ With GTM enabled, you can check four boxes to start gathering important insights
 SEO 44's integration with Google Tag Manager pushes valuable events to the `dataLayer` for use in Google Analytics. The plugin provides an import file and detailed instructions for setting up Google Tag Manager and Google Analytics to receive event tracking data. 
 
 = Webmaster Verification =
-Verify your site with search engines quickly and easily. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the corresponding fields in the Integrations tab. The plugin handles the rest (no coding required), adding the meta tags to your site's header, so you never have to worry about them being removed during a theme update.
+Verify your site with search engines quickly and easily. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the corresponding fields in the Integrations tab. The plugin handles the rest, adding site verification meta tags to your website's head. No coding required.
 
 == Frequently Asked Questions ==
 
