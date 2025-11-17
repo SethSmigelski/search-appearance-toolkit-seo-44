@@ -93,7 +93,7 @@ function seo44_show_standalone_active_notice() {
     ?>
     <div class="notice notice-warning is-dismissible">
         <p>
-            <strong>SEO 44 Notice:</strong> The standalone <strong>Jump Links Block</strong> plugin is currently active. To prevent conflicts, the Jump Links Block from the main SEO 44 plugin has not been loaded. You may safely deactivate the standalone plugin; all features are included in SEO 44.
+            <strong>SEO 44 Notice:</strong> The standalone <strong>Jump Links Block</strong> plugin is currently active. To prevent conflicts, the Jump Links Block from the main SEO 44 plugin has not been loaded. You may safely deactivate the standalone plugin. All features are included in SEO 44.
         </p>
     </div>
     <?php
