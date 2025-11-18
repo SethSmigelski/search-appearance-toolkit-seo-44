@@ -175,7 +175,7 @@ Your page's schema is added as a JSON-LD script in the <head> section of your pa
 ### How does the plugin handle author schema?
 SEO 44 creates a Person schema for the author of each article. To enhance this, it will automatically use the "Website" URL from the author's WordPress user profile to add url and @id attributes to the schema. This creates a powerful, machine-readable link between your content and its author, which helps search engines like Google build a stronger understanding of your site's authority and expertise (E-E-A-T).
 
-= What are the benefits of using FAQPage and HowTo schema? =
+### What are the benefits of using FAQPage and HowTo schema?
 The plugin intelligently scans your content for patterns that match question-and-answer formats or step-by-step instructions (when this option is enabled). The plugin locates this content and automatically generates FAQPage or HowTo schema that presents this content within the JSON-LD.
 
 The benefit of this is that Google can use this structured data to display your content in special, highly visible formats in the search results. An FAQ page might appear as a rich snippet with expandable questions, while a How-To article can be featured in a step-by-step guide. Rich snippets make your search results stand out, which can significantly improve your click-through rate (CTR).
