@@ -336,7 +336,7 @@ The Search Appearance Toolkit (SEO 44) empowers Theme Developers with four templ
 * **`seo44_the_schema()`:** This function **prints** (echoes) the JSON-LD schema script tag.
 
 ### Adding Custom Schema
-The schema output created by Search Appearance Toolkit (SEO 44) is extensible using the 'seo44_add_schema_parts' Filter, which allows for the addition of custom schema types (like LocalBusiness or Product).
+The schema output created by Search Appearance Toolkit (SEO 44) is extendable using the 'seo44_add_schema_parts' Filter, which allows for the addition of custom schema types (like LocalBusiness or Product).
 
 The `seo44_add_schema_parts` filter allows for the injection of additional schema arrays into the final @graph output via a WordPress filter hook.
 
