@@ -11,7 +11,7 @@ Donate link: https://www.paypal.com/donate/?hosted_button_id=M3B2Q94PGVVWL
 Plugin URI:  https://seo44plugin.com/search-appearance-toolkit-seo-44/
 Author URI:  https://www.sethcreates.com/plugins-for-wordpress/
 
-A lightweight, feature-packed SEO plugin for essential meta tags, advanced structured data, XML sitemaps, article jump links, integrations, and easy migration.
+A lightweight, feature-packed SEO plugin for meta tags, JSON-LD structured data, XML sitemaps, article jump links, GTM integration and easy migration.
 
 == Description ==
 
