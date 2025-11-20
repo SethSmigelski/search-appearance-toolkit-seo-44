@@ -460,6 +460,9 @@ _The Migration settings tab._
 
 _The SEO Meta Keys Scanner, showing the scan on a website with no previous SEO keys,  on the Migration Settings tab._
 
+![The Integrations tab with Google Tag Manager and Site Tool settings](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-15.png)
+_The Integrations tab with Google Tag Manager and Site Tool settings._
+
 ---
 
 ![A category edit screen showing he new SEO fields](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-9.png)
