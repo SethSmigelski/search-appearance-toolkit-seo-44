@@ -94,6 +94,9 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 
 The Search Appearance Toolkit serves as a hub for connecting your site to essential third-party services, helping you to create valuable analytics data and site insights.
 
+= Site Verification =
+Verify your site with search engines quickly and easily. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the corresponding fields in the Integrations tab. The plugin handles the rest, adding site verification meta tags to your website's head. No coding required.
+
 = Google Tag Manager (GTM) Integration =
 Easily integrate with Google Tag Manager by pasting your `GTM-XXXXXXX` ID into the settings field. The plugin will correctly and safely inject the GTM scripts into your site's `<head>` and `<body>` on every page. No coding required.
 
@@ -105,10 +108,7 @@ With GTM enabled, you can check four boxes to start gathering important insights
 * **Outbound & Affiliate Link Click Tracking:** Measure when users click on links to leave your site, pushing an `external_link_click` event, conditionally identifying affiliate links (with `rel="sponsored"`) and pushing a separate `affiliate_link_click` event.
 * **Jump Link Click Tracking:** Tracks engagement with your Jump Links Block by pushing a `jump_link_click` event, letting you see which sections your users are most interested in.
 
-SEO 44's integration with Google Tag Manager pushes valuable events to the `dataLayer` for use in Google Analytics. The plugin provides an import file and detailed instructions for setting up Google Tag Manager and Google Analytics to receive event tracking data. 
-
-= Webmaster Verification =
-Verify your site with search engines quickly and easily. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the corresponding fields in the Integrations tab. The plugin handles the rest, adding site verification meta tags to your website's head. No coding required.
+SEO 44's integration with Google Tag Manager pushes valuable events to the `dataLayer` for use in Google Analytics. The plugin includes an import file and detailed [Instructions for setting up Google Tag Manager and Google Analytics to receive event-tracking data](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/). 
 
 == Frequently Asked Questions ==
 
