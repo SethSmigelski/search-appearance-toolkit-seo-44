@@ -242,36 +242,15 @@ After completing these steps (and waiting 24-48 hours for Google Analytics to pr
 
 = How do I add my Google Search Console verification code? =
 
-This plugin uses the "HTML tag" verification method, which is the most common and reliable way. You only need to copy the code, not the full tag.
+This plugin uses the "HTML tag" verification method, which is the most common and reliable way. All you need to do is copy the site verification code (just the code, not the full tag) provided by Google Search Console and paste it into the **"Google Search Console"** field on the **Settings > SEO 44 > Integrations** tab.
 
-1.  Sign in to [Google Search Console](https://search.google.com/search-console).
-2.  Add your website as a "Property" if you haven't already.
-3.  In the verification settings for your property, find and select the **"HTML tag"** method.
-4.  Google will show you a full meta tag, like this:
-    `
-    <meta name="google-site-verification" content="YOUR_UNIQUE_CODE_TO_COPY" />
-    `
-5.  Copy **only the code** inside the `content="..."` attribute.
-6.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
-7.  Paste your code into the **"Google Search Console"** field.
-8.  Click **"Save Settings"** at the bottom of the page.
-9.  Go back to the Google Search Console page and click the **"Verify"** button. Google will now be able to see the tag on your site.
+The [How to Set Up Site Verification Tags section of the SEO 44 Integrations Setup Guide](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/#how-to-set-up-site-verification-tags) provides clear step-by-step instructions. 
 
 = How do I add my Bing Webmaster Tools verification code? =
 
-Similar to Google, Bing uses an "HTML meta tag" to verify your site. You only need to copy the specific code from the tag.
+Similar to Google, Bing uses an "HTML meta tag" to verify your site. All you need to do is copy the site verification code (just the code, not the full tag) provided by Bing Webmaster Tools and paste it into the **"Bing Webmaster Tools"** field on the **Settings > SEO 44 > Integrations** tab.
 
-1.  Sign in to [Bing Webmaster Tools](https://www.bing.com/webmasters/about).
-2.  Add your site. When prompted for a verification method, select **"HTML meta tag"**.
-3.  Bing will provide a tag that looks like this:
-    `
-    <meta name="msvalidate.01" content="YOUR_UNIQUE_BING_CODE_TO_COPY" />
-    `
-4.  Copy **only the code** inside the `content="..."` attribute.
-5.  In your WordPress admin, go to **Settings > SEO 44 > Integrations**.
-6.  Paste your code into the **"Bing Webmaster Tools"** field.
-7.  Click **"Save Settings"** at the bottom of the page.
-8.  Go back to the Bing Webmaster Tools page and click the **"Verify"** button.
+The [How to Set Up Site Verification Tags section of the SEO 44 Integrations Setup Guide](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/#how-to-set-up-site-verification-tags) provides clear step-by-step instructions. 
 
 = Why can't I see the images in my sitemap? =
 You can! The XML sitemap is a code file meant for search engines, so browsers don't display images directly. To verify that your images are included, go to your sitemap (e.g., yourwebsite.com/sitemap.xml), right-click, and select "View Page Source." You will see the image URLs listed within <image:image> tags for each relevant post or page.
