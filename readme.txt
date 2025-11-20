@@ -285,23 +285,7 @@ The main **Search Appearance Toolkit (SEO 44)** plugin is a complete suite of to
 = How can I save and reuse my custom styles for the Jump Links Block? =
 You can save a fully customized Jump Links block as a Block Pattern to easily reuse it across your site. This is a handy WordPress feature. With Block Patterns, you don't have to repeat the process of manually setting the same style settings for Jump Links blocks on multiple pages. That work is done for you.
 
-**Here’s how:**
-
-1.  **Style Your Block:** Add the SEO 44 Jump Links block to a page and style it exactly how you want using the settings in the sidebar (colors, layout, border radius, etc.).
-
-2.  **Open the Options Menu:** With the block selected, click the three-dot (⋮) options menu on the block's toolbar.
-
-3.  **Create the Pattern:** From the dropdown menu, select Create pattern. A pop-up window will appear.
-
-4.  **Name and Configure:** Give your pattern a name (e.g., "Super Stylish Jump Links"). You will see a toggle for **Synced**. This is an important choice:
-
-    * **Avoid Synced (ON):** Don't use this setting, which will prevent you from accessing the Jump Link Block's customization features, like being able to re-order or rename the jump links.
-
-    * **Use Synced (OFF):** Turn synced off before saving your custom pattern. This will create a regular pattern that, when added to other posts, renders a Jump Links Block with all your favorite styles preloaded. This independent copy of your original styled block, created through your new pattern, has full customization controls. Synced Off is the way to go!
-
-5.  **Click Create:** Your custom pattern is now saved!
-
-6.  **Reuse Your Pattern:** To use it on another page, click the main block inserter (+), go to the Patterns tab, and select the "My patterns" category. You will see your saved design, ready to be inserted with one click.
+Follow these instructions to [create a Block Pattern of a Jump Links Block](https://seo44plugin.com/jump-links-block-seo-44/creating-block-patterns/).
 
 == For Developers ==
 For advanced theme development, SEO 44 provides four template tags for working with meta tags and schema structured data, as well as a filter hook for adding custom schema to sites.
