@@ -272,7 +272,7 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
 * ENHANCEMENT: Centralized all GTM event tracking into a new, efficient `global-tracker.js` file that uses event delegation for better performance.
 * TWEAK: Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips and a file downloader.
 
-For a complete list of changes, please see the [full changelog](https://github.com/SethSmigelski/search-appearance-toolkit-seo-44/blob/main/changelog.txt) or the `changelog.txt` file included with the plugin.
+For a complete list of changes, please see the [full changelog](https://seo44plugin.com/search-appearance-toolkit-seo-44/changelog/) or the `changelog.txt` file included with the plugin.
 
 == Upgrade Notice ==
 
