@@ -304,54 +304,9 @@ You can save a fully customized Jump Links block as a Block Pattern to easily re
 6.  **Reuse Your Pattern:** To use it on another page, click the main block inserter (+), go to the Patterns tab, and select the "My patterns" category. You will see your saved design, ready to be inserted with one click.
 
 == For Developers ==
-For advanced theme development, SEO 44 provides four template tags and a filter hook.
+For advanced theme development, SEO 44 provides four template tags for working with meta tags and schema structured data, as well as a filter hook for adding custom schema to sites.
 
-= Using Template Tags =
-The Search Appearance Toolkit (SEO 44) empowers Theme Developers with four template tags to place SEO and schema output in custom locations within theme files.
-
-* **`seo44_get_the_tags()`:** This function **returns** the complete block of HTML meta tags as a PHP string.
-* **`seo44_the_tags()`:**  This function **prints** (echoes) the complete block of HTML meta tags, wrapped in wp_kses to ensure security.
-* **`seo44_get_the_schema()`:** This function **returns** the JSON-LD schema script tag as a PHP string.
-* **`seo44_the_schema()`:** This function **prints** (echoes) the JSON-LD schema script tag.
-
-= Adding Custom Schema  =
-The schema output created by Search Appearance Toolkit (SEO 44) is extensible using the 'seo44_add_schema_parts' Filter, which allows for the addition of custom schema types (like LocalBusiness or Product).
-
-The `seo44_add_schema_parts` filter allows for the injection of additional schema arrays into the final @graph output via a WordPress filter hook.
-
-Example Usage:
-The following example shows how you could create a small, separate plugin to add LocalBusiness schema to a specific "Contact Us" page.
-
-    `
-    <?php
-        /**
-        * Hooks into the 'seo44_add_schema_parts' filter to add custom schema.
-        *
-        * @param array $schema_parts The existing array of schema parts from SEO 44.
-        * @param int   $post_id The ID of the current post being viewed.
-        * @return array The modified array of schema parts.
-        */
-        function my_custom_add_local_business_schema( $schema_parts, $post_id ) {
-            // The ID of the "Contact Us" page.
-            $contact_page_id = 123;
-            // Only add this schema on our specific contact page.
-            if ( $post_id == $contact_page_id ) {
-                $local_business_schema = [
-                    '@context'    => 'https://schema.org',
-                    '@type'       => 'LocalBusiness',
-                    'name'        => 'SEO 44 Global Headquarters',
-                    'address'     => '123 Main St, Anytown, USA',
-                    'telephone'   => '555-555-1234'
-                ];
-                // Add our new schema to the array.
-                $schema_parts[] = $local_business_schema;
-            }
-            // Always return the array.
-            return $schema_parts;
-        }
-        add_filter( 'seo44_add_schema_parts', 'my_custom_add_local_business_schema', 10, 2 );
-    ?>
-    `
+Review our [Notes for Developers](https://seo44plugin.com/search-appearance-toolkit-seo-44/notes-for-developers/) page for more information and examples.
 
 == Credits ==
 
