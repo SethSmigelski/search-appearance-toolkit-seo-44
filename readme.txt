@@ -196,7 +196,7 @@ You can! The XML sitemap is a code file meant for search engines, so browsers do
 This can occur when WordPress has not yet recognized the new sitemap URL. To fix it, go to **Settings -> Permalinks** in your WordPress admin and click the "Save Changes" button. This will refresh your site's rewrite rules and make the sitemap visible. The sitemap generator also automatically disables the default WordPress sitemap. 
 
 = How is the "Search Appearance Toolkit (SEO 44)" plugin different from the standalone "Jump Links Block (SEO 44)" plugin? =
-The main **Search Appearance Toolkit (SEO 44)** plugin is a complete suite of tools that includes meta tag optimization, schema generation, XML sitemaps, *and* the Jump Links Block. The standalone **[Jump Links Block (SEO 44)](https://wordpress.org/plugins/jump-links-block-seo-44)** plugin offers *only* the Jump Links Block functionality for users who don't need a full SEO suite. You only need one. If you are using the Search Appearance Toolkit (SEO 44) plugin, you do not need the standalone block plugin.
+The main **Search Appearance Toolkit (SEO 44)** plugin is a complete suite of tools that includes meta tag optimization, schema generation, XML sitemaps, *and* the Jump Links Block. The standalone **[Jump Links Block (SEO 44)](https://wordpress.org/plugins/jump-links-block-seo-44/)** plugin offers *only* the Jump Links Block functionality for users who don't need a full SEO suite. You only need one. If you are using the Search Appearance Toolkit (SEO 44) plugin, you do not need the standalone block plugin.
 
 = How can I save and reuse my custom styles for the Jump Links Block? =
 You can save a fully customized Jump Links block as a Block Pattern to easily reuse it across your site. This is a handy WordPress feature. With Block Patterns, you don't have to repeat the process of manually setting the same style settings for Jump Links blocks on multiple pages. That work is done for you.
@@ -261,7 +261,7 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
 
 If you like this plugin, you might also enjoy these WordPress tools:
 
-* **[Jump Links Block (SEO 44)](https://wordpress.org/plugins/jump-links-block-seo-44)** - A custom block that automatically creates a clickable, customizable Jump Links table of contents from the headings in your post (a standalone version of the block offered in the Search Appearance Toolkit).
+* **[Jump Links Block (SEO 44)](https://wordpress.org/plugins/jump-links-block-seo-44/)** - A custom block that automatically creates a clickable, customizable Jump Links table of contents from the headings in your post (a standalone version of the block offered in the Search Appearance Toolkit).
 * **[Microdata to JSON-LD Converter](https://wordpress.org/plugins/microdata-to-json-ld-converter/)** - A handy tool to convert your existing Schema.org Microdata into the preferred JSON-LD format, clean up your HTML, and maintain structured data.
 * **[Under The Weather](https://wordpress.org/plugins/under-the-weather/)** - A lightweight and customizable weather widget, powered by the OpenWeather API, that caches and presents weather data with multiple style options.
 
