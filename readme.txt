@@ -167,90 +167,27 @@ The benefit of this is that Google can use this structured data to display your 
 No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.  
 
 = How do I add Google Tag Manager (GTM)? =
-The Search Appearance Toolkit (SEO 44) makes this easy. All you need is your Container ID. 
-1.  In your Google Tag Manager account, find and copy your **Container** ID (it looks like `GTM-XXXXXXX`).
-2.  In your WordPress dashboard, go to **Settings > SEO 44** and click the **"Integrations"** tab.
-3.  Paste your Container ID into the **"Google Tag Manager ID"** field.
-4.  Check the **"Enable Google Tag Manager"** box.
-5.  Click **"Save Settings."**
+The Search Appearance Toolkit (SEO 44) makes this easy. All you need is your Container ID from Google Tag manager. All you need to do is copy  your **Container** ID (it looks like `GTM-XXXXXXX`) and paste it into the **"Google Tag Manager ID"** field on the **Settings > SEO 44 > Integrations** tab and SEO 44 will automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
 
-That's it. The plugin will now automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
-
-**New to Google Tag Manager?** When you create a new site in Google Tag Manager, you will receive instructions to (1) paste one block of code as high in the `<head>` of the page as possible and (2) paste another block of code immediately after the opening `<body>` tag. **You do not need to follow these instructions to add code manually.** The plugin handles this assignment for you. All you need to do is copy the GTM Container ID and paste it into the field in the integrations tab.  The plugin will do the rest!
+To add Google Tag Manager integration and learn how to track click events through GTM, follow the clear step-by-step instructions in the [How to Set Up Google Tag Manager (GTM) section of the SEO 44 Integrations Setup Guide](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/#how-to-set-up-google-tag-manager-gtm). 
 
 = How do I set up Google Tag Manager (GTM) tracking for events (the easy way)? =
 
 To save you time and eliminate errors, your plugin provides a "GTM Import File." This recipe contains all the tags, triggers, and variables necessary for GTM to listen for your plugin's custom events (like `jump_link_click` and `scroll_depth`) and send them to Google Analytics.
 
-This setup is a two-part process. First, you'll configure GTM, then you'll configure Google Analytics.
-
-**Part 1: Configure Google Tag Manager (GTM)**
-
-1.  **In your WordPress admin,** go to **Settings > SEO 44 > Integrations**.
-2.  Click the **"Download GTM Import File"** button to save the `seo44-gtm-recipe-importer.json` file. The download button is located below the field where you enter your Google Tag Manager ID.
-3.  **In Google Tab Manager,** Open the GTM container for your website and go to **Admin > Import Container**.
-4.  **Choose container file:** Upload the `seo44-gtm-recipe-importer.json` file.
-5.  **Choose workspace:** Select your existing workspace.
-6.  **Choose an import option (CRITICAL):**
-    * Select the **"Merge"** option.
-    * **NEVER** select "Overwrite," as this will delete all of your existing GTM tags.
-7.  **Confirm Preview:** GTM will show you a preview of all the new tags, triggers, and variables. Click **Confirm.**
-8.  Go to **Variables** and click on the **"GA4 - Measurement ID"** variable. 
-9.  Replace the **`PASTE-YOUR-GA4-MEASUREMENT-ID-HERE`** placeholder with your own GA4 Measurement ID (e.g., `G-XXXXXXX`).
-10. Finally, **Submit** and **Publish** your container.
-
-**Part 2: Configure Google Analytics (GA4)**
-
-With GTM now configured, you must next tell Google Analytics to "listen for" and "display" the custom data.
-
-**Important:** You must manually register these new Custom Dimensions in GA4. If you skip this step, you will only see the count of the events, not the valuable data (like which link was clicked).
-
-1.  Go to the **Admin** area in Google Analytics (by clicking on the gear icon in the bottom left).
-2.  In the "Property" column, find **Data display > Custom definitions**.
-3.  Click the blue **"Create custom dimensions"** button.
-4.  You will need to create **four** new dimensions, one by one.  Use the exact "Event parameter" names listed below.
-
-**Dimension 1:**
-
-* **Dimension name:** `click_text`
-* **Scope:** `Event`
-* **Event parameter:** `click_text`
-* Click **Save.**
-	
-**Dimension 2:**
-
-* **Dimension name:** `click_anchor`
-* **Scope:** `Event`
-* **Event parameter:** `click_anchor`
-* Click **Save.**
-	
-**Dimension 3:**
-
-* **Dimension name:** `scroll_percentage`
-* **Scope:** `Event`
-* **Event parameter:** `scroll_percentage`
-* Click **Save.**
-	
-**Dimension 4:**
-
-* **Dimension name:** `outbound_url`
-* **Scope:** `Event`
-* **Event parameter:** `outbound_url`
-* Click **Save.**
-
-After completing these steps (and waiting 24-48 hours for Google Analytics to process the data), you will be able to see all your new events and their associated data (like which links were clicked and how far users scrolled) in your Events report.
+To complete this two-part process, configuring Google Tag Manager and then configuring Google Analytics, follow the clear step-by-step instructions in the [How to Set Up GTM Event Tracking section of the SEO 44 Integrations Setup Guide](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/#how-to-set-up-gtm-event-tracking). 
 
 = How do I add my Google Search Console verification code? =
 
 This plugin uses the "HTML tag" verification method, which is the most common and reliable way. All you need to do is copy the site verification code (just the code, not the full tag) provided by Google Search Console and paste it into the **"Google Search Console"** field on the **Settings > SEO 44 > Integrations** tab.
 
-The [How to Set Up Site Verification Tags section of the SEO 44 Integrations Setup Guide](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/#how-to-set-up-site-verification-tags) provides clear step-by-step instructions. 
+To and Google Search Console verification, follow the clear step-by-step instructions in the [How to Set Up Site Verification Tags section of the SEO 44 Integrations Setup Guide](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/#how-to-set-up-site-verification-tags). 
 
 = How do I add my Bing Webmaster Tools verification code? =
 
 Similar to Google, Bing uses an "HTML meta tag" to verify your site. All you need to do is copy the site verification code (just the code, not the full tag) provided by Bing Webmaster Tools and paste it into the **"Bing Webmaster Tools"** field on the **Settings > SEO 44 > Integrations** tab.
 
-The [How to Set Up Site Verification Tags section of the SEO 44 Integrations Setup Guide](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/#how-to-set-up-site-verification-tags) provides clear step-by-step instructions. 
+To add Bing Webmaster Tools verification, follow the clear step-by-step instructions in the [How to Set Up Site Verification Tags section of the SEO 44 Integrations Setup Guide](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/#how-to-set-up-site-verification-tags). 
 
 = Why can't I see the images in my sitemap? =
 You can! The XML sitemap is a code file meant for search engines, so browsers don't display images directly. To verify that your images are included, go to your sitemap (e.g., yourwebsite.com/sitemap.xml), right-click, and select "View Page Source." You will see the image URLs listed within <image:image> tags for each relevant post or page.
