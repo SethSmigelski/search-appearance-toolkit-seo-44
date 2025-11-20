@@ -581,7 +581,7 @@ public function render_homepage_description_field() {
         $download_text = sprintf(
             wp_kses(
                 /* translators: %1$s: Download button, %2$s: Link to FAQ. */
-                __('%1$s to streamline the setup process in GTM, then follow the %2$s.', 'search-appearance-toolkit-seo-44'),
+                __('%1$s to streamline the setup process, following these %2$s.', 'search-appearance-toolkit-seo-44'),
                 [
                     'a' => ['href' => [], 'class' => [], 'download' => []],
                     'strong' => [],
@@ -597,8 +597,8 @@ public function render_homepage_description_field() {
             sprintf(
                 '<a href="%s" target="_blank">%s</a>',
                 // This creates a link to YOUR plugin's FAQ tab on wordpress.org
-                esc_url('https://wordpress.org/plugins/search-appearance-toolkit-seo-44/faq/'),
-                esc_html__('setup instructions found in the FAQ', 'search-appearance-toolkit-seo-44')
+                esc_url('https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/'),
+                esc_html__('setup instructions', 'search-appearance-toolkit-seo-44')
             )
         );
         // 3. Print the Download Button & Instructions section
