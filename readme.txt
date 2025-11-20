@@ -306,7 +306,7 @@ You can save a fully customized Jump Links block as a Block Pattern to easily re
 == For Developers ==
 For advanced theme development, SEO 44 provides four template tags for working with meta tags and schema structured data, as well as a filter hook for adding custom schema to sites.
 
-Review our [Notes for Developers](https://seo44plugin.com/search-appearance-toolkit-seo-44/notes-for-developers/) page for more information and examples.
+Our **[Notes for Developers](https://seo44plugin.com/search-appearance-toolkit-seo-44/notes-for-developers/)** page provides more information and examples.
 
 == Credits ==
 
