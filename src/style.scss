@@ -80,7 +80,7 @@
 /* Vertical Layout: Collapse to 2 lines */
 .wp-block-seo44-jump-links.is-collapsible:not(.is-layout-horizontal) > nav > ul,
 .wp-block-seo44-jump-links.is-collapsible:not(.is-layout-horizontal) > nav > ol {
-    max-height: calc(var(--jump-link-font-size, 1em) * 1.7 * 2); /* font-size * line-height * 2 lines */
+    max-height: calc(var(--jump-link-font-size, 1em) * 1.9 * 2); /* font-size * generous line-height * 2 lines */
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 	max-width: calc(100% - 40px);
