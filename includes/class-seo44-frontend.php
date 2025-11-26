@@ -561,6 +561,20 @@ class SEO44_Frontend {
             $val = seo44_get_option($key);
             if ($val) $same_as[] = esc_url($val);
         }
+		// NEW: Process Additional URLs (One per line)
+	    $additional_urls = seo44_get_option('social_additional');
+	    if (!empty($additional_urls)) {
+	        // Split by newline, trim whitespace, and filter empty lines
+	        $urls = array_filter(array_map('trim', explode("\n", $additional_urls)));
+	        
+	        foreach ($urls as $raw_url) {
+	            // Validate it is a real URL before adding
+	            $clean_url = esc_url_raw($raw_url);
+	            if (!empty($clean_url)) {
+	                $same_as[] = $clean_url;
+	            }
+	        }
+	    }
 
         // 4. Build the Schema
         $schema = [
