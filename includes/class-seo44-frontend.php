@@ -617,7 +617,7 @@ class SEO44_Frontend {
             ];
         }
 
-		// Address
+		// 5. Address
 	    $street = seo44_get_option('org_address_street');
 	    $city   = seo44_get_option('org_address_city');
 	    if ($street && $city) {
@@ -629,6 +629,22 @@ class SEO44_Frontend {
 	            'postalCode'      => seo44_get_option('org_address_zip'),
 	            'addressCountry'  => seo44_get_option('org_address_country')
 	        ];
+	    }
+		// 6. Founder
+	    $founder = seo44_get_option('org_founder');
+	    if ($founder) {
+	        $schema['founder'] = [
+	            '@type' => 'Person',
+	            'name'  => $founder
+	        ];
+	    }
+	
+	    // 7. Founding Date
+	    $founding_date = seo44_get_option('org_founding_date');
+	    if ($founding_date) {
+	        // Basic validation: ensure it looks somewhat like a year or date
+	        // You can leave it as raw string, Google parses ISO 8601 (YYYY-MM-DD) well.
+	        $schema['foundingDate'] = strip_tags($founding_date);
 	    }
 
         return $schema;
