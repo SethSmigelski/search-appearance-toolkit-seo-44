@@ -401,10 +401,13 @@ class SEO44_Frontend {
 		// NEW: Parse content for additional media if the setting is enabled
         if (seo44_get_option('scan_content_for_schema')) {
             $media_schema = self::parse_content_for_media_schema($post_id);
-            if (!empty($media_schema['images'])) {
-                // Merge content images with the featured image
-                $schema['image'] = array_merge((array)$schema['image'], $media_schema['images']);
-            }
+			if (!empty($media_schema['images'])) {
+			    // Check if a featured image (or other image) already exists
+			    $existing_images = isset($schema['image']) ? (array)$schema['image'] : [];
+			    
+			    // Merge existing images with content images
+			    $schema['image'] = array_merge($existing_images, $media_schema['images']);
+			}
             if (!empty($media_schema['videos'])) {
                 $schema['video'] = $media_schema['videos'];
             }
@@ -462,18 +465,33 @@ class SEO44_Frontend {
 				];
 			}
 		}
-	// NEW: Parse content for additional media if the setting is enabled
-        if (seo44_get_option('scan_content_for_schema')) {
-            $media_schema = self::parse_content_for_media_schema($post_id);
-            if (!empty($media_schema['images'])) {
-                 // In WebPage schema, the property is 'image', not 'primaryImageOfPage' if there are multiple
-                unset($schema['primaryImageOfPage']);
-                $schema['image'] = $media_schema['images'];
-            }
-            if (!empty($media_schema['videos'])) {
-                $schema['video'] = $media_schema['videos'];
-            }
-        }
+	// Parse content for additional media if the setting is enabled
+	// NEW CODE for get_schema_for_page
+	if (seo44_get_option('scan_content_for_schema')) {
+	    $media_schema = self::parse_content_for_media_schema($post_id);
+	    
+	    if (!empty($media_schema['images'])) {
+	        // 1. Start with the content images found
+	        $all_images = $media_schema['images'];
+	
+	        // 2. If a Featured Image (primaryImageOfPage) exists, add it to the start of the list
+	        if (isset($schema['primaryImageOfPage'])) {
+	            array_unshift($all_images, $schema['primaryImageOfPage']);
+	        }
+	
+	        // 3. Set the 'image' property to the complete list
+	        $schema['image'] = $all_images;
+	
+	        // Optional: You can choose to keep or unset primaryImageOfPage. 
+	        // Keeping it is usually better for SEO so Google knows which one is "Main".
+	        // If you prefer your original cleanup, you can leave the unset here:
+	        // unset($schema['primaryImageOfPage']); 
+	    }
+	    
+	    if (!empty($media_schema['videos'])) {
+	        $schema['video'] = $media_schema['videos'];
+	    }
+	}
 	
 		return $schema;
     }
