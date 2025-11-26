@@ -94,6 +94,23 @@ class SEO44_Settings {
             ['id' => 'org_name', 'desc' => __('Leave empty to use the Site Title: <strong>' . esc_html(get_bloginfo('name')) . '</strong>', 'search-appearance-toolkit-seo-44')]
         );
 		add_settings_field(
+		    'org_founder', 
+		    __('Founder Name', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_founder', 'desc' => __('Optional. The name of the person who founded the organization.', 'search-appearance-toolkit-seo-44')]
+		);
+		
+		add_settings_field(
+		    'org_founding_date', 
+		    __('Founding Date', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_founding_date', 'desc' => __('Optional. The date the organization was founded (Format: YYYY or YYYY-MM-DD).', 'search-appearance-toolkit-seo-44')]
+		);
+		add_settings_field(
 		    'org_alternate_name', 
 		    __('Alternate Name / Acronym', 'search-appearance-toolkit-seo-44'), 
 		    [$this, 'render_text_field'], 
@@ -367,7 +384,7 @@ class SEO44_Settings {
             'google_site_verification',
             'bing_site_verification'
 			'social_facebook', 'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube', 
-			'org_name', 'org_phone','org_alternate_name', 
+			'org_name', 'org_phone','org_alternate_name', 'org_founder','org_founding_date',
 			'org_address_street', 'org_address_city', 'org_address_state', 'org_address_zip', 'org_address_country'
         ];
 		foreach ($text_fields as $tf) { 
