@@ -484,7 +484,7 @@ class SEO44_Frontend {
 	
 	        // Optional: You can choose to keep or unset primaryImageOfPage. 
 	        // Keeping it is usually better for SEO so Google knows which one is "Main".
-	        // If you prefer your original cleanup, you can leave the unset here:
+	        // This would be the code to cleanup the unset:
 	        // unset($schema['primaryImageOfPage']); 
 	    }
 	    
