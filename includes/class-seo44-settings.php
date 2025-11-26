@@ -45,6 +45,7 @@ class SEO44_Settings {
         add_settings_field('twitter_handle', __('Twitter Username', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'twitter_handle', 'desc' => __('Enter your @username for the twitter:site and twitter:creator tags.', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('default_social_image_id', __('Default Social Image', 'search-appearance-toolkit-seo-44'), [$this, 'render_image_upload_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'default_social_image_id', 'desc' => __('Upload a default image for social sharing. This image will be used when a post does not have a set featured image.', 'search-appearance-toolkit-seo-44'), 'tooltip' => 'A high-quality image of at least 1200x630 pixels is recommended.']);
 		// Social Media Links used for Organization Schema - Google Knowledge Graph
+		add_settings_field('social_facebook', __('Facebook Page URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_facebook', 'desc' => __('Enter your full Facebook Page URL (required for Schema).', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('social_instagram', __('Instagram URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_instagram', 'desc' => __('Enter the URL of your official Instagram page.', 'search-appearance-toolkit-seo-44')]);
 		add_settings_field('social_linkedin', __('LinkedIn URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_linkedin', 'desc' => __('Enter your full LinkedIn Company or Profile URL.', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('social_tiktok', __('TikTok URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_tiktok', 'desc' => __('Enter the URL of your official TikTok page.', 'search-appearance-toolkit-seo-44')]);
@@ -92,6 +93,56 @@ class SEO44_Settings {
             'seo44_organization_schema_section', 
             ['id' => 'org_name', 'desc' => __('Leave empty to use the Site Title: <strong>' . esc_html(get_bloginfo('name')) . '</strong>', 'search-appearance-toolkit-seo-44')]
         );
+		add_settings_field(
+		    'org_alternate_name', 
+		    __('Alternate Name / Acronym', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_alternate_name', 'desc' => __('Optional. An acronym or shorter name your organization is known by.', 'search-appearance-toolkit-seo-44')]
+		);
+		// 3. Add Address Fields (Crucial for Local SEO & Disambiguation)
+		add_settings_field(
+		    'org_address_street', 
+		    __('Street Address', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_address_street']
+		);
+		add_settings_field(
+		    'org_address_city', 
+		    __('City', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_address_city']
+		);
+		add_settings_field(
+		    'org_address_state', 
+		    __('State / Province', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_address_state']
+		);
+		add_settings_field(
+		    'org_address_zip', 
+		    __('Zip / Postal Code', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_address_zip']
+		);
+		add_settings_field(
+		    'org_address_country', 
+		    __('Country', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_address_country']
+		);
+		
         // REUSING THE IMAGE UPLOADER!
         add_settings_field(
             'org_logo', 
@@ -315,8 +366,9 @@ class SEO44_Settings {
             'gtm_id',
             'google_site_verification',
             'bing_site_verification'
-			'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube', 
-			'org_name', 'org_phone'
+			'social_facebook', 'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube', 
+			'org_name', 'org_phone','org_alternate_name', 
+			'org_address_street', 'org_address_city', 'org_address_state', 'org_address_zip', 'org_address_country'
         ];
 		foreach ($text_fields as $tf) { 
 			if (isset($input[$tf])) { 
