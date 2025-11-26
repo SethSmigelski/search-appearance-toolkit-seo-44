@@ -1,9 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { RichText, useBlockProps, InspectorControls, PanelColorSettings } from '@wordpress/block-editor';
-// This is the correct import for PanelColorSettings
 import { Tooltip, PanelBody, Button, ButtonGroup, CheckboxControl, FontSizePicker, SelectControl, TextControl, ToggleControl, RangeControl } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data'; 
-import { useEffect } from '@wordpress/element';
+import { useEffect, Fragment } from '@wordpress/element';
 
 // Helper function to strip HTML from heading content.
 function stripHtml(html) {
@@ -22,154 +21,162 @@ const arrowDownIcon = (
         <path d="M3 5V3h18v2zm9 12l-4-4l1.4-1.4l1.6 1.575V7h2v6.175l1.6-1.575L16 13zm-9 4v-2h18v2z"></path>
     </svg>
 );
-	const expandDownIcon = (
-		<svg className="arrow-down" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-			<path d="M12 16l-6-6 1.41-1.41L12 13.17l4.59-4.58L18 10l-6 6z"></path>
-		</svg>
-	);
+const expandDownIcon = (
+    <svg className="arrow-down" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M12 16l-6-6 1.41-1.41L12 13.17l4.59-4.58L18 10l-6 6z"></path>
+    </svg>
+);
 
 export default function Edit({ attributes, setAttributes }) {
-	const { headingLevels, headings: savedHeadings, layout, showHeading, headingText, isEditing, isCollapsible, listStyle, fontSize, textColor, linkColor, linkBackgroundColor, linkBackgroundColorHover, linkBorderColor, linkBorderRadius } = attributes;
+    // Removed 'blockInstanceId' and 'style' from destructuring to avoid conflicts
+	const { 
+		headingLevels, headings: savedHeadings, showHeading, headingText, headingTag, 
+		layout, listStyle, 
+		isEditing, isCollapsible, isSmartIndentation,
+		fontSize, textColor, linkColor, blockBackgroundColor,
+		linkBackgroundColor, linkBackgroundColorHover, linkBorderColor, linkBorderRadius,
+		isSticky, stickyOffset, jumpOffset, stickyStrategy,
+	} = attributes;
+
+	// Consolidate all dynamic styles onto the parent wrapper
 	const style = {
+		// Text & Font
 		color: textColor,
 		fontSize: fontSize,
-		'--jump-link-font-size': fontSize || '18px', // Use font size or a default
+		'--jump-link-font-size': fontSize || '18px',
+		
+		// Link Variables
+		'--seo44-link-color': linkColor,
+		'--seo44-link-bg': layout === 'horizontal' ? linkBackgroundColor : undefined,
+		'--seo44-link-hover-bg': layout === 'horizontal' ? linkBackgroundColorHover : undefined,
+		'--seo44-link-border-color': layout === 'horizontal' ? linkBorderColor : undefined,
+		'--seo44-link-radius': layout === 'horizontal' && linkBorderRadius ? `${linkBorderRadius}px` : undefined,
+		'--seo44-block-bg': blockBackgroundColor,
+		
+		'--seo44-sticky-offset': isSticky ? `${stickyOffset}px` : undefined
 	};
-	const linkStyle = {
-		'--link-bg-color': layout === 'horizontal' ? linkBackgroundColor : undefined,
-		borderColor: layout === 'horizontal' ? linkBorderColor : undefined,
-		borderRadius: layout === 'horizontal' && linkBorderRadius ? `${linkBorderRadius}px` : undefined,
-		color: linkColor, // Always apply the custom link color
-		'--link-bg-hover-color': layout === 'horizontal' ? linkBackgroundColorHover : undefined,
-    };
-	// Determine which HTML tag to use for the list
+
 	const ListTag = listStyle === 'ol' ? 'ol' : 'ul';
 	const { createInfoNotice } = useDispatch( 'core/notices' );
 	
-	// Add a check for listStyle === 'none'
-	const blockProps = useBlockProps({ style });
-		blockProps.className = `${blockProps.className} ${layout === 'horizontal' ? 'is-layout-horizontal' : ''} ${isCollapsible && !isEditing ? 'is-collapsible' : ''} ${listStyle === 'none' ? 'list-style-none' : ''}`.trim();
+    // Generate the Dynamic ID (matching save.js logic)
+    // We use attributes.blockInstanceId directly since it wasn't destructured
+    const listId = attributes.blockInstanceId ? `seo44-jump-links-list-${attributes.blockInstanceId}` : 'seo44-jump-links-list';
 
-	// Use useSelect to get all the editor blocks.
-	// This gives us a `blocks` variable that we can use in our effects.
+	const blockProps = useBlockProps({ style });
+    blockProps.className = `${blockProps.className} ${layout === 'horizontal' ? 'is-layout-horizontal' : ''} ${isCollapsible && !isEditing ? 'is-collapsible' : ''} ${listStyle === 'none' ? 'list-style-none' : ''}`.trim();
+
 	const blocks = useSelect((select) => select('core/block-editor').getBlocks(), []);
 	const { updateBlockAttributes } = useDispatch('core/block-editor');
 	
-	// Use useEffect to process the blocks.
-	// This hook runs whenever the blocks on the page change or the user toggles a heading level
-	// Reconciling logic to avoid re-ordering conflict
-	// NEW: Robust, single-pass reconciliation and de-duping engine.
+	// --- EFFECT: Initialization & Scanning ---
+	useEffect(() => {
+        const newAttributes = {};
 
-useEffect(() => {
+		// A. Generate a unique ID if missing
+		if (!attributes.blockInstanceId) {
+	        newAttributes.blockInstanceId = Math.random().toString(36).substr(2, 9);
+	    }
+
+        // Apply initialization changes if needed
+        if (Object.keys(newAttributes).length > 0) {
+            setAttributes(newAttributes);
+        }
+	
         // 1. Get all current heading blocks
         const currentBlocks = blocks
             .filter(block => block.name === 'core/heading' && headingLevels.includes(`h${block.attributes.level}`));
 
-        // --- NEW: Tools for de-duping and warning ---
+        // --- Tools for de-duping and warning ---
         const seenAnchors = new Set();
         let wasDuplicateFound = false;
-        // --- End New ---
 
-        // Create a Map of the old headings for fast lookup to preserve customizations
+        // 2. Create Map of SAVED headings
         const savedHeadingsMap = new Map(savedHeadings.map(h => [h.anchor, h]));
         
         const newHeadings = [];
 
-        // 2. Process all blocks in a single, robust pass
+        // 3. Process all blocks
         for (const block of currentBlocks) {
             const originalText = stripHtml(block.attributes.content);
             
-            // 3. Generate a base anchor
+            // Generate a base anchor
             let baseAnchor = block.attributes.anchor || originalText.toLowerCase().replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
             
-            // 4. --- THIS IS THE CRITICAL DE-DUPING STEP ---
+            // De-duping logic
             let uniqueAnchor = baseAnchor;
             let counter = 2;
-            
-            // Keep checking until we find a unique ID
+
             while (seenAnchors.has(uniqueAnchor)) {
                 uniqueAnchor = `${baseAnchor}-${counter}`;
                 counter++;
-                wasDuplicateFound = true; // Set the flag!
+                wasDuplicateFound = true; 
             }
             seenAnchors.add(uniqueAnchor);
-            // --- END DE-DUPE ---
-
-            // 5. Update the block in the editor if its anchor is now different
+            
             if (block.attributes.anchor !== uniqueAnchor) {
                 updateBlockAttributes(block.clientId, { anchor: uniqueAnchor });
             }
 
-            // 6. Reconcile with saved state to preserve custom link text and visibility
-            // Try to find the old state using either the block's original anchor or the new unique one
             const oldState = savedHeadingsMap.get(block.attributes.anchor) || savedHeadingsMap.get(uniqueAnchor);
-            
             const wasLinkTextManuallyEdited = oldState && oldState.linkText !== oldState.text;
             const linkText = wasLinkTextManuallyEdited ? oldState.linkText : originalText;
             const isVisible = oldState ? oldState.isVisible : true;
 
-            // 7. Add to our new list
             newHeadings.push({
                 anchor: uniqueAnchor,
                 text: originalText,
                 linkText: linkText,
                 isVisible: isVisible,
+                level: block.attributes.level,
             });
         }
 
-        // 8. Only update attributes if the final list is different.
+        // 4. Update attributes
         if (JSON.stringify(newHeadings) !== JSON.stringify(savedHeadings)) {
             setAttributes({ headings: newHeadings });
         }
 
-        // 9. Inform the user via a SNACKBAR message
-        // If we duplicates are found, show a snackbar warning.
+        // 5. Snackbar Warning
         if (wasDuplicateFound) {
             createInfoNotice(
             	__('Jump Links Block: Duplicate headings were found. Unique IDs have been auto-generated, but this may be a sign of redundancy. Please review your headings for clarity.', 'search-appearance-toolkit-seo-44'),
-            	{ To: 'snackbar' }
+            	{ type: 'snackbar' }
             );
         }
-
-    }, [blocks, headingLevels, savedHeadings, setAttributes, updateBlockAttributes, createInfoNotice]);
+    }, [blocks, headingLevels, savedHeadings, attributes.blockInstanceId, setAttributes, updateBlockAttributes, createInfoNotice]);
 	
-	// useEffect to handle conditional logic to force list style for the horizontal layout
+	// Handle Layout/List Style conflict
 	useEffect(() => {
 		if (layout === 'horizontal' && listStyle !== 'none') {
 			setAttributes({ listStyle: 'none' });
 		}
 	}, [layout, listStyle, setAttributes]);
 
-	// Handle LinkText
+	// --- Event Handlers ---
 	const updateLinkText = (index, newLinkText) => {
-		const newHeadings = [...savedHeadings]; // Create a copy
+		const newHeadings = [...savedHeadings];
 		newHeadings[index].linkText = newLinkText;
 		setAttributes({ headings: newHeadings });
 	};
 	
-	// Handle User option to hide specific jump links 
 	const toggleVisibility = (index) => {
 		const newHeadings = [...savedHeadings];
-		// Flip the boolean value
 		newHeadings[index].isVisible = !newHeadings[index].isVisible;
 		setAttributes({ headings: newHeadings });
 	};
 	
-	// Allow users to organize jump links
 	const moveItem = (index, direction) => {
 		const newHeadings = [...savedHeadings];
-		const item = newHeadings.splice(index, 1)[0]; // Cut the item out of the array
-		
+		const item = newHeadings.splice(index, 1)[0];
 		if (direction === 'up') {
-			newHeadings.splice(index - 1, 0, item); // Insert it one position up
+			newHeadings.splice(index - 1, 0, item);
 		} else {
-			newHeadings.splice(index + 1, 0, item); // Insert it one position down
+			newHeadings.splice(index + 1, 0, item);
 		}
-	
 		setAttributes({ headings: newHeadings });
 	};
 
-	// Toggle heading leveles shown in jump links block
 	const toggleHeadingLevel = (level) => {
 		const newLevels = headingLevels.includes(level)
 			? headingLevels.filter(item => item !== level)
@@ -177,12 +184,12 @@ useEffect(() => {
 		setAttributes({ headingLevels: newLevels.sort() });
 	};
 
-	// Troubleshooting Area
+	// --- Render ---
 	return (
 		<>
 			<InspectorControls>
 
-				{/* Panel 1: For the mode switcher */}
+				{/* Panel 1: Presentation */}
 				<PanelBody title={__('Presentation', 'search-appearance-toolkit-seo-44')}>
 					<ButtonGroup>
 						<Button
@@ -203,7 +210,7 @@ useEffect(() => {
 					<p className="description">{__('Switch to Editing Mode to customize link text, visibility, and order.', 'search-appearance-toolkit-seo-44')}</p>
 				</PanelBody>
 
-				{/*Panel 2: For styling settings */}
+				{/* Panel 2: Appearance */}
 				<PanelBody title={__('Appearance', 'search-appearance-toolkit-seo-44')}>
 				
 					<p><strong>{__('Layout', 'search-appearance-toolkit-seo-44')}</strong></p>
@@ -223,12 +230,17 @@ useEffect(() => {
 							{__('Horizontal', 'search-appearance-toolkit-seo-44')}
 						</Button>
 					</ButtonGroup>
+                    
+                    {/* Updated ToggleControl with __nextHasNoMarginBottom */}
 					<ToggleControl
 						label={__('Make Jump Links Area Expandable', 'search-appearance-toolkit-seo-44')}
     					help={__('Conserve screen space by collapsing a long list of jump links, providing users with an elegant "show more" button to see the entire list.', 'search-appearance-toolkit-seo-44')}
 						checked={isCollapsible}
 						onChange={() => setAttributes({ isCollapsible: !isCollapsible })}
+                        __nextHasNoMarginBottom={true}
 					/>
+                    
+                    {/* Updated SelectControl with opt-in props */}
 					<SelectControl
 						label={__('List Style', 'search-appearance-toolkit-seo-44')}
 						value={listStyle}
@@ -239,7 +251,11 @@ useEffect(() => {
 						]}
 						onChange={(newListStyle) => setAttributes({ listStyle: newListStyle })}
         				disabled={layout === 'horizontal'} 
+                        __nextHasNoMarginBottom={true}
+                        __next40pxDefaultSize={true}
 					/>
+                    
+                    {/* Updated FontSizePicker */}
 					<FontSizePicker
 						fontSizes={[
 							{ name: __('S', 'search-appearance-toolkit-seo-44'), slug: 'small', size: '14px' },
@@ -250,10 +266,16 @@ useEffect(() => {
 						value={fontSize}
 						onChange={(newSize) => setAttributes({ fontSize: newSize })}
 						withReset
+                        __next40pxDefaultSize={true}
 					/>
 					<PanelColorSettings
 						title={__('Colors', 'search-appearance-toolkit-seo-44')}
 						colorSettings={[
+							{ 
+                                value: blockBackgroundColor, 
+                                onChange: (newColor) => setAttributes({ blockBackgroundColor: newColor }), 
+                                label: __('Block Background', 'search-appearance-toolkit-seo-44') 
+                            },
 							{ value: linkColor, onChange: (newColor) => setAttributes({ linkColor: newColor }), label: __('Link Color', 'search-appearance-toolkit-seo-44') },
 							{ value: textColor, onChange: (newColor) => setAttributes({ textColor: newColor }), label: __('Other Text Color', 'search-appearance-toolkit-seo-44') },
         				]}
@@ -270,43 +292,127 @@ useEffect(() => {
 									{ value: linkBorderColor, onChange: (newColor) => setAttributes({ linkBorderColor: newColor }), label: __('Border', 'search-appearance-toolkit-seo-44') },
                                 ]}
                             />
+                            {/* Updated RangeControl */}
                             <RangeControl
                                 label={__('Link Border Radius', 'search-appearance-toolkit-seo-44')}
                                 value={linkBorderRadius}
                                 onChange={(newValue) => setAttributes({ linkBorderRadius: newValue })}
                                 min={0}
                                 max={50}
+                                __nextHasNoMarginBottom={true}
+                                __next40pxDefaultSize={true}
                             />
                         </>
                     )}
 				</PanelBody>
 										  
 
-				{/* Panel 3: For all other settings */}
-				<PanelBody title={__('Heading Settings', 'search-appearance-toolkit-seo-44')}>
+				{/* Panel 3: Content Settings */}
+				<PanelBody title={__('Content Settings', 'search-appearance-toolkit-seo-44')}>
 					<ToggleControl
-						label={__('Show Heading for Jump Links Block (off by default)', 'search-appearance-toolkit-seo-44')}
+						label={__('Display Block Title', 'search-appearance-toolkit-seo-44')}
 						checked={showHeading}
 						onChange={() => setAttributes({ showHeading: !showHeading })}
+                        __nextHasNoMarginBottom={true}
 					/>
 					{showHeading && (
-						<TextControl
-							label={__('Heading Text', 'search-appearance-toolkit-seo-44')}
-							value={headingText}
-							onChange={(newText) => setAttributes({ headingText: newText })}
-						/>
+						<>
+							<TextControl
+								label={__('Title Text', 'search-appearance-toolkit-seo-44')}
+								value={headingText}
+								onChange={(newText) => setAttributes({ headingText: newText })}
+								help={__('The text that appears above your list of links.', 'search-appearance-toolkit-seo-44')}
+							/>
+							<SelectControl
+                                label={__('Title Tag', 'search-appearance-toolkit-seo-44')}
+                                value={headingTag}
+                                options={[
+                                    { label: 'H2', value: 'h2' },
+                                    { label: 'H3', value: 'h3' },
+                                    { label: 'H4', value: 'h4' },
+                                    { label: 'H5', value: 'h5' },
+                                    { label: 'Paragraph (Bold)', value: 'p' },
+                                    { label: 'Div (No Semantic Value)', value: 'div' },
+                                ]}
+                                onChange={(newTag) => setAttributes({ headingTag: newTag })}
+								help={__('Choose a level that fits your page\'s structure.', 'search-appearance-toolkit-seo-44')}
+                                __nextHasNoMarginBottom={true}
+                                __next40pxDefaultSize={true}
+                            />
+						</>
 					)}
-					<p>{__('Select heading levels to include:', 'search-appearance-toolkit-seo-44')}</p>
+					<hr />
+					{/* SECTION 2: SCANNED CONTENT */}
+					<p><strong>{__('Included Headings', 'search-appearance-toolkit-seo-44')}</strong></p>
+                    <p className="description" style={{ marginBottom: '10px' }}>
+                        {__('Select which heading levels from your post content should appear in the jump links list.', 'search-appearance-toolkit-seo-44')}
+                    </p>
+
 					<CheckboxControl label="H2" checked={headingLevels.includes('h2')} onChange={() => toggleHeadingLevel('h2')} />
 					<CheckboxControl label="H3" checked={headingLevels.includes('h3')} onChange={() => toggleHeadingLevel('h3')} />
-					<CheckboxControl label="H4" checked={headingLevels.includes('h4')} onChange={() => toggleHeadingLevel('h4')} />	
-				</PanelBody>				
+					<CheckboxControl label="H4" checked={headingLevels.includes('h4')} onChange={() => toggleHeadingLevel('h4')} />
+					
+                    <ToggleControl
+                        label={__('Create Visual Hierarchy', 'search-appearance-toolkit-seo-44')}
+                        help={__('Indents sub-headings (H3, H4) to create a nested outline structure.', 'search-appearance-toolkit-seo-44')}
+                        checked={isSmartIndentation}
+                        onChange={() => setAttributes({ isSmartIndentation: !isSmartIndentation })}
+                        __nextHasNoMarginBottom={true}
+                    />
+				</PanelBody>
+
+				{/* Panel 4: Position Settings */}																
+				<PanelBody title={__('Position Settings', 'search-appearance-toolkit-seo-44')}>
+				    <ToggleControl
+				        label={__('Sticky Position', 'search-appearance-toolkit-seo-44')}
+				        help={__('Keep the table of contents visible while scrolling.', 'search-appearance-toolkit-seo-44')}
+				        checked={isSticky}
+				        onChange={() => setAttributes({ isSticky: !isSticky })}
+                        __nextHasNoMarginBottom={true}
+				    />
+				    {isSticky && (
+						<>
+                            <p className="description" style={{ marginBottom: '15px' }}>
+                                {__('Customize how the block behaves when it sticks to the top of the screen.', 'search-appearance-toolkit-seo-44')}
+                            </p>
+				            <RangeControl
+				                label={__('Top Offset (px)', 'search-appearance-toolkit-seo-44')}
+                                help={__('The distance between the top of the screen and the block when stuck (useful for clearing sticky headers).', 'search-appearance-toolkit-seo-44')}
+				                value={stickyOffset}
+				                onChange={(value) => setAttributes({ stickyOffset: value })}
+				                min={0}
+				                max={200}
+                                __nextHasNoMarginBottom={true}
+                                __next40pxDefaultSize={true}
+				            />
+                            <RangeControl
+				                label={__('Jump Offset (px)', 'search-appearance-toolkit-seo-44')}
+                                help={__('The buffer distance to stop *before* the heading. Increase this if your sticky header covers the text.', 'search-appearance-toolkit-seo-44')}
+				                value={jumpOffset}
+				                onChange={(value) => setAttributes({ jumpOffset: value })}
+				                min={0}
+				                max={200}
+                                __nextHasNoMarginBottom={true}
+                                __next40pxDefaultSize={true}
+				            />
+				            <ToggleControl
+				                label={__('Disable on Mobile', 'search-appearance-toolkit-seo-44')}
+				                help={__('Prevents the block from sticking on small screens to save reading space.', 'search-appearance-toolkit-seo-44')}
+				                checked={stickyStrategy === 'desktop-only'}
+				                onChange={(isChecked) => setAttributes({ 
+				                    stickyStrategy: isChecked ? 'desktop-only' : 'always' 
+				                })}
+                                __nextHasNoMarginBottom={true}
+				            />
+				        </>
+				    )}
+				</PanelBody>															
 			</InspectorControls>
 
 			<div {...blockProps}>
 		        {showHeading && (
 		            <RichText
-		                tagName="div"
+		                tagName={headingTag}
 		                className="wp-block-seo44-jump-links-heading"
 		                value={headingText}
 		                onChange={(newText) => setAttributes({ headingText: newText })}
@@ -316,7 +422,7 @@ useEffect(() => {
 
 				{savedHeadings.length > 0 ? ( // We now use savedHeadings for a stable display
 					<nav aria-label={__('Table of contents', 'search-appearance-toolkit-seo-44')}>
-                    	<ListTag id="seo44-jump-links-list">
+                    	<ListTag id={listId}>
 							{savedHeadings.map((heading, index) => 
 								isEditing ? (
 									<li key={heading.anchor}>
@@ -347,13 +453,18 @@ useEffect(() => {
 												}
 												checked={heading.isVisible !== false}
 												onChange={() => toggleVisibility(index)}
+                                                __nextHasNoMarginBottom={true}
 											/>
 										</div>
 									</li>
 								) : (
 									heading.isVisible !== false && (
-										<li key={heading.anchor}>
-											<a href={`#${heading.anchor}`} style={linkStyle} onClick={(e) => e.preventDefault()}>
+										<li 
+											key={heading.anchor}
+											className={isSmartIndentation ? `seo44-jump-link-level-${heading.level}` : ''}
+										>
+                                            {/* REMOVED 'style={linkStyle}' FROM THIS LINE */}
+											<a href={`#${heading.anchor}`} onClick={(e) => e.preventDefault()}>
 												{heading.linkText}
 											</a>
 										</li>
@@ -370,7 +481,7 @@ useEffect(() => {
 		                            className="seo-44-show-more"
 		                            aria-label={__('Show More', 'search-appearance-toolkit-seo-44')}
 		                            aria-expanded="false"
-                            		aria-controls="seo44-jump-links-list"
+                            		aria-controls={listId}
 		                            onClick={() => {
 		                                createInfoNotice(
 		                                    __('The "Show More" button is interactive on the published page.', 'search-appearance-toolkit-seo-44'),
