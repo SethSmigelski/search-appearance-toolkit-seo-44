@@ -50,7 +50,7 @@ class SEO44_Settings {
 		add_settings_field('social_linkedin', __('LinkedIn URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_linkedin', 'desc' => __('Enter your full LinkedIn Company or Profile URL.', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('social_tiktok', __('TikTok URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_tiktok', 'desc' => __('Enter the URL of your official TikTok page.', 'search-appearance-toolkit-seo-44')]);
 		add_settings_field('social_youtube', __('YouTube URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_youtube', 'desc' => __('Enter your full YouTube Channel URL.', 'search-appearance-toolkit-seo-44')]);
-        
+		add_settings_field('social_additional', __('Additional Social URLs', 'search-appearance-toolkit-seo-44'), [$this, 'render_textarea_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_additional','desc' => __('Enter any additional profile URLs (one per line) to include in the schema SameAs property.<br>Examples: Wikipedia, BlueSky, Mastodon, Pinterest, etc.', 'search-appearance-toolkit-seo-44')]);
         // Schema Settings
         add_settings_section('seo44_schema_settings_section', __('Schema Structured Data Settings', 'search-appearance-toolkit-seo-44'), [$this, 'schema_section_callback'], 'seo-44_schema');
         add_settings_field('seo44_schema_tools', __('Schema Scanner', 'search-appearance-toolkit-seo-44'), [$this, 'render_schema_tools'], 'seo-44_schema', 'seo44_schema_settings_section');
@@ -395,7 +395,7 @@ class SEO44_Settings {
 			} 
 		}
         
-        $textarea_fields = ['homepage_description'];
+        $textarea_fields = ['homepage_description', 'social_additional'];
         foreach ($textarea_fields as $ta) { 
             if (isset($input[$ta])) { 
                 $new_input[$ta] = sanitize_textarea_field($input[$ta]); 
