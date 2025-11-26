@@ -1,14 +1,28 @@
 .wp-block-seo44-jump-links{
-	margin-bottom: 1em;
+	background-color: var(--seo44-block-bg);
+	/* Padding and margin to match default - correct for loading issue - can be superseded by user  */
+	padding-top: var(--wp--preset--spacing--30);
+  	padding-right: var(--wp--preset--spacing--30);
+  	padding-bottom: var(--wp--preset--spacing--30);
+  	padding-left: var(--wp--preset--spacing--30);
+	margin-top: var(--wp--preset--spacing--30);
+  	margin-bottom: var(--wp--preset--spacing--30);
 }
+
 /* Style the On This Page Text */
 .wp-block-seo44-jump-links-heading{
-	font-size: calc(var(--jump-link-font-size, 1em) * 1.375);
+	/* font-size: calc(var(--jump-link-font-size, 1em) * 1.375); This is no longer necessary with heading selection */
 	flex-basis: 100%;
+}
+/* Keep spacing tight for sticky nav / avoid theme conflicts  */
+.wp-block-seo44-jump-links nav > ul li,
+.wp-block-seo44-jump-links nav > ol li{
+    margin:0;padding:0
 }
 
 /* Jump Links Block Styles */
-.wp-block-seo44-jump-links.list-style-none > ul {
+.wp-block-seo44-jump-links.list-style-none nav > ul,
+.wp-block-seo44-jump-links.list-style-none nav > ol {
     list-style-type: none;
     padding-left: 0;
 }
@@ -18,10 +32,20 @@
 .wp-block-seo44-jump-links.is-layout-horizontal ul {
     list-style-type: none;
     padding: 0;
-    margin: 0.5em 0 1em;
-    gap: 0.5em;
+    margin: -0.5em 0 0; /* negative margin eliminates the top created below to vertically separate li buttons */
+    gap: 0em 0.5em;
 	display: flex;
 	flex-wrap: wrap;
+}
+/* Jump Links Block - Horizontal li spacing */
+.wp-block-seo44-jump-links.is-layout-horizontal ol li,
+.wp-block-seo44-jump-links.is-layout-horizontal ul li {
+    margin: 0.5em 0 0;
+}
+
+.wp-block-seo44-jump-links li a {    
+    /* USE THE VARIABLE */
+    color: var(--seo44-link-color, #0073aa); /* Fallback to default blue */
 }
 
 .wp-block-seo44-jump-links.is-layout-horizontal li a {
@@ -30,13 +54,17 @@
 	text-decoration: none;
 	border-width: 1px;     
     border-style: solid;
-	background-color: var(--link-bg-color);
+
+	/* USE THE VARIABLES */
+    background-color: var(--seo44-link-bg);
+    border-color: var(--seo44-link-border-color);
+    border-radius: var(--seo44-link-radius);
 }
 
 .wp-block-seo44-jump-links.is-layout-horizontal li a:hover {
 	text-decoration: underline;
 	text-underline-offset: .1em;
-	background-color: var(--link-bg-hover-color); 
+	background-color: var(--seo44-link-hover-bg); 
 }
 
 /* Styling for the Collapsible Feature */
@@ -104,7 +132,7 @@
     max-height: 1000px;
 }
 
-/* HORIZONTAL LAYOUT: BUTTON BESIDE LIST */
+/* HORIZONTAL LAYOUT: BUTTONS BESIDE LIST */
 .wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible > nav {
     display: flex;
     align-items: flex-start;
@@ -121,4 +149,114 @@
 .wp-block-seo44-jump-links.is-layout-horizontal.is-collapsible > nav > .seo-44-show-more {
     flex-shrink: 0;
     margin-top: 0.5em;
+}
+
+/* SMART INDENTATION (Visual Hierarchy) */
+/* Only apply when not horizontal, as indentation looks bad on buttons */
+
+/* BULLETED LISTS (UL): Use Margin to move bullet + text */
+.wp-block-seo44-jump-links:not(.is-layout-horizontal) ul li.seo44-jump-link-level-3 {
+    margin-left: 1.5em;
+    font-size: 0.95em; 
+    opacity: 0.9;
+}
+.wp-block-seo44-jump-links:not(.is-layout-horizontal) ul li.seo44-jump-link-level-4 {
+    margin-left: 3em;
+    font-size: 0.9em; 
+    opacity: 0.85;
+    list-style-type: circle; /* Change bullet style for hierarchy */
+}
+
+/* Override the Level 4 "Circle" bullet when "List Style: None" is selected */
+.wp-block-seo44-jump-links.list-style-none nav > ul li.seo44-jump-link-level-4,
+.wp-block-seo44-jump-links.list-style-none nav > ol li.seo44-jump-link-level-4 {
+    list-style-type: none;
+}
+
+/* NUMBERED LISTS (OL): Use Padding to keep numbers aligned, indent text only */
+.wp-block-seo44-jump-links:not(.is-layout-horizontal) ol li.seo44-jump-link-level-3 {
+    padding-left: 1.5em; /* Indent text only */
+    font-size: 0.95em; 
+    opacity: 0.9;
+}
+.wp-block-seo44-jump-links:not(.is-layout-horizontal) ol li.seo44-jump-link-level-4 {
+    padding-left: 3em; /* Indent text only */
+    font-size: 0.9em; 
+    opacity: 0.85;
+    /* Note: list-style-type is not changed, so numbers stay consistent */
+}
+
+/* STICKY JUMP LINKS */
+.wp-block-seo44-jump-links.is-sticky {
+    position: sticky;
+    position: -webkit-sticky;
+    top: var(--seo44-sticky-offset, 20px);
+    z-index: 10;
+    /* Optional: Add a slight shadow or background when sticky */
+    background-color: var(--seo44-block-bg, #fff); 
+}
+
+/* The "Disable on Mobile" Logic */
+@media (max-width: 781px) {
+    .wp-block-seo44-jump-links.is-sticky.sticky-desktop-only {
+        position: static; /* Revert to normal flow */
+        top: auto;
+    }
+}
+/* Add scrollspy - active section link is bold and horizontal background */
+/* ONLY when the block is stuck and sticky */
+
+/* Base Active Style (Bold text for everyone) */
+.wp-block-seo44-jump-links.is-sticky.is-stuck a.is-active {
+    font-weight: bold;
+    color: var(--seo44-link-color);
+}
+
+/* Horizontal-Only Active Style (Background color) */
+.wp-block-seo44-jump-links.is-sticky.is-stuck.is-layout-horizontal a.is-active {
+    background-color: var(--seo44-link-hover-bg);
+    text-decoration: none; /* Optional: remove underline when active */
+}
+
+/* Vertical-Only Active Style (Left Border indicator) */
+.wp-block-seo44-jump-links.is-sticky.is-stuck:not(.is-layout-horizontal) a.is-active {
+    border-left: 3px solid var(--seo44-link-color);
+    padding-left: 0.5em;
+}
+
+/* COLLAPSING TITLE for sticky */
+/* The Sentinel must be absolute so it doesn't affect layout */
+.wp-block-seo44-jump-links {
+    position: relative; /* Needed for absolute positioning */
+}
+
+.seo44-sticky-sentinel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* This is the magic: The sentinel sits at the "sticky threshold" */
+    top: calc( (var(--seo44-sticky-offset, 20px) + 3px) * -1 ); 
+    height: 1px;
+}
+
+/* The "Gentle" Collapse Animation */
+.wp-block-seo44-jump-links.is-sticky.is-stuck .wp-block-seo44-jump-links-heading {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    overflow: hidden;
+    /* Wait 1s, then slide up over 0.5s */
+    transition: max-height 0.5s ease 1s, opacity 0.3s ease 1s, margin 0.5s ease 1s;
+}
+
+/* Normal State (Not Stuck) */
+.wp-block-seo44-jump-links-heading {
+    /* Ensure we have a starting max-height for the transition to work */
+    max-height: 100px; 
+    opacity: 1;
+    transition: max-height 0.5s ease, opacity 0.3s ease, margin 0.5s ease;
+	margin-top:0; /* Use block spacing instead */
+	margin-bottom: 0.25em;
 }
