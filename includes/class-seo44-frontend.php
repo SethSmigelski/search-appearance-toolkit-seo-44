@@ -223,6 +223,15 @@ class SEO44_Frontend {
         // 1. Generate the base schema
         if (is_front_page()) {
             $base_schema = $this->get_schema_for_website();
+
+			// NEW: Add Organization Schema to homepage
+	        if (seo44_get_option('enable_organization_schema')) {
+	            $org_schema = $this->get_schema_for_organization();
+	            if (!empty($org_schema)) {
+	                $special_schemas[] = $org_schema;
+	            }
+	        }
+			
         } elseif ( (is_category() || is_tag() || is_tax()) && seo44_get_option('enable_schema_on_taxonomies') ) {
             $base_schema = $this->get_schema_for_taxonomy();
         } elseif (is_page() || (is_singular() && !is_singular('post') && seo44_get_option('enable_schema_on_cpts'))) {
@@ -511,6 +520,85 @@ class SEO44_Frontend {
 		return $schema;
     }
 
+	// --- Assemble Organization Schema ---
+	public function get_schema_for_organization() {
+        // 1. Name & URL
+        $name = seo44_get_option('org_name') ?: get_bloginfo('name');
+        $url = home_url('/');
+
+        // 2. Logo (Plugin Setting -> Theme Mod -> Fallback)
+        $logo_url = '';
+        $org_logo_id = seo44_get_option('org_logo');
+        if ($org_logo_id) {
+            $image_data = wp_get_attachment_image_src($org_logo_id, 'full');
+            $logo_url = $image_data ? $image_data[0] : '';
+        } else {
+            // Try Customizer Logo
+            $custom_logo_id = get_theme_mod('custom_logo');
+            if ($custom_logo_id) {
+                $image_data = wp_get_attachment_image_src($custom_logo_id, 'full');
+                $logo_url = $image_data ? $image_data[0] : '';
+            }
+        }
+
+        // 3. SameAs Links (Gather from Social Tab)
+        $same_as = [];
+        $social_keys = ['fb_app_id', 'twitter_handle', 'social_linkedin', 'social_youtube', 'social_tiktok', 'social_instagram'];
+        
+        // Special handling for FB (might be ID or URL, usually ID in app_id field, but let's check for URL)
+        // For sameAs, a URL is desired. Add URLs from fields and construct Twitter / X and Facebook URL
+
+		// How is facebook handled?
+        $twitter = seo44_get_option('twitter_handle');
+        if ($twitter) {
+             $same_as[] = 'https://x.com/' . str_replace('@', '', $twitter);
+        }
+		// Use x.com instead of twitter.com?
+        
+        $extras = ['social_linkedin', 'social_youtube', 'social_instagram', 'social_tiktok'];
+        foreach($extras as $key) {
+            $val = seo44_get_option($key);
+            if ($val) $same_as[] = esc_url($val);
+        }
+
+        // 4. Build the Schema
+        $schema = [
+            '@type' => 'Organization',
+            '@id'   => $url . '#organization',
+            'name'  => $name,
+            'url'   => $url,
+        ];
+
+        // Add Tagline (Slogan)
+        $tagline = get_bloginfo('description');
+        if ($tagline) {
+            $schema['slogan'] = $tagline;
+        }
+
+        if ($logo_url) {
+            $schema['logo'] = [
+                '@type' => 'ImageObject',
+                'url'   => $logo_url
+            ];
+        }
+
+        if (!empty($same_as)) {
+            $schema['sameAs'] = $same_as;
+        }
+
+        // 5. Contact Point
+        $phone = seo44_get_option('org_phone');
+        if ($phone) {
+            $schema['contactPoint'] = [
+                '@type' => 'ContactPoint',
+                'telephone' => $phone,
+                'contactType' => 'customer service' 
+            ];
+        }
+
+        return $schema;
+    }
+
 	// --- Intelligent Schema Detection ---
     
     /**
@@ -694,7 +782,7 @@ class SEO44_Frontend {
     }
 
     /**
-     * NEW HELPER: Cleans and formats block content for an answer.
+     *  HELPER: Cleans and formats block content for an answer.
      */
     private function clean_and_format_answer($blocks) {
         $answer_html = '';
