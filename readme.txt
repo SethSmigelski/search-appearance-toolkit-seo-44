@@ -89,7 +89,10 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Full Customization:** Features "Viewing" and "Editing" modes right in the editor. In Editing Mode, you can change link text, reorder links with up/down arrows, and exclude specific headings from the list.
 * **Complete Styling Control:** Use the sidebar controls to change the layout (vertical or horizontal), list style (bullets, numbers, or none), font size, and colors. For the horizontal layout, you can also style the link background, border, and border-radius.
 * **Front-End Interactivity:** Includes built-in smooth scrolling and an optional "Show More" button to collapse long link lists elegantly.
-
+* **Active Link Indicator (ScrollSpy)**: As your readers scroll through the content, the table of contents automatically highlights the link for the section they are currently reading, giving them instant context on their progress.
+* **Sticky Navigation:** Optionally, keep the table of contents pinned to the viewport as users scroll, ensuring navigation is always accessible for long articles.
+* **So Much More:** All the other features described in the standalone **[Jump Links Block (SEO 44)](https://wordpress.org/plugins/jump-links-block-seo-44/)** plugin.
+* **Click Tracking:** Want to see which jump links are most popular with your users? Use the plugin's integration settings to enable event tracking for jump links through Google Tag Manager.
 == Integrations & Advanced Analytics ==
 
 The Search Appearance Toolkit serves as a hub for connecting your site to essential third-party services, helping you to create valuable analytics data and site insights.
@@ -256,6 +259,7 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
 13. The Jump Links Block in Editing Mode.
 14. The Sidebar controls for the Jump Links Block.
 15. The Integrations tab with Google Tag Manager and Site Tool settings.
+15. Published Horizontal Jump Links with sticky navigation showing the Active Link Indicator.
 
 == You Might Also Like ==
 
@@ -266,6 +270,20 @@ If you like this plugin, you might also enjoy these WordPress tools:
 * **[Under The Weather](https://wordpress.org/plugins/under-the-weather/)** - A lightweight and customizable weather widget, powered by the OpenWeather API, that caches and presents weather data with multiple style options.
 
 == Changelog ==
+
+= 4.1.0 =
+**Jump Links Block Updates:**
+* FEATURE: **Sticky Positioning:** Keep your table of contents visible while users scroll. Includes a "Top Offset" slider to clear sticky headers, a "Jump Offset" slider to ensure that the sticky header does not cover the heading text, and a "Disable on Mobile" toggle to preserve screen space on small devices.
+* FEATURE: **Auto-Hide Title:** Implemented a smart "sticky state" detection. When the block sticks, the title gently collapses and fades out to keep the interface clean (this occurs when a block title is used alongside sticky positioning).
+* FEATURE: **Smart Indentation:** Added a "Create Visual Hierarchy" toggle. When enabled, H3 and H4 sub-headings are visually indented to create a clear, nested outline structure.
+* FEATURE: **Block Background:** You can now set a background color for the entire block container, perfect for creating "card-style" floating navigation.
+* FEATURE: **ScrollSpy:** Automatically highlights the active link in the table of contents as the user scrolls through the corresponding section of the post.
+* FEATURE: Added support for Border and Spacing controls. You can now add borders, rounded corners, margins, and padding to the Jump Links block directly from the editor settings.
+* FEATURE: Added a "Title tag" control. You can now choose the specific HTML tag (H2, H3, H4, H5, Paragraph, or Div) for the "On This Page" heading to better match your document structure.
+* REFACTOR: Optimized the block's styling logic to use CSS variables on the parent container instead of inline styles for every link. This reduces the block's HTML size and improves rendering performance.
+* FIX: Resolved an accessibility and HTML validation issue where using multiple Jump Links blocks on a single page created duplicate element IDs. Each block now generates a unique instance ID.
+* PERFORMANCE: Refactored the front-end JavaScript to use event delegation for smooth scrolling. This reduces memory usage by attaching a single event listener to the block instead of individual listeners for every link.
+* TWEAK: Reorganized the sidebar settings for better clarity between Block Title settings and Content Inclusion settings.
 
 = 4.0.0 =
 * FEATURE: Added a new "Integrations" tab for third-party services like Google Tag Manager and Webmaster Tools.
