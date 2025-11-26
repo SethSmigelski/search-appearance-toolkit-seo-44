@@ -44,7 +44,12 @@ class SEO44_Settings {
         add_settings_field('enable_twitter_tags', __('Enable Twitter Cards', 'search-appearance-toolkit-seo-44'), [$this, 'render_checkbox_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'enable_twitter_tags', 'label' => __('Add Twitter Card meta tags.', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('twitter_handle', __('Twitter Username', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'twitter_handle', 'desc' => __('Enter your @username for the twitter:site and twitter:creator tags.', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('default_social_image_id', __('Default Social Image', 'search-appearance-toolkit-seo-44'), [$this, 'render_image_upload_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'default_social_image_id', 'desc' => __('Upload a default image for social sharing. This image will be used when a post does not have a set featured image.', 'search-appearance-toolkit-seo-44'), 'tooltip' => 'A high-quality image of at least 1200x630 pixels is recommended.']);
-
+		// Social Media Links used for Organization Schema - Google Knowledge Graph
+        add_settings_field('social_linkedin', __('LinkedIn URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_linkedin', 'desc' => __('Enter your full LinkedIn Company or Profile URL.', 'search-appearance-toolkit-seo-44')]);
+        add_settings_field('social_youtube', __('YouTube URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_youtube', 'desc' => __('Enter your full YouTube Channel URL.', 'search-appearance-toolkit-seo-44')]);
+        add_settings_field('social_tiktok', __('TikTok URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_tiktok', 'desc' => __('Enter the URL of your official TikTok page.', 'search-appearance-toolkit-seo-44')]);
+		add_settings_field('social_instagram', __('Instagram URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_instagram', 'desc' => __('Enter the URL of your official Instagram page.', 'search-appearance-toolkit-seo-44')]);
+		
         // Schema Settings
         add_settings_section('seo44_schema_settings_section', __('Schema Structured Data Settings', 'search-appearance-toolkit-seo-44'), [$this, 'schema_section_callback'], 'seo-44_schema');
         add_settings_field('seo44_schema_tools', __('Schema Scanner', 'search-appearance-toolkit-seo-44'), [$this, 'render_schema_tools'], 'seo-44_schema', 'seo44_schema_settings_section');
@@ -69,6 +74,45 @@ class SEO44_Settings {
         ]);
 		add_settings_field('seo44_enable_schema_on_cpts', __('Enable Schema on Custom Post Types', 'search-appearance-toolkit-seo-44'), [$this, 'render_checkbox_field'], 'seo-44_schema', 'seo44_schema_settings_section', ['id' => 'enable_schema_on_cpts', 'label' => __('Also output WebPage schema on public Custom Post Types (e.g., Products, Events).', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('seo44_schema_disclaimer', '', [$this, 'render_schema_disclaimer'], 'seo-44_schema', 'seo44_schema_settings_section');
+		// --- NEW: Organization Schema Section ---
+        add_settings_section('seo44_organization_schema_section', __('Organization & Knowledge Graph', 'search-appearance-toolkit-seo-44'), [$this, 'organization_section_callback'], 'seo-44_schema');
+        add_settings_field(
+            'enable_organization_schema', 
+            __('Enable Organization Schema', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_checkbox_field'], 
+            'seo-44_schema', 
+            'seo44_organization_schema_section', 
+            ['id' => 'enable_organization_schema', 'label' => __('Output rich Organization schema for the homepage (recommended).', 'search-appearance-toolkit-seo-44')]
+        );
+        add_settings_field(
+            'org_name', 
+            __('Organization Name', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_text_field'], 
+            'seo-44_schema', 
+            'seo44_organization_schema_section', 
+            ['id' => 'org_name', 'desc' => __('Leave empty to use the Site Title: <strong>' . esc_html(get_bloginfo('name')) . '</strong>', 'search-appearance-toolkit-seo-44')]
+        );
+        // REUSING THE IMAGE UPLOADER!
+        add_settings_field(
+            'org_logo', 
+            __('Organization Logo', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_image_upload_field'], 
+            'seo-44_schema', 
+            'seo44_organization_schema_section', 
+            [
+                'id' => 'org_logo', 
+                'desc' => __('Upload a specific logo for schema. If empty, we will try to use the Site Logo from your Customizer settings.', 'search-appearance-toolkit-seo-44'),
+                'tooltip' => 'Google prefers images that are 112x112px or larger, in JPG, PNG, or WebP format.'
+            ]
+        );
+        add_settings_field(
+            'org_phone', 
+            __('Contact Phone Number', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_text_field'], 
+            'seo-44_schema', 
+            'seo44_organization_schema_section', 
+            ['id' => 'org_phone', 'desc' => __('Optional. Include the country code (e.g., +1-555-0199).', 'search-appearance-toolkit-seo-44')]
+        );
 
         // Migration Settings
         add_settings_section('seo44_migration_settings_section', __('Custom Meta Key Configuration', 'search-appearance-toolkit-seo-44'), [$this, 'migration_section_callback'], 'seo-44_migration');
@@ -250,7 +294,7 @@ class SEO44_Settings {
 		$checkboxes = [
             'enable_tags', 'include_keywords', 'include_author', 
             'enable_og_tags', 'enable_twitter_tags', 
-            'enable_schema', 'scan_content_for_schema', 'enable_advanced_schema', 'enable_schema_on_cpts', 'enable_schema_on_taxonomies', 
+            'enable_schema', 'scan_content_for_schema', 'enable_advanced_schema', 'enable_schema_on_cpts', 'enable_schema_on_taxonomies','enable_organization_schema', 
             'enable_sitemaps', 'enable_sitemap_ping', 
             'sitemap_include_images', 'sitemap_include_content_images',
             'enable_gtm_integration', 'enable_seo_datalayer', 'enable_jump_link_tracking', 
@@ -271,6 +315,8 @@ class SEO44_Settings {
             'gtm_id',
             'google_site_verification',
             'bing_site_verification'
+			'social_linkedin', 'social_youtube', 'social_tiktok', 'social_instagram', 
+			'org_name', 'org_phone'
         ];
 		foreach ($text_fields as $tf) { 
 			if (isset($input[$tf])) { 
@@ -306,6 +352,7 @@ class SEO44_Settings {
 		
 		if (isset($input['author_format']) && in_array($input['author_format'], ['display_name', 'first_last', 'last_first'])) { $new_input['author_format'] = $input['author_format']; }
 		if (isset($input['default_social_image_id'])) { $new_input['default_social_image_id'] = absint($input['default_social_image_id']); }
+		if (isset($input['org_logo'])) { $new_input['org_logo'] = absint($input['org_logo']); }
 
         $new_input['sitemap_post_types'] = isset($input['sitemap_post_types']) && is_array($input['sitemap_post_types']) ? array_map('sanitize_key', $input['sitemap_post_types']) : [];
         $new_input['sitemap_taxonomies'] = isset($input['sitemap_taxonomies']) && is_array($input['sitemap_taxonomies']) ? array_map('sanitize_key', $input['sitemap_taxonomies']) : [];
@@ -321,11 +368,17 @@ class SEO44_Settings {
 	
 
     // --- All settings page section and field rendering functions go here ---
-	public function main_section_callback() { echo '<p>' . esc_html__('With these settings, you can enable the plugin\'s primary function and customize how SEO tags appear on your website.', 'search-appearance-toolkit-seo-44') . '</p>'; }
-    public function social_section_callback() { echo '<p>' . esc_html__('With these settings, you can activate and customize the meta tags that impact the way your links appear on social media.', 'search-appearance-toolkit-seo-44') . '</p>';}
-    
+	public function main_section_callback() { 
+		echo '<p>' . esc_html__('With these settings, you can enable the plugin\'s primary function and customize how SEO tags appear on your website.', 'search-appearance-toolkit-seo-44') . '</p>'; 
+	}
+    public function social_section_callback() { 
+		echo '<p>' . esc_html__('With these settings, you can activate and customize the meta tags that impact the way your links appear on social media.', 'search-appearance-toolkit-seo-44') . '</p>';
+	}
     public function schema_section_callback() { 
         echo '<p>' . esc_html__('Schema.org markup helps search engines understand your website\'s content, potentially leading to better search ranking and more informative search results. SEO 44 can help you by adding structured data to your webpages in a modern JSON-LD format.', 'search-appearance-toolkit-seo-44') . '</p>';
+    }
+	public function organization_section_callback() {
+        echo '<p>' . esc_html__('Provide details about your organization to help Google populate its Knowledge Graph.', 'search-appearance-toolkit-seo-44') . '</p>';
     }
     public function migration_section_callback() {  echo '<p><strong>' . esc_html__('Migration made seamless:', 'search-appearance-toolkit-seo-44') . '</strong> ' . esc_html__('With these settings, you can adjust the SEO 44 plugin to fit the way your website already manages SEO information. Locate where your SEO data is stored so that you can continue using the same meta keys and pick up right where you left off with your previous SEO plugin.', 'search-appearance-toolkit-seo-44') . '</p>';  }
     
