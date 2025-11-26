@@ -8,7 +8,7 @@ A lightweight, feature-packed SEO plugin for essential meta tags, advanced struc
 * **Tags:** seo, on-page seo, schema, structured data, xml sitemaps
 * **Requires at least:** 5.5
 * **Tested up to:** 6.8
-* **Stable tag:** 4.0.0
+* **Stable tag:** 4.1.0
 * **Requires PHP:** 7.4
 * **License:** GPLv2 or later
 * **License URI:** [GLP 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
