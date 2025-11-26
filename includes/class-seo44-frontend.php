@@ -543,19 +543,20 @@ class SEO44_Frontend {
 
         // 3. SameAs Links (Gather from Social Tab)
         $same_as = [];
-        $social_keys = ['fb_app_id', 'twitter_handle', 'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube'];
+        $social_keys = ['twitter_handle', 'social_facebook', 'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube'];
         
-        // Special handling for FB (might be ID or URL, usually ID in app_id field, but let's check for URL)
+        
         // For sameAs, a URL is desired. Add URLs from fields and construct Twitter / X and Facebook URL
 
-		// How is facebook handled?
-        $twitter = seo44_get_option('twitter_handle');
-        if ($twitter) {
-             $same_as[] = 'https://x.com/' . str_replace('@', '', $twitter);
-        }
-		// Use x.com instead of twitter.com?
+		// Twitter/X: Handle logic
+	    $twitter_handle = seo44_get_option('twitter_handle');
+	    if ($twitter_handle) {
+	        // Clean handle just in case they added @
+	        $clean_handle = str_replace('@', '', $twitter_handle);
+	        $same_as[] = 'https://x.com/' . esc_attr($clean_handle);
+	    }
         
-        $extras = ['social_instagram', 'social_linkedin', 'social_youtube', 'social_tiktok'];
+        $extras = ['social_facebook', 'social_instagram', 'social_linkedin', 'social_youtube', 'social_tiktok'];
         foreach($extras as $key) {
             $val = seo44_get_option($key);
             if ($val) $same_as[] = esc_url($val);
@@ -568,6 +569,12 @@ class SEO44_Frontend {
             'name'  => $name,
             'url'   => $url,
         ];
+
+		// Add Alternate Name
+	    $alt_name = seo44_get_option('org_alternate_name');
+	    if ($alt_name) {
+	        $schema['alternateName'] = $alt_name;
+	    }
 
         // Add Tagline (Slogan)
         $tagline = get_bloginfo('description');
@@ -586,7 +593,7 @@ class SEO44_Frontend {
             $schema['sameAs'] = $same_as;
         }
 
-        // 5. Contact Point
+        // Contact Point
         $phone = seo44_get_option('org_phone');
         if ($phone) {
             $schema['contactPoint'] = [
@@ -595,6 +602,20 @@ class SEO44_Frontend {
                 'contactType' => 'customer service' 
             ];
         }
+
+		// Address
+	    $street = seo44_get_option('org_address_street');
+	    $city   = seo44_get_option('org_address_city');
+	    if ($street && $city) {
+	        $schema['address'] = [
+	            '@type'           => 'PostalAddress',
+	            'streetAddress'   => $street,
+	            'addressLocality' => $city,
+	            'addressRegion'   => seo44_get_option('org_address_state'),
+	            'postalCode'      => seo44_get_option('org_address_zip'),
+	            'addressCountry'  => seo44_get_option('org_address_country')
+	        ];
+	    }
 
         return $schema;
     }
