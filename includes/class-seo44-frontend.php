@@ -543,7 +543,7 @@ class SEO44_Frontend {
 
         // 3. SameAs Links (Gather from Social Tab)
         $same_as = [];
-        $social_keys = ['fb_app_id', 'twitter_handle', 'social_linkedin', 'social_youtube', 'social_tiktok', 'social_instagram'];
+        $social_keys = ['fb_app_id', 'twitter_handle', 'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube'];
         
         // Special handling for FB (might be ID or URL, usually ID in app_id field, but let's check for URL)
         // For sameAs, a URL is desired. Add URLs from fields and construct Twitter / X and Facebook URL
@@ -555,7 +555,7 @@ class SEO44_Frontend {
         }
 		// Use x.com instead of twitter.com?
         
-        $extras = ['social_linkedin', 'social_youtube', 'social_instagram', 'social_tiktok'];
+        $extras = ['social_instagram', 'social_linkedin', 'social_youtube', 'social_tiktok'];
         foreach($extras as $key) {
             $val = seo44_get_option($key);
             if ($val) $same_as[] = esc_url($val);
