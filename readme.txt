@@ -3,7 +3,7 @@ Contributors: sethsm
 Tags: seo, on-page seo, schema, structured data, xml sitemaps
 Requires at least: 5.5
 Tested up to: 6.8
-Stable tag: 4.0
+Stable tag: 4.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -259,7 +259,7 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
 13. The Jump Links Block in Editing Mode.
 14. The Sidebar controls for the Jump Links Block.
 15. The Integrations tab with Google Tag Manager and Site Tool settings.
-15. Published Horizontal Jump Links with sticky navigation showing the Active Link Indicator.
+16. Published Horizontal Jump Links with sticky navigation showing the Active Link Indicator.
 
 == You Might Also Like ==
 
