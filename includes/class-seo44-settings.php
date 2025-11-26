@@ -45,11 +45,11 @@ class SEO44_Settings {
         add_settings_field('twitter_handle', __('Twitter Username', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'twitter_handle', 'desc' => __('Enter your @username for the twitter:site and twitter:creator tags.', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('default_social_image_id', __('Default Social Image', 'search-appearance-toolkit-seo-44'), [$this, 'render_image_upload_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'default_social_image_id', 'desc' => __('Upload a default image for social sharing. This image will be used when a post does not have a set featured image.', 'search-appearance-toolkit-seo-44'), 'tooltip' => 'A high-quality image of at least 1200x630 pixels is recommended.']);
 		// Social Media Links used for Organization Schema - Google Knowledge Graph
-        add_settings_field('social_linkedin', __('LinkedIn URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_linkedin', 'desc' => __('Enter your full LinkedIn Company or Profile URL.', 'search-appearance-toolkit-seo-44')]);
-        add_settings_field('social_youtube', __('YouTube URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_youtube', 'desc' => __('Enter your full YouTube Channel URL.', 'search-appearance-toolkit-seo-44')]);
+        add_settings_field('social_instagram', __('Instagram URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_instagram', 'desc' => __('Enter the URL of your official Instagram page.', 'search-appearance-toolkit-seo-44')]);
+		add_settings_field('social_linkedin', __('LinkedIn URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_linkedin', 'desc' => __('Enter your full LinkedIn Company or Profile URL.', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('social_tiktok', __('TikTok URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_tiktok', 'desc' => __('Enter the URL of your official TikTok page.', 'search-appearance-toolkit-seo-44')]);
-		add_settings_field('social_instagram', __('Instagram URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_instagram', 'desc' => __('Enter the URL of your official Instagram page.', 'search-appearance-toolkit-seo-44')]);
-		
+		add_settings_field('social_youtube', __('YouTube URL', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'social_youtube', 'desc' => __('Enter your full YouTube Channel URL.', 'search-appearance-toolkit-seo-44')]);
+        
         // Schema Settings
         add_settings_section('seo44_schema_settings_section', __('Schema Structured Data Settings', 'search-appearance-toolkit-seo-44'), [$this, 'schema_section_callback'], 'seo-44_schema');
         add_settings_field('seo44_schema_tools', __('Schema Scanner', 'search-appearance-toolkit-seo-44'), [$this, 'render_schema_tools'], 'seo-44_schema', 'seo44_schema_settings_section');
@@ -315,7 +315,7 @@ class SEO44_Settings {
             'gtm_id',
             'google_site_verification',
             'bing_site_verification'
-			'social_linkedin', 'social_youtube', 'social_tiktok', 'social_instagram', 
+			'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube', 
 			'org_name', 'org_phone'
         ];
 		foreach ($text_fields as $tf) { 
