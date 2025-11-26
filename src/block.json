@@ -2,14 +2,39 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "attributes": {
-    "linkColor": { "type": "string", "default": "#0073aa" },
-    "linkBackgroundColor": { "type": "string", "default": "#f0f0f0" },
-    "linkBackgroundColorHover": { "type": "string", "default": "#e4e4e4" }, 
-    "linkBorderColor": { "type": "string", "default": "#dddddd" },
-    "linkBorderRadius": { "type": "number", "default": 10 },
-    "linkPadding": { "type": "string" },
+    "blockInstanceId": {
+        "type": "string"
+    },
+    "blockBackgroundColor": { "type": "string" },
+    "linkColor": {
+      "type": "string",
+      "default": "#046bd2"
+    },
+    "linkBackgroundColor": {
+      "type": "string",
+      "default": "#f4f4f4"
+    },
+    "linkBackgroundColorHover": {
+      "type": "string",
+      "default": "#efefef"
+    },
+    "linkBorderColor": {
+      "type": "string",
+      "default": "#dddddd"
+    },
+    "linkBorderRadius": {
+      "type": "number",
+      "default": 10
+    },
+    "linkPadding": {
+      "type": "string"
+    },
     "fontSize": {
       "type": "string"
+    },
+    "headingTag": {
+      "type": "string",
+      "default": "h2"
     },
     "headingLevels": {
       "default": [
@@ -22,10 +47,10 @@
       "type": "string"
     },
     "headings": {
-      "default": [
-      ],
+      "default": [],
       "items": {
         "properties": {
+          "level": { "type": "integer" },
           "anchor": {
             "type": "string"
           },
@@ -65,6 +90,35 @@
     },
     "textColor": {
       "type": "string"
+    },
+  "isSticky": {
+        "type": "boolean",
+        "default": false
+    },
+    "stickyOffset": {
+        "type": "number",
+        "default": 30
+    },
+    "jumpOffset": {
+      "type": "number",
+      "default": 120
+    },
+    "stickyStrategy": {
+        "type": "string",
+        "default": "desktop-only"
+    },
+    "isSmartIndentation": { "type": "boolean", "default": true },
+    "style": {
+      "type": "object",
+      "default": {
+        "spacing": {
+          "padding": "var:preset|spacing|30",
+          "margin": {
+            "top": "var:preset|spacing|30",
+            "bottom": "var:preset|spacing|30"
+          }
+        }
+      }
     }
   },
   "category": "text",
@@ -75,10 +129,26 @@
   "icon": "list-view",
   "name": "seo44/jump-links",
   "supports": {
-    "html": false
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    }
   },
   "textdomain": "search-appearance-toolkit-seo-44",
   "title": "SEO 44 Jump Links",
-  "version": "1.9.1",
+  "version": "2.0.0",
   "viewScript": "file:./view.js"
-} 
+}
