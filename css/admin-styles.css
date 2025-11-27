@@ -144,6 +144,8 @@
 .seo44-settings-wrap .tab-content.active {
     display: block;
 }
+.form-table td p{margin:5px 0;}
+#social_additional{max-width:890px}
 
 /* Migration Tools */
 .migration-presets {
