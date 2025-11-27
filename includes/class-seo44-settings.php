@@ -486,7 +486,7 @@ class SEO44_Settings {
         echo '<p>' . esc_html__('Schema.org markup helps search engines understand your website\'s content, potentially leading to better search ranking and more informative search results. SEO 44 can help you by adding structured data to your webpages in a modern JSON-LD format.', 'search-appearance-toolkit-seo-44') . '</p>';
     }
 	public function organization_section_callback() { 
-		echo <p>' . esc_html__('Provide details about your organization to help Google populate its Knowledge Graph. Other search engines and LLMs can also make use of the organization schema. ', 'search-appearance-toolkit-seo-44') . '<strong>' . esc_html__('All fields are optional.', 'search-appearance-toolkit-seo-44') . '</strong>  ' . esc_html__('Fill out any that apply.', 'search-appearance-toolkit-seo-44') . '</p>';  
+		echo '<p>' . esc_html__('Provide details about your organization to help Google populate its Knowledge Graph. Other search engines and LLMs can also make use of the organization schema. ', 'search-appearance-toolkit-seo-44') . '<strong>' . esc_html__('All fields are optional.', 'search-appearance-toolkit-seo-44') . '</strong>  ' . esc_html__('Fill out any that apply.', 'search-appearance-toolkit-seo-44') . '</p>';  
 		}
     public function migration_section_callback() {  echo '<p><strong>' . esc_html__('Migration made seamless:', 'search-appearance-toolkit-seo-44') . '</strong> ' . esc_html__('With these settings, you can adjust the SEO 44 plugin to fit the way your website already manages SEO information. Locate where your SEO data is stored so that you can continue using the same meta keys and pick up right where you left off with your previous SEO plugin.', 'search-appearance-toolkit-seo-44') . '</p>';  }
     
