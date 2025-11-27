@@ -111,6 +111,17 @@ class SEO44_Settings {
 		    ['id' => 'org_founding_date', 'desc' => __('Optional. The date the organization was founded (Format: YYYY or YYYY-MM-DD).', 'search-appearance-toolkit-seo-44')]
 		);
 		add_settings_field(
+		    'org_license', 
+		    __('Professional License / Credential', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    [
+		        'id' => 'org_license', 
+		        'desc' => __('Optional. Enter your official license number (e.g., Contractor License #12345, Real Estate License #98765).', 'search-appearance-toolkit-seo-44')
+		    ]
+		);
+		add_settings_field(
 		    'org_alternate_name', 
 		    __('Alternate Name / Acronym', 'search-appearance-toolkit-seo-44'), 
 		    [$this, 'render_text_field'], 
@@ -384,7 +395,7 @@ class SEO44_Settings {
             'google_site_verification',
             'bing_site_verification'
 			'social_facebook', 'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube', 
-			'org_name', 'org_phone','org_alternate_name', 'org_founder','org_founding_date',
+			'org_name', 'org_phone','org_alternate_name', 'org_founder','org_founding_date','org_license',
 			'org_address_street', 'org_address_city', 'org_address_state', 'org_address_zip', 'org_address_country'
         ];
 		foreach ($text_fields as $tf) { 
