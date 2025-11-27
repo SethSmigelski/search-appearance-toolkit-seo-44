@@ -234,7 +234,7 @@ jQuery(document).ready(function($) {
                         html += '<div class="notice notice-warning inline"><p><strong>Action Recommended:</strong> We found outdated Microdata schema on your site. To convert this to the modern JSON-LD format, we recommend the <a href="https://wordpress.org/plugins/microdata-to-json-ld-converter/" target="_blank" rel="noopener">Microdata to JSON-LD Converter</a> plugin. SEO 44 will not add a conflicting schema.</p></div>';
                     } 
                     else if (status === 'clean') {
-                        html += '<div class="notice notice-success inline"><p><strong>Ready to go!</strong> We didn\'t find any existing schema. You can enable Article schema below.</p></div>';
+                        html += '<div class="notice notice-success inline"><p><strong>Ready to go!</strong> We didn\'t find any existing schema. You can enable schema for your website.</p></div>';
                         if(response.data.post_preview) {
                             html += '<h4>Preview for your latest post:</h4>';
                             html += '<pre class="schema-preview">' + $('<div/>').text(response.data.post_preview).html() + '</pre>';
