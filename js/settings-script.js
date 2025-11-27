@@ -144,84 +144,63 @@ jQuery(document).ready(function($) {
     	}, 25); // 25ms pause
 	});
 
-    // --- Image Uploader with Auto-Save ---
-    var mediaUploader;
+    // --- UNIVERSAL IMAGE UPLOADER ---
+    function initSeo44Uploader(fieldId) {
+        var buttonId = '#' + fieldId + '_upload_btn';
+        var removeBtnId = '#' + fieldId + '_remove_btn';
+        var inputId = '#' + fieldId;
+        var previewId = '#' + fieldId + '_preview';
+        var file_frame; // Each uploader gets its own frame variable scope
 
-    // Handle the "Upload Image" button click
-    $('#default_social_image_id_upload_btn').on('click', function(e) {
-        e.preventDefault();
-        var base_id = 'default_social_image_id';
+        // UPLOAD BUTTON CLICK
+        $(document).on('click', buttonId, function(event){
+            event.preventDefault();
 
-        // If the media frame already exists, reopen it.
-        if (mediaUploader) {
-            mediaUploader.open();
-            return;
-        }
-
-        // Create the media frame.
-        mediaUploader = wp.media.frames.file_frame = wp.media({
-            title: 'Choose Default Social Image',
-            button: {
-                text: 'Choose Image'
-            },
-            multiple: false // We only want one image
-        });
-
-        // When an image is selected, run a callback.
-        mediaUploader.on('select', function() {
-            // Get the selected image's data.
-            var attachment = mediaUploader.state().get('selection').first().toJSON();
-
-            // Update the hidden input field with the new image ID.
-            $('#' + base_id).val(attachment.id);
-
-            // Display a preview of the selected image.
-            $('#' + base_id + '_preview').html('<img src="' + attachment.sizes.thumbnail.url + '" alt="Image preview" style="max-width:150px;"/>');
-
-            // Show the "Remove Image" button.
-            $('#' + base_id + '_remove_btn').show();
-
-            // Auto-save the new image ID via AJAX.
-            $.ajax({
-                url: seo44_ajax_object.ajax_url,
-                type: 'POST',
-                data: {
-                    action: 'seo44_save_social_image',
-                    nonce: seo44_ajax_object.nonce,
-                    image_id: attachment.id
-                }
-            });
-        });
-
-        // Open the media frame.
-        mediaUploader.open();
-    });
-
-    // Handle the "Remove Image" button click
-    $('#default_social_image_id_remove_btn').on('click', function(e) {
-        e.preventDefault();
-        var base_id = 'default_social_image_id';
-
-        // Clear the hidden input field.
-        $('#' + base_id).val('');
-
-        // Remove the image preview.
-        $('#' + base_id + '_preview').html('');
-
-        // Hide the "Remove Image" button.
-        $(this).hide();
-
-        // Auto-save the change (image ID = 0) via AJAX.
-        $.ajax({
-            url: seo44_ajax_object.ajax_url,
-            type: 'POST',
-            data: {
-                action: 'seo44_save_social_image',
-                nonce: seo44_ajax_object.nonce,
-                image_id: 0
+            // If the media frame already exists, reopen it.
+            if ( file_frame ) {
+                file_frame.open();
+                return;
             }
+
+            // Create the media frame.
+            file_frame = wp.media.frames.file_frame = wp.media({
+                title: 'Select Image',
+                button: {
+                    text: 'Use this image'
+                },
+                multiple: false 
+            });
+
+            // When an image is selected, run a callback.
+            file_frame.on( 'select', function() {
+                var attachment = file_frame.state().get('selection').first().toJSON();
+                
+                // Save the ID to the hidden input
+                $(inputId).val(attachment.id);
+                
+                // Update the preview area
+                var thumbUrl = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
+                $(previewId).html('<img src="'+thumbUrl+'" style="max-width:150px; height:auto; display:block; margin-top:10px; border:1px solid #ccc; padding:2px;" />');
+                
+                // Show the remove button
+                $(removeBtnId).show();
+            });
+
+            file_frame.open();
         });
-    });
+
+        // REMOVE BUTTON CLICK
+        $(document).on('click', removeBtnId, function(event){
+            event.preventDefault();
+            $(inputId).val(''); // Clear the ID
+            $(previewId).empty(); // Remove image
+            $(this).hide(); // Hide remove button
+        });
+    }
+
+    // Initialize specific fields
+    initSeo44Uploader('default_social_image_id'); // Original field
+    initSeo44Uploader('org_logo');                // New Organization Logo field
 
     // --- Schema Scanner ---
     $('#seo44_scan_schema_btn').on('click', function() {
