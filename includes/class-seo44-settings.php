@@ -140,7 +140,7 @@ class SEO44_Settings {
             'seo44_organization_schema_section', 
             [
                 'id' => 'org_logo', 
-                'desc' => __('Upload a specific logo for schema. If empty, we will try to use the Site Logo from your Customizer settings.', 'search-appearance-toolkit-seo-44'),
+                'desc' => __('Upload a specific logo for schema. If no image is uploaded, the Site Logo from your Customizer settings will be used if available.', 'search-appearance-toolkit-seo-44'),
                 'tooltip' => 'Google prefers images that are 112x112px or larger, in JPG, PNG, or WebP format.'
             ]
         );
