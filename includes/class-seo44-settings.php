@@ -192,6 +192,26 @@ class SEO44_Settings {
             'seo44_organization_schema_section', 
             ['id' => 'org_phone', 'desc' => __('Optional. Include the country code (e.g., +1-555-0199).', 'search-appearance-toolkit-seo-44')]
         );
+		add_settings_field(
+		    'org_email', 
+		    __('Contact Email', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_email', 'desc' => __('Optional. A public contact email address.', 'search-appearance-toolkit-seo-44')]
+		);
+		
+		add_settings_field(
+		    'org_area_served', 
+		    __('Service Area (City/Region)', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    [
+		        'id' => 'org_area_served', 
+		        'desc' => __('Optional. The geographic area where you provide services (e.g., "New York, NY" or "Orange County"). Important for local businesses without a storefront.', 'search-appearance-toolkit-seo-44')
+		    ]
+		);
 
         // Migration Settings
         add_settings_section('seo44_migration_settings_section', __('Custom Meta Key Configuration', 'search-appearance-toolkit-seo-44'), [$this, 'migration_section_callback'], 'seo-44_migration');
@@ -395,8 +415,9 @@ class SEO44_Settings {
             'google_site_verification',
             'bing_site_verification'
 			'social_facebook', 'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube', 
-			'org_name', 'org_phone','org_alternate_name', 'org_founder','org_founding_date','org_license',
+			'org_name', 'org_alternate_name', 'org_founder','org_founding_date','org_license',
 			'org_address_street', 'org_address_city', 'org_address_state', 'org_address_zip', 'org_address_country'
+			'org_phone', 'org_email', 'org_area_served',
         ];
 		foreach ($text_fields as $tf) { 
 			if (isset($input[$tf])) { 
