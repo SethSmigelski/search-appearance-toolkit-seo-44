@@ -646,6 +646,23 @@ class SEO44_Frontend {
 	        // You can leave it as raw string, Google parses ISO 8601 (YYYY-MM-DD) well.
 	        $schema['foundingDate'] = strip_tags($founding_date);
 	    }
+		// 8. Professional License (New)
+	    $license = seo44_get_option('org_license');
+	    if ($license) {
+	        // "hasCredential" is the modern schema property for this
+	        $schema['hasCredential'] = [
+	            '@type' => 'EducationalOccupationalCredential',
+	            'credentialCategory' => 'license',
+	            'name' => $license, // e.g., "Contractor License #123456"
+	            'recognizedBy' => [
+	                '@type' => 'Organization',
+	                'name' => 'State Licensing Board' // Generic fallback since we don't ask for the issuer
+	            ]
+	        ];
+	        
+	        // Also add it as a simple identifier for wider compatibility
+	        $schema['identifier'] = $license; 
+	    }
 
         return $schema;
     }
