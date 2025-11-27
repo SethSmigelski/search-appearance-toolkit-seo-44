@@ -246,9 +246,13 @@ class SEO44_Frontend {
         }
 
         // 3. Attempt to generate special schema
-        if (is_singular() && seo44_get_option('enable_advanced_schema')) {
-            $special_schemas = $this->detect_and_generate_special_schema($post_id);
-        }
+		if (is_singular() && seo44_get_option('enable_advanced_schema')) {
+		    $detected_schemas = $this->detect_and_generate_special_schema($post_id);
+		    // Merge instead of overwrite - important for organization schema
+		    if (!empty($detected_schemas)) {
+		        $special_schemas = array_merge($special_schemas, $detected_schemas);
+		    }
+		}
 		
 		
 		// 4.  Hook for Add-ons ---
