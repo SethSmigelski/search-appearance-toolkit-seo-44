@@ -78,7 +78,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Article:** Rich schema for posts, with details such as publisher, images, and word count. Features an enhanced author property that links to the author's profile URL to strengthen entity connection.
 * **WebPage:** Schema for pages and custom post types, including images. 
 * **BreadcrumbList:** Schema for all posts, pages, and taxonomy archives to enhance your appearance in search results.
-* **Other Formats:** ImageObject, FAQPage, and HowTo schemas may also be used where appropriate. 
+* **Other Formats:** ImageObject, VideoObject, FAQPage, and HowTo schemas may also be used where appropriate. 
 
 ### Advanced Schema Controls & Tools
 * **Intelligent Schema Scanner:** Scans your site for existing structured data from your theme or other plugins, helping you to prevent conflicts and duplicates before you enable schema.
