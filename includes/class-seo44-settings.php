@@ -41,9 +41,9 @@ class SEO44_Settings {
         add_settings_section('seo44_social_settings_section', __('Social Media Settings', 'search-appearance-toolkit-seo-44'), [$this, 'social_section_callback'], 'seo-44_social');
         // --- Group 1: Meta Tags (Open Graph / Twitter Cards) ---
         add_settings_field('enable_og_tags', __('Enable Facebook Open Graph', 'search-appearance-toolkit-seo-44'), [$this, 'render_checkbox_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'enable_og_tags', 'label' => __('Add Open Graph (og:) tags for Facebook, LinkedIn, etc.', 'search-appearance-toolkit-seo-44')]);
-    	add_settings_field('fb_app_id', __('Facebook App ID', 'search-appearance-toolkit-seo-44'),  [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'fb_app_id', 'desc' => __('Optional. Enter your Facebook App ID.', 'search-appearance-toolkit-seo-44'), 'tooltip' => 'A Facebook App ID is required for features like domain insights. Go to the Facebook Developers website to create or lookup your Facebook App ID.']);
+    	add_settings_field('fb_app_id', __('Facebook App ID', 'search-appearance-toolkit-seo-44'),  [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'fb_app_id', 'desc' => __('Optional: Enter your Facebook App ID.', 'search-appearance-toolkit-seo-44'), 'tooltip' => 'A Facebook App ID is required for features like domain insights. Go to the Facebook Developers website to create or lookup your Facebook App ID.']);
         add_settings_field('enable_twitter_tags', __('Enable Twitter Cards', 'search-appearance-toolkit-seo-44'), [$this, 'render_checkbox_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'enable_twitter_tags', 'label' => __('Add Twitter Card meta tags.', 'search-appearance-toolkit-seo-44')]);
-        add_settings_field('twitter_handle', __('Twitter Username', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'twitter_handle', 'desc' => __('Enter your @username for the twitter:site and twitter:creator tags.', 'search-appearance-toolkit-seo-44')]);
+        add_settings_field('twitter_handle', __('Twitter Username', 'search-appearance-toolkit-seo-44'), [$this, 'render_text_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'twitter_handle', 'desc' => __('Optional: Enter your @username for the twitter:site and twitter:creator tags.', 'search-appearance-toolkit-seo-44')]);
         add_settings_field('default_social_image_id', __('Default Social Image', 'search-appearance-toolkit-seo-44'), [$this, 'render_image_upload_field'], 'seo-44_social', 'seo44_social_settings_section', ['id' => 'default_social_image_id', 'desc' => __('Upload a default image for social sharing. This image will be used when a post does not have a set featured image.', 'search-appearance-toolkit-seo-44'), 'tooltip' => 'A high-quality image of at least 1200x630 pixels is recommended.']);
         // --- Group 2: Organization Profiles ---
         add_settings_section('seo44_social_organization_settings_section', __('Additional Profiles for Organization Schema', 'search-appearance-toolkit-seo-44'), [$this, 'social_organization_section_callback'], 'seo-44_social' );
@@ -96,12 +96,20 @@ class SEO44_Settings {
             ['id' => 'org_name', 'desc' => __('Leave empty to use the Site Title: ' . esc_html(get_bloginfo('name')) . '', 'search-appearance-toolkit-seo-44')]
         );
 		add_settings_field(
+		    'org_alternate_name', 
+		    __('Alternate Name / Acronym', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_text_field'], 
+		    'seo-44_schema', 
+		    'seo44_organization_schema_section', 
+		    ['id' => 'org_alternate_name', 'desc' => __('An acronym or shorter name your organization is known by.', 'search-appearance-toolkit-seo-44')]
+		);
+		add_settings_field(
 		    'org_founder', 
 		    __('Founder Name', 'search-appearance-toolkit-seo-44'), 
 		    [$this, 'render_text_field'], 
 		    'seo-44_schema', 
 		    'seo44_organization_schema_section', 
-		    ['id' => 'org_founder', 'desc' => __('Optional. The name of the person who founded the organization.', 'search-appearance-toolkit-seo-44')]
+		    ['id' => 'org_founder', 'desc' => __('The name of the person who founded the organization.', 'search-appearance-toolkit-seo-44')]
 		);
 		
 		add_settings_field(
@@ -110,7 +118,7 @@ class SEO44_Settings {
 		    [$this, 'render_text_field'], 
 		    'seo-44_schema', 
 		    'seo44_organization_schema_section', 
-		    ['id' => 'org_founding_date', 'desc' => __('Optional. The date the organization was founded (Format: YYYY or YYYY-MM-DD).', 'search-appearance-toolkit-seo-44')]
+		    ['id' => 'org_founding_date', 'desc' => __('The date the organization was founded (Format: YYYY or YYYY-MM-DD).', 'search-appearance-toolkit-seo-44')]
 		);
 		add_settings_field(
 		    'org_license', 
@@ -120,17 +128,25 @@ class SEO44_Settings {
 		    'seo44_organization_schema_section', 
 		    [
 		        'id' => 'org_license', 
-		        'desc' => __('Optional. Enter your official license number (e.g., Contractor License #12345, Real Estate License #98765).', 'search-appearance-toolkit-seo-44')
+		        'desc' => __('Enter your official license number (e.g., Contractor License #12345, Real Estate License #98765).', 'search-appearance-toolkit-seo-44')
 		    ]
 		);
-		add_settings_field(
-		    'org_alternate_name', 
-		    __('Alternate Name / Acronym', 'search-appearance-toolkit-seo-44'), 
-		    [$this, 'render_text_field'], 
-		    'seo-44_schema', 
-		    'seo44_organization_schema_section', 
-		    ['id' => 'org_alternate_name', 'desc' => __('Optional. An acronym or shorter name your organization is known by.', 'search-appearance-toolkit-seo-44')]
-		);
+		        // REUSING THE IMAGE UPLOADER!
+        add_settings_field(
+            'org_logo', 
+            __('Organization Logo', 'search-appearance-toolkit-seo-44'), 
+            [$this, 'render_image_upload_field'], 
+            'seo-44_schema', 
+            'seo44_organization_schema_section', 
+            [
+                'id' => 'org_logo', 
+                'desc' => __('Upload a specific logo for schema. If empty, we will try to use the Site Logo from your Customizer settings.', 'search-appearance-toolkit-seo-44'),
+                'tooltip' => 'Google prefers images that are 112x112px or larger, in JPG, PNG, or WebP format.'
+            ]
+        );
+		
+		
+		
 		// 3. Add Address Fields (Crucial for Local SEO & Disambiguation)
 		add_settings_field(
 		    'org_address_street', 
@@ -173,26 +189,14 @@ class SEO44_Settings {
 		    ['id' => 'org_address_country']
 		);
 		
-        // REUSING THE IMAGE UPLOADER!
-        add_settings_field(
-            'org_logo', 
-            __('Organization Logo', 'search-appearance-toolkit-seo-44'), 
-            [$this, 'render_image_upload_field'], 
-            'seo-44_schema', 
-            'seo44_organization_schema_section', 
-            [
-                'id' => 'org_logo', 
-                'desc' => __('Upload a specific logo for schema. If empty, we will try to use the Site Logo from your Customizer settings.', 'search-appearance-toolkit-seo-44'),
-                'tooltip' => 'Google prefers images that are 112x112px or larger, in JPG, PNG, or WebP format.'
-            ]
-        );
+
         add_settings_field(
             'org_phone', 
             __('Contact Phone Number', 'search-appearance-toolkit-seo-44'), 
             [$this, 'render_text_field'], 
             'seo-44_schema', 
             'seo44_organization_schema_section', 
-            ['id' => 'org_phone', 'desc' => __('Optional. Include the country code (e.g., +1-555-0199).', 'search-appearance-toolkit-seo-44')]
+            ['id' => 'org_phone', 'desc' => __('Include the country code (e.g., +1-555-0199).', 'search-appearance-toolkit-seo-44')]
         );
 		add_settings_field(
 		    'org_email', 
@@ -200,7 +204,7 @@ class SEO44_Settings {
 		    [$this, 'render_text_field'], 
 		    'seo-44_schema', 
 		    'seo44_organization_schema_section', 
-		    ['id' => 'org_email', 'desc' => __('Optional. A public contact email address.', 'search-appearance-toolkit-seo-44')]
+		    ['id' => 'org_email', 'desc' => __('A public contact email address.', 'search-appearance-toolkit-seo-44')]
 		);
 		
 		add_settings_field(
@@ -211,7 +215,7 @@ class SEO44_Settings {
 		    'seo44_organization_schema_section', 
 		    [
 		        'id' => 'org_area_served', 
-		        'desc' => __('Optional. The geographic area where you provide services (e.g., "New York, NY" or "Orange County"). Important for local businesses without a storefront.', 'search-appearance-toolkit-seo-44')
+		        'desc' => __('The geographic area where you provide services (e.g., "New York, NY" or "Orange County"). Important for local businesses without a storefront.', 'search-appearance-toolkit-seo-44')
 		    ]
 		);
 
@@ -481,9 +485,9 @@ class SEO44_Settings {
     public function schema_section_callback() { 
         echo '<p>' . esc_html__('Schema.org markup helps search engines understand your website\'s content, potentially leading to better search ranking and more informative search results. SEO 44 can help you by adding structured data to your webpages in a modern JSON-LD format.', 'search-appearance-toolkit-seo-44') . '</p>';
     }
-	public function organization_section_callback() {
-        echo '<p>' . esc_html__('Provide details about your organization (any that apply) to help Google populate its Knowledge Graph. Other search engines and LLMs can also make use of the organization schema.', 'search-appearance-toolkit-seo-44') . '</p>';
-    }
+	public function organization_section_callback() { 
+		echo <p>' . esc_html__('Provide details about your organization to help Google populate its Knowledge Graph. Other search engines and LLMs can also make use of the organization schema. ', 'search-appearance-toolkit-seo-44') . '<strong>' . esc_html__('All fields are optional.', 'search-appearance-toolkit-seo-44') . '</strong>  ' . esc_html__('Fill out any that apply.', 'search-appearance-toolkit-seo-44') . '</p>';  
+		}
     public function migration_section_callback() {  echo '<p><strong>' . esc_html__('Migration made seamless:', 'search-appearance-toolkit-seo-44') . '</strong> ' . esc_html__('With these settings, you can adjust the SEO 44 plugin to fit the way your website already manages SEO information. Locate where your SEO data is stored so that you can continue using the same meta keys and pick up right where you left off with your previous SEO plugin.', 'search-appearance-toolkit-seo-44') . '</p>';  }
     
     // FIXED: Rewrote all render functions to use printf for proper escaping.
