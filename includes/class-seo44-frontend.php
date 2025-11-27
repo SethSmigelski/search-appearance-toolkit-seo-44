@@ -607,15 +607,26 @@ class SEO44_Frontend {
             $schema['sameAs'] = $same_as;
         }
 
-        // Contact Point
-        $phone = seo44_get_option('org_phone');
-        if ($phone) {
-            $schema['contactPoint'] = [
-                '@type' => 'ContactPoint',
-                'telephone' => $phone,
-                'contactType' => 'customer service' 
-            ];
-        }
+        // Contact Point (Updated to include Email)
+	    $phone = seo44_get_option('org_phone');
+	    $email = seo44_get_option('org_email');
+	    
+	    if ($phone || $email) {
+	        $contact_point = ['@type' => 'ContactPoint'];
+	        if ($phone) {
+	            $contact_point['telephone'] = $phone;
+	            $contact_point['contactType'] = 'customer service';
+	        }
+	        if ($email) {
+	            $contact_point['email'] = $email;
+	        }
+	        $schema['contactPoint'] = $contact_point;
+	    }
+	    
+	    // Email at the top level is also good practice
+	    if ($email) {
+	        $schema['email'] = $email;
+	    }
 
 		// 5. Address
 	    $street = seo44_get_option('org_address_street');
@@ -628,6 +639,15 @@ class SEO44_Frontend {
 	            'addressRegion'   => seo44_get_option('org_address_state'),
 	            'postalCode'      => seo44_get_option('org_address_zip'),
 	            'addressCountry'  => seo44_get_option('org_address_country')
+	        ];
+	    }
+
+		// Service Area (New)
+	    $area_served = seo44_get_option('org_area_served');
+	    if ($area_served) {
+	        $schema['areaServed'] = [
+	            '@type' => 'Place',
+	            'name'  => $area_served
 	        ];
 	    }
 		// 6. Founder
@@ -663,8 +683,9 @@ class SEO44_Frontend {
 	        // Also add it as a simple identifier for wider compatibility
 	        $schema['identifier'] = $license; 
 	    }
-
-        return $schema;
+		// FINAL STEP: Apply Filters for Extensibility using 'seo44_organization_schema'
+        // Allows developers to add properties like 'duns', 'naics', 'awards', etc.
+    	return apply_filters('seo44_organization_schema', $schema);
     }
 
 	// --- Intelligent Schema Detection ---
