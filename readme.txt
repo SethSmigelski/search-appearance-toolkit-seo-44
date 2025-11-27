@@ -73,7 +73,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Include Images and Videos:** A built-in tool automatically finds all images and embedded YouTube videos in your content and adds them to the schema, boosting their appearance in search results.
 * **FAQ and How-To Detection:** Enable a smart scanner to detect patterns in your content for FAQ and How-To sections on your website and incorporate this useful format into the schema. 
 * **Modern Output:** All structured data is generated in the modern JSON-LD format preferred by search engines, following the guidelines set by [Schema.org](https://schema.org/).
-* **Granular Control:**  Taylor the Schema settings to fit your site's needs through Enable/disable settings, including on Custom Post Types and Taxonomies.
+* **Granular Control:**  Tailor the Schema settings to fit your site's needs through Enable/disable settings, including on Custom Post Types and Taxonomies.
 
 = Comprehensive XML Sitemaps =
 * **Full Content Coverage:** Automatically detects all public Custom Post Types and Taxonomies and provides simple checkboxes to let you choose exactly what content to include in your sitemap. 
