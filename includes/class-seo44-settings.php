@@ -414,7 +414,7 @@ class SEO44_Settings {
             'gtm_id', 'google_site_verification', 'bing_site_verification',
 			'social_facebook', 'social_instagram', 'social_linkedin', 'social_tiktok', 'social_youtube', 
 			'org_name', 'org_alternate_name', 'org_founder','org_founding_date','org_license',
-			'org_address_street', 'org_address_city', 'org_address_state', 'org_address_zip', 'org_address_country'
+			'org_address_street', 'org_address_city', 'org_address_state', 'org_address_zip', 'org_address_country',
 			'org_phone', 'org_email', 'org_area_served',
         ];
 		foreach ($text_fields as $tf) { 
