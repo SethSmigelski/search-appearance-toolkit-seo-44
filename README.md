@@ -73,14 +73,16 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Image Handling:**  Set a Default Social Image for content that doesn't have a featured image, and add your Twitter handle and Facebook App ID for better integration. 
 
 ### Schema Types Used
-* **WebSite:** Schema for your homepage, enabling Google Sitelinks Search Box potential. 
+* **WebSite:** Schema for your homepage, enabling Google Sitelinks Search Box potential.
+* **Organization:** Comprehensive schema for the Google Knowledge Graph, including deep details like Founder, Founding Date, Professional Credentials, and Service Area.
 * **Article:** Rich schema for posts, with details such as publisher, images, and word count. Features an enhanced author property that links to the author's profile URL to strengthen entity connection.
 * **WebPage:** Schema for pages and custom post types, including images. 
 * **BreadcrumbList:** Schema for all posts, pages, and taxonomy archives to enhance your appearance in search results.
 * **Other Formats:** ImageObject, FAQPage, and HowTo schemas may also be used where appropriate. 
 
 ### Advanced Schema Controls & Tools
-* **Intelligent Schema Scanner:** Scans your site for existing structured data from your theme or other plugins, helping you prevent dangerous conflicts and duplicates before you enable schema. 
+* **Intelligent Schema Scanner:** Scans your site for existing structured data from your theme or other plugins, helping you prevent dangerous conflicts and duplicates before you enable schema.
+* **Knowledge Graph Control:** A dedicated interface to manage your brand's digital identity. Define your Founder, Founding Date, Contact Info, and professional Credentials to improve E-E-A-T signals.
 * **Include Images and Videos:** A built-in tool automatically finds all images and embedded YouTube videos in your content and adds them to the schema, boosting their appearance in search results.
 * **FAQ and How-To Detection:** Enable a smart scanner to detect patterns in your content for FAQ and How-To sections on your website and incorporate this useful format into the schema. 
 * **Modern Output:** All structured data is generated in the modern JSON-LD format preferred by search engines, following the guidelines set by [Schema.org](https://schema.org/).
@@ -183,8 +185,102 @@ The plugin intelligently scans your content for patterns that match question-and
 
 The benefit of this is that Google can use this structured data to display your content in special, highly visible formats in the search results. An FAQ page might appear as a rich snippet with expandable questions, while a How-To article can be featured in a step-by-step guide. Rich snippets make your search results stand out, which can significantly improve your click-through rate (CTR).
 
+### Does this plugin create Organization schema that is better than my theme's built-in Organization schema?
+SEO 44 builds Organization Schema that is valuable to the **Google Knowledge Graph.** While many WordPress themes can produce *valid* Organization schema, this is SEO "thin content" that doesn't provide search engines and LLMs with any information that isn't already obvious.
+
+The SEO 44 plugin generates a rich Organization schema that goes far beyond what a theme can provide, displaying valuable information to Google and other search engines, as well as AI search platforms.
+Organization schema is the primary data source for the **Google Knowledge Panel**, which appears in the box on the right side of desktop search results for brand searches.
+
+A rich Organization schema explicitly tells Google:
+
+* **"These social profiles belong to us"** (via `sameAs`).
+* **"This is our official logo"**  (ensuring the right image appears in the Knowledge Panel).
+* **"This is how to contact customer service"**  (via `contactPoint`).
+* **"This is when the organization was formed and by whom"**  (via `foundingDate` and `founder`)
+* **“This is the business address and service area”**   and (via `address` and `areaServed`)
+
+If you leave this to the theme, Google often misses the connection between your website and the associated Twitter/Facebook/LinkedIn profiles.
+
+For more Schema advice, including instructions for disabling the schema that your theme's adds, visit [seo44plugin.com](https://seo44plugin.com/search-appearance-toolkit-seo-44/)
+
+### Should I use SEO 44 for schema if my theme already adds schema?
+
+First and foremost, you should **avoid** enabling the SEO schema features while your theme is doing so. 
+
+**Bonus:** The next FAQ question outlines how to use the Schema Scanner to detect existing schema (if you aren’t sure) and provides options and steps to take when schema markup is already incorporated into your site.
+
+This answer focuses on why you might want to tweak your theme in order to use SEO 44’s advanced schema features.
+
+When your website contains existing schema structured data, evaluate whether the structured data added by your theme is helpful for SEO, or whether the schema introduced by your theme merely duplicates labeling for semantic HTML elements that search engines and AI platforms already understand. For example, schema types like `WPHeader`, `WPFooter`, and `WPSideBar` provide no known SEO benefit (or GEO Benefit, for that matter), merely confirming what search engines and AI/LLMs already understand from the HTML structure (e.g., `<header>` and `<footer>`).
+
+Themes include these basic structural schemas to be “schema-ready,” relying on Schema Microdata inline with HTML attributes like itemscope and itemtype, which result in slightly more cluttered HTML code that can be harder to manage. In contrast, there are advantages to using a dedicated SEO plugin like SEO 44 to inject high-value schemas via the schema JSON-LD format. Using JSON-LD keeps the structured data separate from the HTML markup, leading to cleaner HTML.
+
+
 ### Will this plugin create duplicate schema if my theme already adds them?
-No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.  
+No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.
+
+If the scanner detects existing schema, you have three options.
+
+**Option 1: Stick with your current schema**
+
+Leave the “Enable Schema” checkbox unchecked in the SEO 44 **Schema Structured Data** tab if you wish to stick with the current schema added by your theme.
+
+**Option 2: Convert existing schema to JSON-LD format**
+
+If you are happy with the schema your theme adds, but would like to modernize it from the inline Microdata format to the more search-engine-friendly JSON-LD format, consider using the [Microdata to JSON-LD Converter](https://www.sethcreates.com/plugins-for-wordpress/microdata-to-json-ld-converter/) plugin for WordPress.
+
+For this option, you should also leave the “Enable Schema” checkbox unchecked.
+
+**Option 3: Disable schema from your theme and then enable SEO 44 schema**
+
+If you are excited to use the schema features available in SEO 44, like:
+
+* The automated content scan, which adds images and embedded YouTube videos to the schema
+* The smart FAQ and How-To pattern detection scanner that creates special FAQ and How-To schema for those sections
+
+The first step is to disable your theme’s schema output. Themes that add schema should include instructions for disabling the schema they add.
+
+For example, the popular **Astra** theme has a [webpage dedicated to removing their schema structured data](https://wpastra.com/docs/disable-schema-markup/). For the Astra theme, you must add this code to your functions.php file:
+
+```php
+add_filter( 'astra_schema_enabled', '__return_false' );
+```
+
+Once that is complete, you can check your website created by your theme.
+
+**What if there is still some schema left on your page?**
+
+If you discover that your theme, Astra in this case, is still adding schema markup, additional troubleshooting may be necessary.
+
+For example, if `itemtype="https://schema.org/SiteNavigationElement"` is being added to the dropdown menu in your header even after disabling the theme’s schema, you can use a standard WordPress output filter to strip the schema attributes programmatically.
+
+```php
+/**
+ * Removes SiteNavigationElement schema markup from the primary navigation menu.
+ */
+function remove_sitenavigationelement_schema( $nav_menu, $args ) {
+    // 1. Remove the 'itemtype' attribute and its value.
+    // Targets: itemtype="https://schema.org/SiteNavigationElement"
+    $nav_menu = preg_replace(
+        '/\s?itemtype="https:\/\/schema\.org\/SiteNavigationElement"/',
+        '',
+        $nav_menu
+    );
+
+    // 2. Remove the 'itemscope' attribute and its value,
+    // handling variations like 'itemscope="itemscope"' or just 'itemscope'.
+    $nav_menu = preg_replace(
+        '/\s?itemscope(?:="itemscope")?/',
+        '',
+        $nav_menu
+    );
+
+    return $nav_menu;
+}
+add_filter( 'wp_nav_menu', 'remove_sitenavigationelement_schema', 10, 2 );
+```
+
+Once you have ensured that there will not be duplicate schema issues, return to the SEO 44 Schema Structured Data and check the box to Enable Schema!
 
 ### How do I add Google Tag Manager (GTM)?
 The Search Appearance Toolkit (SEO 44) makes this easy. All you need is your Container ID. 
@@ -498,7 +594,6 @@ _The Jump Links Block in Editing Mode._
 
 ---
 
-
 ![The Sidebar controls for the Jump Links Block](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-14.png)
 
 _The Sidebar controls for the Jump Links Block._ 
@@ -519,8 +614,18 @@ If you like this plugin, you might also enjoy these WordPress tools:
 
 ## Changelog
 
+### 4.2.0
+* **FEATURE:** **Rich Organization Schema:** Added a comprehensive settings section to generate Organization structured data for the Knowledge Graph.
+* **FEATURE:** **Knowledge Graph Fields:** Added support for Identity (Name, Logo, Alternate Name), Authority (Founder, Founding Date), Credentials (License/Certifications), Contact (Phone, Email, Address), and Reach (Service Area).
+* **FEATURE:** **Custom Social Profiles:** Added an "Additional Social URLs" field to allow linking to any platform (Wikipedia, BlueSky, Threads, etc.) in the 'sameAs' schema property.
+* **FEATURE:** **Developer Hook:** Added `seo44_organization_schema` filter to allow developers to extend or modify organization data programmatically.
+* **UI:** Reorganized the Social Media settings tab into distinct sections for "Meta Tags" and "Organization Profiles" for better clarity.
+* **FIX:** Resolved a logic issue where Organization schema could be overwritten on sites using a Static Homepage.
+* **PERF:** Hardened PHP 8 compatibility for date and string processing within schema generation.
+* **TWEAK:** Updated the image uploader JavaScript to support multiple distinct upload buttons on the settings page.
+
 ### 4.1.0
-Jump Links Block Updates:
+**Jump Links Block Updates:**
 * **FEATURE:** **Sticky Positioning:** Keep your table of contents visible while users scroll. Includes a "Top Offset" slider to clear sticky headers, a "Jump Offset" slider to ensure that the sticky header does not cover the heading text, and a "Disable on Mobile" toggle to preserve screen space on small devices.
 * **FEATURE:** **Auto-Hide Title:** Implemented a smart "sticky state" detection. When the block sticks, the title gently collapses and fades out to keep the interface clean (this occurs when a block title is used alongside sticky positioning).
 * **FEATURE:** **Smart Indentation:** Added a "Create Visual Hierarchy" toggle. When enabled, H3 and H4 sub-headings are visually indented to create a clear, nested outline structure.
