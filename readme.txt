@@ -169,8 +169,26 @@ The benefit of this is that Google can use this structured data to display your 
 = Will this plugin create duplicate schema if my theme already adds them? =
 No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.  
 
+= Does this plugin create Organization schema that is better than my theme's built-in Organization schema? =
+SEO 44 builds Organization Schema that is valuable to the **Google Knowledge Graph.** While many WordPress themes can produce *valid* Organization schema, this is SEO "thin content" that doesn't provide search engines and LLMs with any information that isn't already obvious.
+
+The SEO 44 plugin generates a rich Organization schema that goes far beyond what a theme can provide, displaying valuable information to Google and other search engines, as well as AI search platforms.
+Organization schema is the primary data source for the **Google Knowledge Panel**, which appears in the box on the right side of desktop search results for brand searches.
+
+A rich Organization schema explicitly tells Google:
+
+* **"These social profiles belong to us"** (via `sameAs`).
+* **"This is our official logo"**  (ensuring the right image appears in the Knowledge Panel).
+* **"This is how to contact customer service"**  (via `contactPoint`).
+* **"This is when the organization was formed and by whom"**  (via `foundingDate` and `founder`)
+* **“This is the business address and service area”**   and (via `address` and `areaServed`)
+
+If you leave this to the theme, Google often misses the connection between your website and the associated Twitter/Facebook/LinkedIn profiles.
+
+For more Schema advice, including instructions for disabling the schema that your theme's adds, visit [seo44plugin.com](https://seo44plugin.com/search-appearance-toolkit-seo-44/)
+
 = How do I add Google Tag Manager (GTM)? =
-The Search Appearance Toolkit (SEO 44) makes this easy. All you need is your Container ID from Google Tag manager. All you need to do is copy  your **Container** ID (it looks like `GTM-XXXXXXX`) and paste it into the **"Google Tag Manager ID"** field on the **Settings > SEO 44 > Integrations** tab and SEO 44 will automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
+The Search Appearance Toolkit (SEO 44) makes this easy. All you need is your Container ID from Google Tag Manager. All you need to do is copy  your **Container** ID (it looks like `GTM-XXXXXXX`) and paste it into the **"Google Tag Manager ID"** field on the **Settings > SEO 44 > Integrations** tab and SEO 44 will automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
 
 To add Google Tag Manager integration and learn how to track click events through GTM, follow the clear step-by-step instructions in the [How to Set Up Google Tag Manager (GTM) section of the SEO 44 Integrations Setup Guide](https://seo44plugin.com/search-appearance-toolkit-seo-44/integrations-setup-guide/#how-to-set-up-google-tag-manager-gtm). 
 
