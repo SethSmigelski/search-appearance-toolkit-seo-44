@@ -60,7 +60,8 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Image Handling:**  Set a Default Social Image for content that doesn't have a featured image, and add your Twitter handle and Facebook App ID for better integration. 
 
 = Schema Types Useds =  
-* **WebSite:** Schema for your homepage, enabling Google Sitelinks Search Box potential. 
+* **WebSite:** Schema for your homepage, enabling Google Sitelinks Search Box potential.
+* **Organization:** Comprehensive schema for the Google Knowledge Graph, including deep details like Founder, Founding Date, Professional Credentials, and Service Area.
 * **Article:** Rich schema for posts, with details such as publisher, images, and word count. Features an enhanced author property that links to the author's profile URL to strengthen entity connection.
 * **WebPage:** Schema for pages and custom post types, including images. 
 * **BreadcrumbList:** Schema for all posts, pages, and taxonomy archives to enhance your appearance in search results.
@@ -68,6 +69,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 
 = Advanced Schema Controls & Tools =
 * **Intelligent Schema Scanner:** Scans your site for existing structured data from your theme or other plugins, helping you prevent dangerous conflicts and duplicates before you enable schema. 
+* **Knowledge Graph Control:** A dedicated interface to manage your brand's digital identity. Define your Founder, Founding Date, Contact Info, and professional Credentials to improve E-E-A-T signals.
 * **Include Images and Videos:** A built-in tool automatically finds all images and embedded YouTube videos in your content and adds them to the schema, boosting their appearance in search results.
 * **FAQ and How-To Detection:** Enable a smart scanner to detect patterns in your content for FAQ and How-To sections on your website and incorporate this useful format into the schema. 
 * **Modern Output:** All structured data is generated in the modern JSON-LD format preferred by search engines, following the guidelines set by [Schema.org](https://schema.org/).
@@ -225,7 +227,7 @@ You can save a fully customized Jump Links block as a Block Pattern to easily re
 Follow these instructions to [create a Block Pattern of a Jump Links Block](https://seo44plugin.com/jump-links-block-seo-44/creating-block-patterns/).
 
 == For Developers ==
-For advanced theme development, SEO 44 provides four template tags for working with meta tags and schema structured data, as well as a filter hook for adding custom schema to sites.
+For advanced theme development, SEO 44 provides four template tags for working with meta tags and schema structured data, as well as two filter hooks for adding custom schema to sites.
 
 Our **[Notes for Developers](https://seo44plugin.com/search-appearance-toolkit-seo-44/notes-for-developers/)** page provides more information and examples.
 
@@ -288,6 +290,16 @@ If you like this plugin, you might also enjoy these WordPress tools:
 * **[Under The Weather](https://wordpress.org/plugins/under-the-weather/)** - A lightweight and customizable weather widget, powered by the OpenWeather API, that caches and presents weather data with multiple style options.
 
 == Changelog ==
+
+= 4.2.0 =
+* FEATURE: **Rich Organization Schema:** Added a comprehensive settings section to generate Organization structured data for the Knowledge Graph.
+* FEATURE: **Knowledge Graph Fields:** Added support for Identity (Name, Logo, Alternate Name), Authority (Founder, Founding Date), Credentials (License/Certifications), Contact (Phone, Email, Address), and Reach (Service Area).
+* FEATURE: **Custom Social Profiles:** Added an "Additional Social URLs" field to allow linking to any platform (Wikipedia, BlueSky, Threads, etc.) in the 'sameAs' schema property.
+* FEATURE: **Developer Hook:** Added `seo44_organization_schema` filter to allow developers to programmatically extend or modify organization data.
+* UI: Reorganized the Social Media settings tab into distinct sections for "Meta Tags" and "Organization Profiles" for better clarity.
+* FIX: Resolved a logic issue where Organization schema could be overwritten on sites using a Static Homepage.
+* PERF: Hardened PHP 8 compatibility for date and string processing within schema generation.
+* TWEAK: Updated the image uploader JavaScript to support multiple distinct upload buttons on the settings page.
 
 = 4.1.0 =
 **Jump Links Block Updates:**
