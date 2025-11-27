@@ -194,7 +194,7 @@ class SEO44_Frontend {
 			if (seo44_get_option('enable_twitter_tags')) {
 				echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
 				$twitter_handle = seo44_get_option('twitter_handle');
-				if (!empty($twitter_handle)) {
+				if ( !empty($twitter_handle) && is_string($twitter_handle) ) {
 					$handle = esc_attr(str_replace('@', '', $twitter_handle));
 					printf('<meta name="twitter:site" content="@%s">' . "\n", esc_attr($handle));
 					printf('<meta name="twitter:creator" content="@%s">' . "\n", esc_attr($handle));
@@ -554,7 +554,7 @@ class SEO44_Frontend {
 
 		// Twitter/X: Handle logic
 	    $twitter_handle = seo44_get_option('twitter_handle');
-	    if ($twitter_handle) {
+	    if ( !empty($twitter_handle) && is_string($twitter_handle) ) {
 	        // Clean handle just in case they added @
 	        $clean_handle = str_replace('@', '', $twitter_handle);
 	        $same_as[] = 'https://x.com/' . esc_attr($clean_handle);
@@ -567,7 +567,7 @@ class SEO44_Frontend {
         }
 		// NEW: Process Additional URLs (One per line)
 	    $additional_urls = seo44_get_option('social_additional');
-	    if (!empty($additional_urls)) {
+	    if ( !empty($additional_urls) && is_string($additional_urls) ) {
 	        // Split by newline, trim whitespace, and filter empty lines
 	        $urls = array_filter(array_map('trim', explode("\n", $additional_urls)));
 	        
@@ -665,7 +665,7 @@ class SEO44_Frontend {
 	
 	    // 7. Founding Date
 	    $founding_date = seo44_get_option('org_founding_date');
-	    if ($founding_date) {
+	    if ( !empty($founding_date) && is_string($founding_date) ) {
 	        // Basic validation: ensure it looks somewhat like a year or date
 	        // You can leave it as raw string, Google parses ISO 8601 (YYYY-MM-DD) well.
 	        $schema['foundingDate'] = strip_tags($founding_date);
