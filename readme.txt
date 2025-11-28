@@ -75,8 +75,6 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Modern Output:** All structured data is generated in the modern JSON-LD format preferred by search engines, following the guidelines set by [Schema.org](https://schema.org/).
 * **Granular Control:**  Tailor the Schema settings to fit your site's needs through Enable/disable settings, including on Custom Post Types and Taxonomies.
 
-Read more about the [Schema Structured Data](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/) created by Search Appearance Toolkit (SEO 44).
-
 = Comprehensive XML Sitemaps =
 * **Full Content Coverage:** Automatically detects all public Custom Post Types and Taxonomies and provides simple checkboxes to let you choose exactly what content to include in your sitemap. 
 * **Image Sitemaps:** Includes options to add both Featured Images and images found within your post content to your sitemaps, providing more context to search engines. 
