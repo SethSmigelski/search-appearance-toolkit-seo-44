@@ -174,16 +174,28 @@ The *featured image* of any post or page will automatically be used as the prima
 
 If you need a site-wide default image for pages that don't have a featured image, you can set a *Default Social Image* on the plugin's "Social Media" settings tab. This image will be used as a fallback social media image when a featured image has not been set.
 
-### How can I see my webpage's schema?
-Your page's schema is added as a JSON-LD script in the <head> section of your page's HTML. To see it, go to a page on your website, right-click, and select "View Page Source." Search for the text application/ld+json to find the schema block. You can then copy the code and test it using a tool like the [Schema Markup Validator](https://validator.schema.org/).
+### What is Schema Structured Data and why should I use it on my website?
+Schema Structured Data is machine-readable code that you add to your website to help search engines like Google better understand your content. Structured data is typically generated in the modern JSON-LD format, following guidelines set by Schema.org, a universal web standard used by over 10 million websites.
+
+Read more about (Schema Structured Data)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-is-schema-structured-data] and the SEO and GEO benefits of the schema created by this plugin.
+
+### Will this plugin create duplicate schema if my theme already adds them?
+No. Using the Schema Scanner, you can detect whether your theme or another plugin is already outputting JSON-LD or Microdata. If the scanner finds existing schema, it will notify you.
+
+Read more about the (Schema Scanner and what to do if you find existing schema on your website)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema].
 
 ### How does the plugin handle author schema?
 SEO 44 creates a Person schema for the author of each article. To enhance this, it will automatically use the "Website" URL from the author's WordPress user profile to add url and @id attributes to the schema. This creates a powerful, machine-readable link between your content and its author, which helps search engines like Google build a stronger understanding of your site's authority and expertise (E-E-A-T).
+
+Read more about the (Author Schema)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-author-schema] created by SEO 44.
+
 
 ### What are the benefits of using FAQPage and HowTo schema?
 The plugin intelligently scans your content for patterns that match question-and-answer formats or step-by-step instructions (when this option is enabled). The plugin locates this content and automatically generates FAQPage or HowTo schema that presents this content within the JSON-LD.
 
 The benefit of this is that Google can use this structured data to display your content in special, highly visible formats in the search results. An FAQ page might appear as a rich snippet with expandable questions, while a How-To article can be featured in a step-by-step guide. Rich snippets make your search results stand out, which can significantly improve your click-through rate (CTR).
+
+Read more about the (FAQPage and HowTo Schema)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-faqpage-and-howto-schema] created by SEO 44.
 
 ### Does this plugin create Organization schema that is better than my theme's built-in Organization schema?
 SEO 44 builds Organization Schema that is valuable to the **Google Knowledge Graph.** While many WordPress themes can produce *valid* Organization schema, this is SEO "thin content" that doesn't provide search engines and LLMs with any information that isn't already obvious.
@@ -201,86 +213,21 @@ A rich Organization schema explicitly tells Google:
 
 If you leave this to the theme, Google often misses the connection between your website and the associated Twitter/Facebook/LinkedIn profiles.
 
-For more Schema advice, including instructions for disabling the schema that your theme's adds, visit [seo44plugin.com](https://seo44plugin.com/search-appearance-toolkit-seo-44/)
+Read more about [Organization Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-organization-schema) and how to [deal with existing schema on your website](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema).
+
 
 ### Should I use SEO 44 for schema if my theme already adds schema?
 
 First and foremost, you should **avoid** enabling the SEO schema features while your theme is doing so. 
 
-**Bonus:** The next FAQ question outlines how to use the Schema Scanner to detect existing schema (if you aren’t sure) and provides options and steps to take when schema markup is already incorporated into your site.
-
-This answer focuses on why you might want to tweak your theme in order to use SEO 44’s advanced schema features.
-
 When your website contains existing schema structured data, evaluate whether the structured data added by your theme is helpful for SEO, or whether the schema introduced by your theme merely duplicates labeling for semantic HTML elements that search engines and AI platforms already understand. For example, schema types like `WPHeader`, `WPFooter`, and `WPSideBar` provide no known SEO benefit (or GEO Benefit, for that matter), merely confirming what search engines and AI/LLMs already understand from the HTML structure (e.g., `<header>` and `<footer>`).
 
 Themes include these basic structural schemas to be “schema-ready,” relying on Schema Microdata inline with HTML attributes like itemscope and itemtype, which result in slightly more cluttered HTML code that can be harder to manage. In contrast, there are advantages to using a dedicated SEO plugin like SEO 44 to inject high-value schemas via the schema JSON-LD format. Using JSON-LD keeps the structured data separate from the HTML markup, leading to cleaner HTML.
 
+[Compare Theme-Generated and SEO 44 Plugin Generated Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#schema-structured-data-theme-generated-vs-plugin-generated).
 
-### Will this plugin create duplicate schema if my theme already adds them?
-No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.
+[Decide when to keep and learn how to remove theme-generated schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema).
 
-If the scanner detects existing schema, you have three options.
-
-**Option 1: Stick with your current schema**
-
-Leave the “Enable Schema” checkbox unchecked in the SEO 44 **Schema Structured Data** tab if you wish to stick with the current schema added by your theme.
-
-**Option 2: Convert existing schema to JSON-LD format**
-
-If you are happy with the schema your theme adds, but would like to modernize it from the inline Microdata format to the more search-engine-friendly JSON-LD format, consider using the [Microdata to JSON-LD Converter](https://www.sethcreates.com/plugins-for-wordpress/microdata-to-json-ld-converter/) plugin for WordPress.
-
-For this option, you should also leave the “Enable Schema” checkbox unchecked.
-
-**Option 3: Disable schema from your theme and then enable SEO 44 schema**
-
-If you are excited to use the schema features available in SEO 44, like:
-
-* The automated content scan, which adds images and embedded YouTube videos to the schema
-* The smart FAQ and How-To pattern detection scanner that creates special FAQ and How-To schema for those sections
-
-The first step is to disable your theme’s schema output. Themes that add schema should include instructions for disabling the schema they add.
-
-For example, the popular **Astra** theme has a [webpage dedicated to removing their schema structured data](https://wpastra.com/docs/disable-schema-markup/). For the Astra theme, you must add this code to your functions.php file:
-
-```php
-add_filter( 'astra_schema_enabled', '__return_false' );
-```
-
-Once that is complete, you can check your website created by your theme.
-
-**What if there is still some schema left on your page?**
-
-If you discover that your theme, Astra in this case, is still adding schema markup, additional troubleshooting may be necessary.
-
-For example, if `itemtype="https://schema.org/SiteNavigationElement"` is being added to the dropdown menu in your header even after disabling the theme’s schema, you can use a standard WordPress output filter to strip the schema attributes programmatically.
-
-```php
-/**
- * Removes SiteNavigationElement schema markup from the primary navigation menu.
- */
-function remove_sitenavigationelement_schema( $nav_menu, $args ) {
-    // 1. Remove the 'itemtype' attribute and its value.
-    // Targets: itemtype="https://schema.org/SiteNavigationElement"
-    $nav_menu = preg_replace(
-        '/\s?itemtype="https:\/\/schema\.org\/SiteNavigationElement"/',
-        '',
-        $nav_menu
-    );
-
-    // 2. Remove the 'itemscope' attribute and its value,
-    // handling variations like 'itemscope="itemscope"' or just 'itemscope'.
-    $nav_menu = preg_replace(
-        '/\s?itemscope(?:="itemscope")?/',
-        '',
-        $nav_menu
-    );
-
-    return $nav_menu;
-}
-add_filter( 'wp_nav_menu', 'remove_sitenavigationelement_schema', 10, 2 );
-```
-
-Once you have ensured that there will not be duplicate schema issues, return to the SEO 44 Schema Structured Data and check the box to Enable Schema!
 
 ### How do I add Google Tag Manager (GTM)?
 The Search Appearance Toolkit (SEO 44) makes this easy. All you need is your Container ID. 
