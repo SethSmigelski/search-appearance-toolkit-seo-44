@@ -41,6 +41,7 @@
 .wp-block-seo44-jump-links.is-layout-horizontal ol li,
 .wp-block-seo44-jump-links.is-layout-horizontal ul li {
     margin: 0.5em 0 0;
+	line-height: calc(var(--jump-link-font-size, 1em)*1.5); /* Important for fixing height */
 }
 
 .wp-block-seo44-jump-links li a {    
@@ -121,7 +122,7 @@
 /* Horizontal Layout: Collapse to 1 line */
 .wp-block-seo44-jump-links.is-collapsible.is-layout-horizontal > nav > ul,
 .wp-block-seo44-jump-links.is-collapsible.is-layout-horizontal > nav > ol {
-    max-height: calc(var(--jump-link-font-size, 1em) * 1.7 + 1.5em); /* font-size * line-height + padding */
+    max-height: calc(var(--jump-link-font-size, 1em)*1.5 + 1.5em + 2px); /* defined line height of li (font-size * 1.5)  + vertical padding + border thickness */
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
