@@ -161,24 +161,24 @@ If you need a site-wide default image for pages that don't have a featured image
 = What is Schema Structured Data and why should I use it on my website? =
 Schema Structured Data is machine-readable code that you add to your website to help search engines like Google better understand your content. Structured data is typically generated in the modern JSON-LD format, following guidelines set by Schema.org, a universal web standard used by over 10 million websites.
 
-Read more about (Schema Structured Data)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-is-schema-structured-data] and the SEO and GEO benefits of the schema created by this plugin.
+Read more about [Schema Structured Data](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-is-schema-structured-data) and the SEO and GEO benefits of the schema created by this plugin.
 
 = Will this plugin create duplicate schema if my theme already adds them? =
-No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.
+No. Using the Schema Scanner, you can detect whether your theme or another plugin is already outputting JSON-LD or Microdata. If the scanner finds existing schema, it will notify you.
 
-Read more about the (Schema Scanner and what to do if you find existing schema on your website)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema].
+Read more about the [Schema Scanner and what to do if you find existing schema on your website](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema).
 
 = How does the plugin handle author schema? =
 SEO 44 creates a Person schema for the author of each article. To enhance this, it will automatically use the "Website" URL from the author's WordPress user profile to add url and @id attributes to the schema. This creates a powerful, machine-readable link between your content and its author, which helps search engines like Google build a stronger understanding of your site's authority and expertise (E-E-A-T).
 
-Read more about the (Author Schema)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-author-schema] created by SEO 44.
+Read more about the [Author Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-author-schema) created by SEO 44.
 
 = What are the benefits of using FAQPage and HowTo schema? =
 The plugin intelligently scans your content for patterns that match question-and-answer formats or step-by-step instructions (when this option is enabled). The plugin locates this content and automatically generates FAQPage or HowTo schema that presents this content within the JSON-LD.
 
 The benefit of this is that Google can use this structured data to display your content in special, highly visible formats in the search results. An FAQ page might appear as a rich snippet with expandable questions, while a How-To article can be featured in a step-by-step guide. Rich snippets make your search results stand out, which can significantly improve your click-through rate (CTR).
 
-Read more about the (FAQPage and HowTo Schema)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-faqpage-and-howto-schema] created by SEO 44.
+Read more about the [FAQPage and HowTo Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-faqpage-and-howto-schema) created by SEO 44.
 
 = Does this plugin create Organization schema that is better than my theme's built-in Organization schema? =
 SEO 44 builds Organization Schema that is valuable to the **Google Knowledge Graph.** While many WordPress themes can produce *valid* Organization schema, this is SEO "thin content" that doesn't provide search engines and LLMs with any information that isn't already obvious.
