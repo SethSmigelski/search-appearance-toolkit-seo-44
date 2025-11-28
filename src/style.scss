@@ -17,7 +17,9 @@
 /* Keep spacing tight for sticky nav / avoid theme conflicts  */
 .wp-block-seo44-jump-links nav > ul li,
 .wp-block-seo44-jump-links nav > ol li{
-    margin:0;padding:0
+    margin:0;
+	padding:0;
+	line-height: calc(var(--jump-link-font-size, 1em)*1.75); /* Important for fixing height on sticky */
 }
 
 /* Jump Links Block Styles */
@@ -41,7 +43,6 @@
 .wp-block-seo44-jump-links.is-layout-horizontal ol li,
 .wp-block-seo44-jump-links.is-layout-horizontal ul li {
     margin: 0.5em 0 0;
-	line-height: calc(var(--jump-link-font-size, 1em)*1.5); /* Important for fixing height */
 }
 
 .wp-block-seo44-jump-links li a {    
@@ -74,7 +75,6 @@
     /* If horizontal, allow wrapping so we can see the overflow */
     flex-wrap: wrap;
     /* Limit to roughly one line of text height */
-    max-height: 2.5em; 
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
@@ -109,7 +109,7 @@
 /* Vertical Layout: Collapse to 2 lines */
 .wp-block-seo44-jump-links.is-collapsible:not(.is-layout-horizontal) > nav > ul,
 .wp-block-seo44-jump-links.is-collapsible:not(.is-layout-horizontal) > nav > ol {
-    max-height: calc(var(--jump-link-font-size, 1em) * 1.9 * 2); /* font-size * generous line-height * 2 lines */
+    max-height: calc(var(--jump-link-font-size, 1em)*3.5); /* defined line height of li (font-size * 1.75) * 2 for two lines */
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 	max-width: calc(100% - 40px);
@@ -122,7 +122,7 @@
 /* Horizontal Layout: Collapse to 1 line */
 .wp-block-seo44-jump-links.is-collapsible.is-layout-horizontal > nav > ul,
 .wp-block-seo44-jump-links.is-collapsible.is-layout-horizontal > nav > ol {
-    max-height: calc(var(--jump-link-font-size, 1em)*1.5 + 1.5em + 2px); /* defined line height of li (font-size * 1.5)  + vertical padding + border thickness */
+    max-height: calc(var(--jump-link-font-size, 1em)*1.75 + 1.5em + 2px); /* defined line height of li (font-size * 1.5)  + vertical padding + border thickness */
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
 }
@@ -158,12 +158,10 @@
 /* BULLETED LISTS (UL): Use Margin to move bullet + text */
 .wp-block-seo44-jump-links:not(.is-layout-horizontal) ul li.seo44-jump-link-level-3 {
     margin-left: 1.5em;
-    font-size: 0.95em; 
     opacity: 0.9;
 }
 .wp-block-seo44-jump-links:not(.is-layout-horizontal) ul li.seo44-jump-link-level-4 {
     margin-left: 3em;
-    font-size: 0.9em; 
     opacity: 0.85;
     list-style-type: circle; /* Change bullet style for hierarchy */
 }
@@ -177,12 +175,10 @@
 /* NUMBERED LISTS (OL): Use Padding to keep numbers aligned, indent text only */
 .wp-block-seo44-jump-links:not(.is-layout-horizontal) ol li.seo44-jump-link-level-3 {
     padding-left: 1.5em; /* Indent text only */
-    font-size: 0.95em; 
     opacity: 0.9;
 }
 .wp-block-seo44-jump-links:not(.is-layout-horizontal) ol li.seo44-jump-link-level-4 {
     padding-left: 3em; /* Indent text only */
-    font-size: 0.9em; 
     opacity: 0.85;
     /* Note: list-style-type is not changed, so numbers stay consistent */
 }
