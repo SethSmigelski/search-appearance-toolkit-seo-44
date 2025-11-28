@@ -153,6 +153,8 @@ Yes, the SEO 44 metabox appears and functions correctly with both the block edit
 = Which social media tags does this plugin use? =
 SEO 44 helps your content look great when shared on social media platforms. You can enable the automatic generation of **Open Graph** (og:) tags, which Facebook, LinkedIn, and Pinterest use, and **Twitter Card** meta tags for when your content appears on X (formerly Twitter). This ensures your posts have the correct title, description, and preview image when shared.
 
+Use the plugin's Google Tag Manager Integration to facilitate additional connections with soclal media platforms. Use the Organization Schema settings to associate all of your social media profiles with your website.
+
 = How are social media images handled? =
 The *featured image* of any post or page will automatically be used as the primary og:image and twitter:image tag. 
 
@@ -197,6 +199,18 @@ A rich Organization schema explicitly tells Google:
 If you leave this to the theme, Google often misses the connection between your website and the associated Twitter/Facebook/LinkedIn profiles.
 
 Read more about [Organization Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-organization-schema) and how to [deal with existing schema on your website](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema).
+
+### Should I use SEO 44 for schema if my theme already adds schema?
+
+First and foremost, you should **avoid** enabling the SEO schema features while your theme is doing so. 
+
+When your website contains existing schema structured data, evaluate whether the structured data added by your theme is helpful for SEO, or whether the schema introduced by your theme merely duplicates labeling for semantic HTML elements that search engines and AI platforms already understand. For example, schema types like `WPHeader`, `WPFooter`, and `WPSideBar` provide no known SEO benefit (or GEO Benefit, for that matter), merely confirming what search engines and AI/LLMs already understand from the HTML structure (e.g., `<header>` and `<footer>`).
+
+Themes include these basic structural schemas to be “schema-ready,” relying on Schema Microdata inline with HTML attributes like itemscope and itemtype, which result in slightly more cluttered HTML code that can be harder to manage. In contrast, there are advantages to using a dedicated SEO plugin like SEO 44 to inject high-value schemas via the schema JSON-LD format. Using JSON-LD keeps the structured data separate from the HTML markup, leading to cleaner HTML.
+
+[Compare Theme-Generated and SEO 44 Plugin Generated Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#schema-structured-data-theme-generated-vs-plugin-generated).
+
+[Decide when to remove theme-generated schema (and learn how to do it)](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema).
 
 = How do I add Google Tag Manager (GTM)? =
 The Search Appearance Toolkit (SEO 44) makes this easy. All you need is your Container ID from Google Tag Manager. All you need to do is copy  your **Container** ID (it looks like `GTM-XXXXXXX`) and paste it into the **"Google Tag Manager ID"** field on the **Settings > SEO 44 > Integrations** tab and SEO 44 will automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
