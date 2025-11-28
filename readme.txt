@@ -75,6 +75,8 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Modern Output:** All structured data is generated in the modern JSON-LD format preferred by search engines, following the guidelines set by [Schema.org](https://schema.org/).
 * **Granular Control:**  Tailor the Schema settings to fit your site's needs through Enable/disable settings, including on Custom Post Types and Taxonomies.
 
+Read more about the [Schema Structured Data](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/) created by Search Appearance Toolkit (SEO 44).
+
 = Comprehensive XML Sitemaps =
 * **Full Content Coverage:** Automatically detects all public Custom Post Types and Taxonomies and provides simple checkboxes to let you choose exactly what content to include in your sitemap. 
 * **Image Sitemaps:** Includes options to add both Featured Images and images found within your post content to your sitemaps, providing more context to search engines. 
@@ -95,6 +97,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Sticky Navigation:** Optionally, keep the table of contents pinned to the viewport as users scroll, ensuring navigation is always accessible for long articles.
 * **So Much More:** All the other features described in the standalone **[Jump Links Block (SEO 44)](https://wordpress.org/plugins/jump-links-block-seo-44/)** plugin.
 * **Click Tracking:** Want to see which jump links are most popular with your users? Use the plugin's integration settings to enable event tracking for jump links through Google Tag Manager.
+
 == Integrations & Advanced Analytics ==
 
 The Search Appearance Toolkit serves as a hub for connecting your site to essential third-party services, helping you to create valuable analytics data and site insights.
@@ -157,19 +160,27 @@ The *featured image* of any post or page will automatically be used as the prima
 
 If you need a site-wide default image for pages that don't have a featured image, you can set a *Default Social Image* on the plugin's "Social Media" settings tab. This image will be used as a fallback social media image when a featured image has not been set.
 
-= How can I see my webpage's schema? =
-Your page's schema is added as a JSON-LD script in the <head> section of your page's HTML. To see it, go to a page on your website, right-click, and select "View Page Source." Search for the text application/ld+json to find the schema block. You can then copy the code and test it using a tool like the [Schema Markup Validator](https://validator.schema.org/).
+= What is Schema Structured Data and why should I use it on my website? =
+Schema Structured Data is machine-readable code that you add to your website to help search engines like Google better understand your content. Structured data is typically generated in the modern JSON-LD format, following guidelines set by Schema.org, a universal web standard used by over 10 million websites.
+
+Read more about (Schema Structured Data)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-is-schema-structured-data] and the SEO and GEO benefits of the schema created by this plugin.
 
 = How does the plugin handle author schema? =
 SEO 44 creates a Person schema for the author of each article. To enhance this, it will automatically use the "Website" URL from the author's WordPress user profile to add url and @id attributes to the schema. This creates a powerful, machine-readable link between your content and its author, which helps search engines like Google build a stronger understanding of your site's authority and expertise (E-E-A-T).
+
+Read more about the (Author Schema)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-author-schema] created by SEO 44.
 
 = What are the benefits of using FAQPage and HowTo schema? =
 The plugin intelligently scans your content for patterns that match question-and-answer formats or step-by-step instructions (when this option is enabled). The plugin locates this content and automatically generates FAQPage or HowTo schema that presents this content within the JSON-LD.
 
 The benefit of this is that Google can use this structured data to display your content in special, highly visible formats in the search results. An FAQ page might appear as a rich snippet with expandable questions, while a How-To article can be featured in a step-by-step guide. Rich snippets make your search results stand out, which can significantly improve your click-through rate (CTR).
 
+Read more about the (FAQPage and HowTo Schema)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-faqpage-and-howto-schema] created by SEO 44.
+
 = Will this plugin create duplicate schema if my theme already adds them? =
-No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.  
+No. The Schema Scanner will detect if your theme or another plugin is already outputting JSON-LD or Microdata. If it finds existing schema, it will notify you.
+
+Read more about the (Schema Scanner and what to do if you find existing schema on your website)[https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema].
 
 = Does this plugin create Organization schema that is better than my theme's built-in Organization schema? =
 SEO 44 builds Organization Schema that is valuable to the **Google Knowledge Graph.** While many WordPress themes can produce *valid* Organization schema, this is SEO "thin content" that doesn't provide search engines and LLMs with any information that isn't already obvious.
@@ -187,7 +198,7 @@ A rich Organization schema explicitly tells Google:
 
 If you leave this to the theme, Google often misses the connection between your website and the associated Twitter/Facebook/LinkedIn profiles.
 
-For more Schema advice, including instructions for disabling the schema that your theme's adds, visit [seo44plugin.com](https://seo44plugin.com/search-appearance-toolkit-seo-44/)
+Read more about [Organization Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-organization-schema) and how to [deal with existing schema on your website](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema).
 
 = How do I add Google Tag Manager (GTM)? =
 The Search Appearance Toolkit (SEO 44) makes this easy. All you need is your Container ID from Google Tag Manager. All you need to do is copy  your **Container** ID (it looks like `GTM-XXXXXXX`) and paste it into the **"Google Tag Manager ID"** field on the **Settings > SEO 44 > Integrations** tab and SEO 44 will automatically add both the required `<head>` script and `<body>` `<noscript>` tag to your entire site.
