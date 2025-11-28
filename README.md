@@ -70,7 +70,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 
 ### Social Media Tags
 * **Open Graph and Twitter Cards:**  Enable tags for Facebook (Open Graph) and X / Twitter Cards
-* **Image Handling:**  Set a Default Social Image for content that doesn't have a featured image, and add your Twitter handle and Facebook App ID for better integration. 
+* **Image Handling:**  Set a Default Social Image for content that doesn't have a featured image, and add your Twitter handle and Facebook App ID for better integration.
 
 ### Schema Types Used
 * **WebSite:** Schema for your homepage, enabling Google Sitelinks Search Box potential.
@@ -169,6 +169,8 @@ Yes, the SEO 44 metabox appears and functions correctly with both the block edit
 ### Which social media tags does this plugin use?
 SEO 44 helps your content look great when shared on social media platforms. You can enable the automatic generation of **Open Graph** (og:) tags, which Facebook, LinkedIn, and Pinterest use, and **Twitter Card** meta tags for when your content appears on X (formerly Twitter). This ensures your posts have the correct title, description, and preview image when shared.
 
+Use the plugin's Google Tag Manager Integration to facilitate additional connections with soclal media platforms. Use the Organization Schema settings to associate all of your social media profiles with your website.
+
 ### How are social media images handled?
 The *featured image* of any post or page will automatically be used as the primary og:image and twitter:image tag. 
 
@@ -188,7 +190,6 @@ Read more about the [Schema Scanner and what to do if you find existing schema o
 SEO 44 creates a Person schema for the author of each article. To enhance this, it will automatically use the "Website" URL from the author's WordPress user profile to add url and @id attributes to the schema. This creates a powerful, machine-readable link between your content and its author, which helps search engines like Google build a stronger understanding of your site's authority and expertise (E-E-A-T).
 
 Read more about the [Author Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-author-schema) created by SEO 44.
-
 
 ### What are the benefits of using FAQPage and HowTo schema?
 The plugin intelligently scans your content for patterns that match question-and-answer formats or step-by-step instructions (when this option is enabled). The plugin locates this content and automatically generates FAQPage or HowTo schema that presents this content within the JSON-LD.
