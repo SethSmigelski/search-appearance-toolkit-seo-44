@@ -485,6 +485,18 @@ _The Schema Structured Data tab._
 
 ---
 
+![The Organization & Knowledge Graph section of the Schema Structured Data tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-16.png)
+
+_The Organization & Knowledge Graph section of the Schema Structured Data tab._
+
+---
+
+![The Additional Profiles for Organization Schema section of the Social Media settings tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-17.png)
+
+_The Additional Profiles for Organization Schema section of the Social Media settings tab._
+
+---
+
 ![The intelligent Schema Scanner, showing a clean result and a preview, on the Schema Structured Data tab](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-5.png)
 
 _The intelligent Schema Scanner, showing a clean result and a preview, on the Schema Structured Data tab._
@@ -507,7 +519,7 @@ _The Migration settings tab._
 
 _The SEO Meta Keys Scanner, showing the scan on a website with no previous SEO keys,  on the Migration Settings tab._
 
-![The Integrations tab with Google Tag Manager and Site Tool settings](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-15.png)
+![The Integrations tab with Google Tag Manager and Site Tool settings](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-18.png)
 _The Integrations tab with Google Tag Manager and Site Tool settings._
 
 ---
@@ -546,7 +558,7 @@ _The Jump Links Block in Editing Mode._
 
 _The Sidebar controls for the Jump Links Block._ 
 
-![Published Horizontal Jump Links with sticky navigation showing the Active Link Indicator](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-16.png)
+![Published Horizontal Jump Links with sticky navigation showing the Active Link Indicator](https://ps.w.org/search-appearance-toolkit-seo-44/assets/screenshot-15.png)
 
 _Published Horizontal Jump Links with sticky navigation showing the Active Link Indicator._ 
 
