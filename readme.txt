@@ -153,7 +153,7 @@ Yes, the SEO 44 metabox appears and functions correctly with both the block edit
 = Which social media tags does this plugin use? =
 SEO 44 helps your content look great when shared on social media platforms. You can enable the automatic generation of **Open Graph** (og:) tags, which Facebook, LinkedIn, and Pinterest use, and **Twitter Card** meta tags for when your content appears on X (formerly Twitter). This ensures your posts have the correct title, description, and preview image when shared.
 
-Use the plugin's Google Tag Manager Integration to facilitate additional connections with soclal media platforms. Use the Organization Schema settings to associate all of your social media profiles with your website.
+Use the plugin's Google Tag Manager Integration to facilitate additional connections with social media platforms. Use the Organization Schema settings to associate all of your social media profiles with your website.
 
 = How are social media images handled? =
 The *featured image* of any post or page will automatically be used as the primary og:image and twitter:image tag. 
