@@ -226,7 +226,7 @@ Themes include these basic structural schemas to be “schema-ready,” relying 
 
 [Compare Theme-Generated and SEO 44 Plugin Generated Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#schema-structured-data-theme-generated-vs-plugin-generated).
 
-[Decide when to remove theme-generated schema (and learn how)](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema).
+[Decide when to remove theme-generated schema (and learn how to do it)](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#what-to-do-if-your-theme-already-adds-schema).
 
 
 ### How do I add Google Tag Manager (GTM)?
