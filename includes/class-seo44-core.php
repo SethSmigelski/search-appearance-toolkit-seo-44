@@ -1,4 +1,5 @@
 <?php
+//4.3 - Added dependencies for block-editor-script.js to access Jump Links Block anchor ids for hasPart and HowTo schema.
 class SEO44_Core {
 
     protected static $_instance = null;
@@ -61,13 +62,28 @@ class SEO44_Core {
 
     public function admin_enqueue_assets($hook) {
         if ('post.php' == $hook || 'post-new.php' == $hook) {
+            // CSS
             wp_enqueue_style('seo44-admin-styles', plugins_url('../css/admin-styles.css', __FILE__), [], SEO44_VERSION);
-            wp_enqueue_script('seo44-admin-script', plugins_url('../js/admin-script.js', __FILE__), ['jquery'], SEO44_VERSION, true);
+            // General Admin Script (Classic + Block)
+            wp_enqueue_script('seo44-admin-script', plugins_url('../js/admin-script.js', __FILE__), 
+                ['jquery'], 
+                SEO44_VERSION, 
+                true);
+
+            // Localize the General Script (needed for Snippet Preview)
             wp_localize_script('seo44-admin-script', 'seo44_data', [ 
 				'post_title' => get_the_title(get_the_ID()), 
 				'site_name' => get_bloginfo('name'),
                 'permalink' => get_permalink(get_the_ID()) 
 			]);
+            // Block Editor Specific Script (Passthrough Logic For Jump Links) 
+            // We enqueue this separately with the Block Editor dependencies.
+            // WordPress will simply NOT load this file if these handles don't exist (e.g. Classic Editor).
+            wp_enqueue_script('seo44-block-editor-script', plugins_url('../js/block-editor-script.js', __FILE__), 
+                ['wp-data', 'wp-editor', 'wp-blocks'], // Dependencies are important for Jump Links Block data
+                SEO44_VERSION, 
+                true
+            );
         }
        if ('settings_page_search-appearance-toolkit-seo-44' == $hook) {
             wp_enqueue_media();
