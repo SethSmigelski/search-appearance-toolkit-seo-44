@@ -1,4 +1,7 @@
 <?php
+// Version 4.3 
+// Added hasPart Table of Contents Schema, advanced HowTo Schema
+// Added YouTube Data API to Integrations
 class SEO44_Settings {
 
     public function __construct() {
@@ -58,18 +61,26 @@ class SEO44_Settings {
         add_settings_section('seo44_schema_settings_section', __('Schema Structured Data Settings', 'search-appearance-toolkit-seo-44'), [$this, 'schema_section_callback'], 'seo-44_schema');
         add_settings_field('seo44_schema_tools', __('Schema Scanner', 'search-appearance-toolkit-seo-44'), [$this, 'render_schema_tools'], 'seo-44_schema', 'seo44_schema_settings_section');
         add_settings_field('seo44_enable_schema', __('Enable Schema', 'search-appearance-toolkit-seo-44'), [$this, 'render_checkbox_field'], 'seo-44_schema', 'seo44_schema_settings_section', ['id' => 'enable_schema', 'label' => __('Output JSON-LD to your webpages.', 'search-appearance-toolkit-seo-44')]);
-		// NEW: Add checkbox for scanning content
         add_settings_field('seo44_scan_content_for_schema', __('Scan Content for Media', 'search-appearance-toolkit-seo-44'), [$this, 'render_checkbox_field'], 'seo-44_schema', 'seo44_schema_settings_section', [
             'id' => 'scan_content_for_schema', 
             'label' => __('Scan post and page content to add all images and videos to the schema.', 'search-appearance-toolkit-seo-44'),
             'tooltip' => 'This provides more detail to search engines but can be slightly more resource-intensive.'
         ]);
-		// NEW: Add checkbox for advanced schema detection
-        add_settings_field('seo44_enable_advanced_schema', __('Enable Advanced Schema Detection', 'search-appearance-toolkit-seo-44'), [$this, 'render_checkbox_field'], 'seo-44_schema', 'seo44_schema_settings_section', [
-            'id' => 'enable_advanced_schema', 
-            'label' => __('Scan content for patterns to generate FAQ and How-To schema.', 'search-appearance-toolkit-seo-44'),
-            'tooltip' => 'If special formats are detected, they will be added to your page\'s schema structured data.'
-        ]);
+		// UPDATED: Using custom callback to include the Jump Links Block recommendation
+        add_settings_field('seo44_enable_advanced_schema', __('Enable Advanced Schema Detection', 'search-appearance-toolkit-seo-44'), [$this, 'render_advanced_schema_checkbox'], 'seo-44_schema', 'seo44_schema_settings_section');
+
+		// NEW: Jump Links Integration Field
+		add_settings_field('seo44_enable_jumplinks_schema', 
+		    __('Generate "Table of Contents" Schema', 'search-appearance-toolkit-seo-44'), 
+		    [$this, 'render_checkbox_field'], 
+		    'seo-44_schema', 
+		    'seo44_schema_settings_section', 
+		    [
+		        'id' => 'enable_jumplinks_schema', 
+		        'label' => __('Automatically create "hasPart" schema for headings highlighted in Jump Links Blocks, aligning structured data with Jump Links to reinforce support for Jump-to links in search results.', 'search-appearance-toolkit-seo-44'),
+		        'tooltip' => 'This helps Google understand the deep structure of your article by mapping your headings (H2-H4) as distinct sections, complementing the visual Jump Links Block on your page.'
+		    ]
+		);
         add_settings_field('seo44_enable_schema_on_taxonomies', __('Enable Schema on Taxonomies', 'search-appearance-toolkit-seo-44'), [$this, 'render_checkbox_field'], 'seo-44_schema', 'seo44_schema_settings_section', [
             'id' => 'enable_schema_on_taxonomies', 
             'label' => __('Output BreadcrumbList schema on categories, tags, and other archives.', 'search-appearance-toolkit-seo-44'),
@@ -144,9 +155,6 @@ class SEO44_Settings {
                 'tooltip' => 'Google prefers images that are 112x112px or larger, in JPG, PNG, or WebP format.'
             ]
         );
-		
-		
-		
 		// 3. Add Address Fields (Crucial for Local SEO & Disambiguation)
 		add_settings_field(
 		    'org_address_street', 
@@ -189,7 +197,6 @@ class SEO44_Settings {
 		    ['id' => 'org_address_country']
 		);
 		
-
         add_settings_field(
             'org_phone', 
             __('Contact Phone Number', 'search-appearance-toolkit-seo-44'), 
@@ -390,6 +397,27 @@ class SEO44_Settings {
                 'tooltip' => 'This will add a <meta> tag to your site\'s head for permanent verification.'
             ]
         );
+        // --- Site APIs Header ---
+        add_settings_field(
+            'seo44_site_apis_header',
+            '', // Empty label for full-width header
+            [$this, 'render_site_apis_header_field'],
+            'seo-44_integrations',
+            'seo44_integrations_section'
+        );
+
+        // --- YouTube API Key ---
+        add_settings_field(
+            'youtube_api_key',
+            __('YouTube API Key', 'search-appearance-toolkit-seo-44'),
+            [$this, 'render_youtube_api_key_field'],
+            'seo-44_integrations',
+            'seo44_integrations_section',
+            [ 
+                'label_for' => 'youtube_api_key', 
+                'tooltip'   => __('This will be used to improve the Video Object schema created for embedded YouTube Videos.', 'search-appearance-toolkit-seo-44')
+            ]
+        );
         // --- end of settings_init ---
     }
 	
@@ -399,7 +427,7 @@ class SEO44_Settings {
 		$checkboxes = [
             'enable_tags', 'include_keywords', 'include_author', 
             'enable_og_tags', 'enable_twitter_tags', 
-            'enable_schema', 'scan_content_for_schema', 'enable_advanced_schema', 'enable_schema_on_cpts', 'enable_schema_on_taxonomies','enable_organization_schema', 
+            'enable_schema', 'scan_content_for_schema', 'enable_jumplinks_schema', 'enable_advanced_schema', 'enable_schema_on_cpts', 'enable_schema_on_taxonomies','enable_organization_schema', 
             'enable_sitemaps', 'enable_sitemap_ping', 
             'sitemap_include_images', 'sitemap_include_content_images',
             'enable_gtm_integration', 'enable_seo_datalayer', 'enable_jump_link_tracking', 
@@ -422,6 +450,7 @@ class SEO44_Settings {
 			'org_name', 'org_alternate_name', 'org_founder','org_founding_date','org_license',
 			'org_address_street', 'org_address_city', 'org_address_state', 'org_address_zip', 'org_address_country',
 			'org_phone', 'org_email', 'org_area_served',
+            'youtube_api_key',
         ];
 		foreach ($text_fields as $tf) { 
 			if (isset($input[$tf])) { 
@@ -593,6 +622,29 @@ public function render_homepage_description_field() {
     </div>
     <?php
 }
+    // UPDATED: Custom renderer for the Advanced Schema Checkbox
+    public function render_advanced_schema_checkbox() {
+        $id = 'enable_advanced_schema';
+        $checked = seo44_get_option($id);
+        
+        // Output the standard checkbox
+        printf(
+            '<label for="%s"><input type="checkbox" id="%s" name="seo44_settings[%s]" value="1" %s /> %s</label>',
+            esc_attr($id),
+            esc_attr($id),
+            esc_attr($id),
+            checked($checked, 1, false),
+            esc_html__('Scan content for patterns to generate FAQ and How-To schema.', 'search-appearance-toolkit-seo-44')
+        );
+        seo44_render_tooltip('If special formats are detected, they will be added to your page\'s schema structured data.');
+
+        // Add the new recommendation text with the link
+        echo '<p class="description">';
+        echo esc_html__('For the most robust HowTo Schema, use a Jump Links Blocks for your How To steps. ', 'search-appearance-toolkit-seo-44');
+        echo '<a href="https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/" target="_blank">' . esc_html__('(Learn more)', 'search-appearance-toolkit-seo-44') . '</a>';
+        echo '</p>';
+        
+    }
 
     public function render_textarea_field($args) {
         $id = $args['id'];
@@ -774,12 +826,36 @@ public function render_homepage_description_field() {
         echo '<h3>' . esc_html__('Site Verification Tags', 'search-appearance-toolkit-seo-44') . '</h3>';
         echo '<p class="description">' . esc_html__('These tags are used to prove you own your site to search engines. Paste in your verification codes here and they will be added to your site\'s <head>.', 'search-appearance-toolkit-seo-44') . '</p>';
     }
+    public function render_site_apis_header_field() {
+        echo '<h3>' . esc_html__('Site APIs', 'search-appearance-toolkit-seo-44') . '</h3>';
+        echo '<p class="description">' . esc_html__('Adding a YouTube API key fetches accurate video upload dates for schema structured data. Without this, video upload dates may fall back to your post publication date.', 'search-appearance-toolkit-seo-44') . '</p>';
+    }
+    public function render_youtube_api_key_field($args) {
+        $value = seo44_get_option('youtube_api_key');
+        $tooltip = isset($args['tooltip']) ? $args['tooltip'] : '';
+        ?>
+        <input type="text" 
+               id="youtube_api_key"
+               name="seo44_settings[youtube_api_key]" 
+               value="<?php echo esc_attr($value); ?>" 
+               class="regular-text code">
+        
+        <?php if ($tooltip) { seo44_render_tooltip($tooltip); } ?>
+
+        <p class="description">
+            <?php esc_html_e('Enter your YouTube Data API v3 key.', 'search-appearance-toolkit-seo-44'); ?>
+            <a href="https://developers.google.com/youtube/v3/getting-started" target="_blank">
+                <?php esc_html_e('Get API Key', 'search-appearance-toolkit-seo-44'); ?>
+            </a>
+        </p>
+        <?php
+    }
 
 	public function settings_page_html() {
 		if (!current_user_can('manage_options')) {
 			return;
 		}
-	
+
 		// --- START: SECURE TAB SWITCHING LOGIC ---
 	
 		// 1. Define the nonce action and name for clarity
