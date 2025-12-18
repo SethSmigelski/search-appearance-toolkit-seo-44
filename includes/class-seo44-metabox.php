@@ -1,4 +1,5 @@
 <?php
+// Version 4.3 - Added a Generate HowTo Schema checkbox that appears via activation word
 class SEO44_Metabox {
 
     public function __construct() {
@@ -22,10 +23,16 @@ class SEO44_Metabox {
         $title = get_post_meta($post->ID, seo44_get_option('title_key'), true);
         $description = get_post_meta($post->ID, seo44_get_option('description_key'), true);
         $keywords = get_post_meta($post->ID, seo44_get_option('keywords_key'), true);
-        $jump_link_headings = get_post_meta($post->ID, '_seo44_jump_link_headings', true);
-        wp_nonce_field('seo44_jump_links_nonce', 'seo44_jump_links_nonce_field');
+
+        // NEW: Retrieve the HowTo toggle state
+        // We use 'yes' for checked, empty for unchecked
+        $enable_howto = get_post_meta($post->ID, '_seo44_enable_howto', true);
+        
+        // Logic to determine initial visibility: Show if already checked
+        $howto_wrapper_style = ($enable_howto === 'yes') ? '' : 'display:none;';
+
     ?>
-    	<input type="hidden" id="seo44_jump_link_headings_field" name="seo44_jump_link_headings" value="<?php echo esc_attr($jump_link_headings); ?>">
+    	
         <p>
             <label for="seo44_title"><strong><?php esc_html_e('SEO Title', 'search-appearance-toolkit-seo-44'); ?></strong></label><br>
             <input type="text" id="seo44_title" name="seo44_title" value="<?php echo esc_attr($title); ?>">
@@ -53,6 +60,18 @@ class SEO44_Metabox {
             <small><?php esc_html_e('Separate keywords with commas.', 'search-appearance-toolkit-seo-44'); ?></small>
         </p>
         <?php endif; ?>
+        <div id="seo44-howto-trigger-wrapper" style="<?php echo esc_attr($howto_wrapper_style); ?>">
+            <p>
+                <label for="seo44_enable_howto">
+                    <input type="checkbox" id="seo44_enable_howto" name="seo44_enable_howto" value="yes" <?php checked($enable_howto, 'yes'); ?>>
+                    <strong><?php esc_html_e('Generate HowTo Schema', 'search-appearance-toolkit-seo-44'); ?></strong>
+                </label>
+                <br>
+                <span class="description">
+                    <?php esc_html_e('It looks like you are publishing a "How-To" guide. When this box is checked, SEO 44 will generate HowTo structured data.', 'search-appearance-toolkit-seo-44'); ?>
+                </span>
+            </p>
+        </div>
         <hr>
         <div id="seo44-snippet-preview">
             <h3><?php esc_html_e('Search Results Snippet Preview', 'search-appearance-toolkit-seo-44'); ?></h3>
@@ -79,13 +98,13 @@ class SEO44_Metabox {
      */
     public function save_meta_box_data($post_id) {
         if (!isset($_POST['seo44_meta_box_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['seo44_meta_box_nonce'])), 'seo44_save_meta_box_data')) return;
-		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-		$post_type = get_post_type($post_id);
-		// Robust capability checking
-		if (!current_user_can("edit_{$post_type}s")) {
+		  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+		  $post_type = get_post_type($post_id);
+		  // Robust capability checking
+		  if (!current_user_can("edit_{$post_type}s")) {
 			return;
-		}
-		if (isset($_POST['seo44_title'])) {
+		  }
+		  if (isset($_POST['seo44_title'])) {
             update_post_meta($post_id, seo44_get_option('title_key'), sanitize_text_field(wp_unslash($_POST['seo44_title'])));
         }
 		if (isset($_POST['seo44_description'])) {
@@ -94,11 +113,14 @@ class SEO44_Metabox {
 		if (isset($_POST['seo44_keywords'])) {
             update_post_meta($post_id, seo44_get_option('keywords_key'), sanitize_text_field(wp_unslash($_POST['seo44_keywords'])));
         }
-		    // Save Logic for Hidden Box for Jump Links Block data
-        if (isset($_POST['seo44_jump_links_nonce_field']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['seo44_jump_links_nonce_field'])), 'seo44_jump_links_nonce')) {
-            if (isset($_POST['seo44_jump_link_headings'])) {
-                update_post_meta($post_id, '_seo44_jump_link_headings', sanitize_text_field(wp_unslash($_POST['seo44_jump_link_headings'])));
-            }
+        // NEW: Save HowTo Checkbox
+        if (isset($_POST['seo44_enable_howto'])) {
+            update_post_meta($post_id, '_seo44_enable_howto', 'yes');
+        } else {
+            // Checkboxes don't send data if unchecked, so we must explicitly delete or update to 'no'
+            // Only do this if our nonce is verified (which implies the form was actually submitted)
+            update_post_meta($post_id, '_seo44_enable_howto', 'no');
         }
+		
     }
 }
