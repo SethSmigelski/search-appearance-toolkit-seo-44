@@ -84,7 +84,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Intelligent Schema Scanner:** Scans your site for existing structured data from your theme or other plugins, helping you to prevent conflicts and duplicates before you enable schema.
 * **Knowledge Graph Control:** A dedicated interface to manage your brand's digital identity. Define your Founder, Founding Date, Contact Info, and professional Credentials to improve E-E-A-T signals.
 * **Include Images and Videos:** A built-in tool automatically finds all images and embedded YouTube videos in your content and adds them to the schema, boosting their appearance in search results.
-* **FAQ and How-To Detection:** Enable smart scanners to detect patterns in your content for FAQ and How-To sections on your website and incorporate this useful format into the schema.
+* **FAQ and HowTo Detection:** Enable smart scanners to detect patterns in your content for FAQ and How-To sections on your website and incorporate this useful format into the schema.
 * **Jump Links HowTo Scanner:** The plugin can use a Jump Links Block as a "Map" to generate detailed HowTo schema steps, while simultaneously scanning your content for Prep Time, Yield, Supplies, and Tools.
 * **Table of Contents Schema:** Automatically generates `hasPart` structured data that mirrors your Jump Links Block, helping search engines understand your article's deep structure.
 * **Modern Output:** All structured data is generated in the modern JSON-LD format preferred by search engines, following the guidelines set by [Schema.org](https://schema.org/).
