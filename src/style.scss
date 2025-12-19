@@ -257,3 +257,70 @@
 	margin-top:0; /* Use block spacing instead */
 	margin-bottom: 0.25em;
 }
+
+
+/* --- NEW: Text Link Style (Overrides Button Style) --- */
+.wp-block-seo44-jump-links.is-layout-horizontal.is-style-text-links li a {
+    background-color: transparent !important; /* Force transparent */
+    border: none !important;
+    padding: 0; /* Reset padding */
+    text-decoration: underline; /* Standard link look */
+    text-underline-offset: 0.2em;
+    color: var(--seo44-link-color);
+}
+.wp-block-seo44-jump-links.is-layout-horizontal.is-style-text-links li a:hover {
+    text-decoration: none;
+    color: var(--seo44-link-color); /* Maintain color or darken if you wish */
+}
+
+/* --- NEW: Separators --- */
+.wp-block-seo44-jump-links.has-separator-dot li:not(:last-child):after {
+    content: "·";
+    font-weight: bold;
+    margin: 0 0.5em;
+    color: currentColor;
+    opacity: 0.6;
+}
+
+.wp-block-seo44-jump-links.has-separator-pipe li:not(:last-child):after {
+    content: "|";
+    margin: 0 0.5em;
+    color: currentColor;
+    opacity: 0.5;
+}
+
+.wp-block-seo44-jump-links.has-separator-slash li:not(:last-child):after {
+    content: "/";
+    margin: 0 0.5em;
+    color: currentColor;
+    opacity: 0.5;
+}
+
+/* Fix spacing for separators */
+.wp-block-seo44-jump-links.is-style-text-links.is-layout-horizontal ul,
+.wp-block-seo44-jump-links.is-style-text-links.is-layout-horizontal ol {
+    gap: 0; /* Remove gap, rely on separator margins */
+}
+.wp-block-seo44-jump-links.is-style-text-links.is-layout-horizontal li {
+    margin: 0;
+}
+
+
+/* --- NEW: Smart Sticky (Scroll-Up-To-Reveal) --- */
+
+/* 1. Base transition for the "Smart" block */
+.wp-block-seo44-jump-links.is-sticky.is-smart-sticky {
+    transition: transform 0.3s ease-in-out, top 0.3s ease;
+    will-change: transform;
+}
+
+/* 2. Hidden State (Applied by JS) */
+.wp-block-seo44-jump-links.is-sticky.is-smart-sticky.is-scroll-hidden {
+    transform: translateY(-120%); /* Move strictly up out of view */
+    pointer-events: none; /* Prevent clicks when hidden */
+}
+
+/* 3. Ensure dropdowns/tooltips don't get stuck */
+.wp-block-seo44-jump-links.is-sticky.is-smart-sticky.is-scroll-hidden .seo-44-show-more {
+    display: none; /* Hide toggle when nav is hidden */
+}
