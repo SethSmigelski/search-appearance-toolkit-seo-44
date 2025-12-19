@@ -606,35 +606,6 @@ If you like this plugin, you might also enjoy these WordPress tools:
 * **PERF:** Hardened PHP 8 compatibility for date and string processing within schema generation.
 * **TWEAK:** Updated the image uploader JavaScript to support multiple distinct upload buttons on the settings page.
 
-### 4.1.0
-**Jump Links Block Updates:**
-* **FEATURE:** **Sticky Positioning:** Keep your table of contents visible while users scroll. Includes a "Top Offset" slider to clear sticky headers, a "Jump Offset" slider to ensure that the sticky header does not cover the heading text, and a "Disable on Mobile" toggle to preserve screen space on small devices.
-* **FEATURE:** **Auto-Hide Title:** Implemented a smart "sticky state" detection. When the block sticks, the title gently collapses and fades out to keep the interface clean (this occurs when a block title is used alongside sticky positioning).
-* **FEATURE:** **Smart Indentation:** Added a "Create Visual Hierarchy" toggle. When enabled, H3 and H4 sub-headings are visually indented to create a clear, nested outline structure.
-* **FEATURE:** **Block Background:** You can now set a background color for the entire block container, perfect for creating "card-style" floating navigation.
-* **FEATURE:** **ScrollSpy:** Automatically highlights the active link in the table of contents as the user scrolls through the corresponding section of the post.
-* **FEATURE:** Added support for Border and Spacing controls. You can now add borders, rounded corners, margins, and padding to the Jump Links block directly from the editor settings.
-* **FEATURE:** Added a "Title tag" control. You can now choose the specific HTML tag (H2, H3, H4, H5, Paragraph, or Div) for the "On This Page" heading to better match your document structure.
-* **REFACTOR:** Optimized the block's styling logic to use CSS variables on the parent container instead of inline styles for every link. This reduces the block's HTML size and improves rendering performance.
-* **FIX:** Resolved an accessibility and HTML validation issue where using multiple Jump Links blocks on a single page created duplicate element IDs. Each block now generates a unique instance ID.
-* **PERFORMANCE:** Refactored the front-end JavaScript to use event delegation for smooth scrolling. This reduces memory usage by attaching a single event listener to the block instead of individual listeners for every link.
-* **TWEAK:** Reorganized the sidebar settings for better clarity between Block Title settings and Content Inclusion settings.
-
-### 4.0.0
-* **FEATURE:** Added a new "Integrations" tab for third-party services like Google Tag Manager and Webmaster Tools.
-* **FEATURE:** Added Google Tag Manager (GTM) integration. The plugin can now automatically inject the GTM container script into the site's <head> and <body> based on your ID.
-* **FEATURE:** Added Webmaster Verification. You can now add your Google Search Console and Bing Webmaster Tools verification codes directly from the plugin settings.
-* **FEATURE:** Added automatic GTM event tracking. When enabled, the plugin can push the following events to the dataLayer:
-    * Rich SEO dataLayer: Pushes page type, category, author, and tags on page load for advanced GTM triggers.
-    * Scroll Depth Tracking: Pushes 'scroll_depth' events at 25%, 50%, 75%, and 100% of the page.
-    * External & Affiliate Clicks:* Pushes 'external_link_click' or 'affiliate_link_click' (for `rel="sponsored"` links).
-    * Jump Link Clicks: Pushes a 'jump_link_click' event when a user clicks a link in the Jump Links Block.
-* **FEATURE:** Added a Google Tag Manager recipe import file (`seo44-gtm-recipe-importer.json`) and new FAQ instructions to fully configure GTM and GA4 event tracking.
-* **ENHANCEMENT:** Centralized all GTM event tracking into a new, efficient `global-tracker.js` file that uses event delegation for better performance.
-* **TWEAK:** Improved the "Integrations" settings page UI for clarity, adding clarifying tooltips and a file downloader.
-
-For a complete list of changes, please see the [full changelog](https://github.com/SethSmigelski/search-appearance-toolkit-seo-44/blob/main/changelog.txt) or the `changelog.txt` file included with the plugin.
-
 ---
 
 ## Upgrade Notice
