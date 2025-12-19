@@ -29,6 +29,18 @@
     "linkPadding": {
       "type": "string"
     },
+    "linkStyle": {
+      "type": "string",
+      "default": "button"
+    },
+    "separatorType": {
+      "type": "string",
+      "default": "none"
+    },
+    "stickyBehavior": {
+      "type": "string",
+      "default": "always"
+    },    
     "fontSize": {
       "type": "string"
     },
