@@ -7,8 +7,8 @@ A lightweight, feature-packed SEO plugin for essential meta tags, advanced struc
 * **Contributors:** sethsm
 * **Tags:** seo, on-page seo, schema, structured data, xml sitemaps
 * **Requires at least:** 5.5
-* **Tested up to:** 6.8
-* **Stable tag:** 4.2.0
+* **Tested up to:** 6.9
+* **Stable tag:** 4.3.0
 * **Requires PHP:** 7.4
 * **License:** GPLv2 or later
 * **License URI:** [GLP 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -84,7 +84,9 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Intelligent Schema Scanner:** Scans your site for existing structured data from your theme or other plugins, helping you to prevent conflicts and duplicates before you enable schema.
 * **Knowledge Graph Control:** A dedicated interface to manage your brand's digital identity. Define your Founder, Founding Date, Contact Info, and professional Credentials to improve E-E-A-T signals.
 * **Include Images and Videos:** A built-in tool automatically finds all images and embedded YouTube videos in your content and adds them to the schema, boosting their appearance in search results.
-* **FAQ and How-To Detection:** Enable a smart scanner to detect patterns in your content for FAQ and How-To sections on your website and incorporate this useful format into the schema. 
+* **FAQ and How-To Detection:** Enable smart scanners to detect patterns in your content for FAQ and How-To sections on your website and incorporate this useful format into the schema.
+* **Jump Links HowTo Scanner:** The plugin can use a Jump Links Block as a "Map" to generate detailed HowTo schema steps, while simultaneously scanning your content for Prep Time, Yield, Supplies, and Tools.
+* **Table of Contents Schema:** Automatically generates `hasPart` structured data that mirrors your Jump Links Block, helping search engines understand your article's deep structure.
 * **Modern Output:** All structured data is generated in the modern JSON-LD format preferred by search engines, following the guidelines set by [Schema.org](https://schema.org/).
 * **Granular Control:**  Tailor the Schema settings to fit your site's needs through Enable/disable settings, including on Custom Post Types and Taxonomies.
 
@@ -127,8 +129,11 @@ With GTM enabled, you can check four boxes to start gathering important insights
 
 SEO 44's integration with Google Tag Manager pushes valuable events to the `dataLayer` for use in Google Analytics. The plugin provides an import file and detailed instructions for setting up Google Tag Manager and Google Analytics to receive event tracking data. 
 
-## Site Verification Tags
+### Site Verification Tags
 Verify your site with search engines quickly and easily. Paste your verification codes for **Google Search Console** and **Bing Webmaster Tools** into the corresponding fields in the Integrations tab. The plugin handles the rest, adding site verification meta tags to your website's head. No coding required.
+
+### YouTube Data API 
+To ensure that your site's video schema is as accurate as possible, you may add your YouTube Data API Key.  The plugin uses this key to fetch the upload date for any YouTube video embedded in your content, replacing less reliable page scraping options and fallbacks to the post publish date.
 
 ---
 
@@ -137,7 +142,7 @@ Verify your site with search engines quickly and easily. Paste your verification
 ### What SEO benefits can this plugin provide?
 Search Appearance Toolkit (SEO 44) gives you control over the technical, on-page SEO factors that help search engines understand and rank your content. Key benefits include:
 * **Optimized Snippets:** Control how your titles and descriptions appear in search results.
-* **Rich Results:** The advanced Schema.org data helps you earn rich results like FAQs, How-Tos, and breadcrumbs in Google.
+* **Rich Results:** The advanced Schema.org data improves indexing and helps you earn rich results in Google.
 * **Crawlability:** A clean and comprehensive XML sitemap ensures search engines can find and index all of your important content and images.
 * **User Engagement:** The Jump Links Block improves user experience, which is a positive ranking signal, and can help you earn "Jump to" links in search results.
 
@@ -192,9 +197,9 @@ SEO 44 creates a Person schema for the author of each article. To enhance this, 
 Read more about the [Author Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-author-schema) created by SEO 44.
 
 ### What are the benefits of using FAQPage and HowTo schema?
-The plugin intelligently scans your content for patterns that match question-and-answer formats or step-by-step instructions (when this option is enabled). The plugin locates this content and automatically generates FAQPage or HowTo schema that presents this content within the JSON-LD.
+The plugin intelligently scans your content for patterns that match question-and-answer formats or step-by-step instructions (when this option is enabled). The plugin locates this content and automatically generates FAQPage or HowTo schema that presents this content as structured data.
 
-The benefit of this is that Google can use this structured data to display your content in special, highly visible formats in the search results. An FAQ page might appear as a rich snippet with expandable questions, while a How-To article can be featured in a step-by-step guide. Rich snippets make your search results stand out, which can significantly improve your click-through rate (CTR).
+The benefit of this is that Google can use this structured data to display your content in special, highly visible formats in the search results. An FAQ page might appear as a rich snippet with expandable questions or feature within a People Also Ask (PAA) result, while a How-To article can be featured in a step-by-step guide in AI Overviews. Search results that stand out can improve your click-through rate (CTR).
 
 Read more about the [FAQPage and HowTo Schema](https://seo44plugin.com/search-appearance-toolkit-seo-44/schema-structured-data/#benefits-of-faqpage-and-howto-schema) created by SEO 44.
 
@@ -456,6 +461,16 @@ Search Appearance Toolkit (SEO 44) utilizes a few external, third-party services
 * **Service Provider Links:**
     * **Google:** [Terms of Service](https://policies.google.com/terms), [Privacy Policy](https://policies.google.com/privacy)
     * **Bing (Microsoft):** [Microsoft Services Agreement](https://www.microsoft.com/en-us/servicesagreement/), [Microsoft Privacy Statement](https://privacy.microsoft.com/en-us/privacystatement)
+ 
+### YouTube Data API Integration & Video Metadata
+
+* **Service Description:** This plugin connects to YouTube to fetch the "Upload Date" for videos embedded in your content. This ensures your VideoObject schema is accurate.
+* **Data Sent and Conditions:**
+    * **Method 1 (API):** If you provide a YouTube API Key in settings, the plugin sends the Video ID to the Google Data API.
+    * **Method 2 (Public Fallback):** If no API Key is present, the plugin acts as a standard browser and fetches the public video page (via `wp_remote_get`) to locate the upload date in the page meta tags.
+    * **Conditions:** This occurs automatically when a post with a YouTube embed is updated, provided that Schema generation is enabled.
+* **Service Provider Links:**
+    * **YouTube:** [Terms of Service](https://www.youtube.com/t/terms), [Google Privacy Policy](https://policies.google.com/privacy)
 
 ---
 
@@ -573,6 +588,13 @@ If you like this plugin, you might also enjoy these WordPress tools:
 * **[Under The Weather](https://wordpress.org/plugins/under-the-weather/)** - A lightweight and customizable weather widget, powered by the OpenWeather API, that caches and presents weather data with multiple style options.
 
 ## Changelog
+
+### 4.3.0
+* FEATURE: **Table of Contents Schema:** Automatically generates `hasPart` schema synchronized with the Jump Links Block to support "Jump-to" links in search results.
+* FEATURE: **Advanced HowTo Schema:** A new "Block-Aware" scanner uses the Jump Links Block to strictly define steps while intelligently mining the introduction for tools, time, yield, and video data.
+* TWEAK: Added a "Generate HowTo Schema" checkbox to the SEO 44 metabox, giving users explicit control over when the advanced scanner runs.
+* FEATURE: **YouTube Integration:** Added support for the YouTube Data API v3 to fetch accurate video upload dates for VideoObject schema.
+* TESTED: Tested to WordPress Version 6.9
 
 ### 4.2.0
 * **FEATURE:** **Rich Organization Schema:** Added a comprehensive settings section to generate Organization structured data for the Knowledge Graph.
