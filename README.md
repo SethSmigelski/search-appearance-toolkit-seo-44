@@ -590,11 +590,11 @@ If you like this plugin, you might also enjoy these WordPress tools:
 ## Changelog
 
 ### 4.3.0
-* FEATURE: **Table of Contents Schema:** Automatically generates `hasPart` schema synchronized with the Jump Links Block to support "Jump-to" links in search results.
-* FEATURE: **Advanced HowTo Schema:** A new "Block-Aware" scanner uses the Jump Links Block to strictly define steps while intelligently mining the introduction for tools, time, yield, and video data.
-* TWEAK: Added a "Generate HowTo Schema" checkbox to the SEO 44 metabox, giving users explicit control over when the advanced scanner runs.
-* FEATURE: **YouTube Integration:** Added support for the YouTube Data API v3 to fetch accurate video upload dates for VideoObject schema.
-* TESTED: Tested to WordPress Version 6.9
+* **FEATURE:** **Table of Contents Schema:** Automatically generates `hasPart` schema synchronized with the Jump Links Block to support "Jump-to" links in search results.
+* **FEATURE:** **Advanced HowTo Schema:** A new "Block-Aware" scanner uses the Jump Links Block to strictly define steps while intelligently mining the introduction for tools, time, yield, and video data.
+* **TWEAK:** Added a "Generate HowTo Schema" checkbox to the SEO 44 metabox, giving users explicit control over when the advanced scanner runs.
+* **FEATURE:** **YouTube Integration:** Added support for the YouTube Data API v3 to fetch accurate video upload dates for VideoObject schema.
+* **TESTED:** Tested to WordPress Version 6.9
 
 ### 4.2.0
 * **FEATURE:** **Rich Organization Schema:** Added a comprehensive settings section to generate Organization structured data for the Knowledge Graph.
