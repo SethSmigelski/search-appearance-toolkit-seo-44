@@ -9,8 +9,8 @@ const {
 	isCollapsible,  isSmartIndentation,
 	headings, showHeading, headingText, headingTag, 
 	listStyle, fontSize, textColor, linkColor,  blockBackgroundColor,
-	linkBackgroundColor, linkBackgroundColorHover, linkBorderColor, linkBorderRadius, 
-	isSticky, stickyOffset, jumpOffset, stickyStrategy,
+	linkBackgroundColor, linkBackgroundColorHover, linkBorderColor, linkBorderRadius, linkStyle, separatorType,
+	isSticky, stickyOffset, jumpOffset, stickyStrategy, stickyBehavior,
 } = attributes;
 	
 	// Pass the font size as a CSS Custom Property for dynamic height calculations
@@ -37,14 +37,23 @@ const {
 	
 	// 2. Calculate the ID here (OUTSIDE the return statement)
 	const listId = `seo44-jump-links-list-${blockInstanceId}`;
-	
 
-	const blockProps = useBlockProps.save({
-   		className: `${layout === 'horizontal' ? 'is-layout-horizontal' : ''} ${isCollapsible ? 'is-collapsible' : ''} ${listStyle === 'none' ? 'list-style-none' : ''} ${isSticky ? 'is-sticky' : ''} ${stickyStrategy === 'desktop-only' ? 'sticky-desktop-only' : ''}`.trim(),
-		style,
-		// --- NEW: Pass the offset (User setting OR default 30px) ---
+	// CONDITIONAL CLASSES
+    // Only add these classes if they are NOT the default.
+    // Default linkStyle is 'button', so if it's 'text', we add class.
+    const styleClass = linkStyle === 'text' ? 'is-style-text-links' : '';
+    
+    // Default separator is 'none'
+    const sepClass = (linkStyle === 'text' && separatorType && separatorType !== 'none') ? `has-separator-${separatorType}` : '';
+
+    // Default sticky behavior is 'always'
+    const smartStickyClass = (isSticky && stickyBehavior === 'smart') ? 'is-smart-sticky' : '';
+
+    const blockProps = useBlockProps.save({
+        className: `${layout === 'horizontal' ? 'is-layout-horizontal' : ''} ${isCollapsible ? 'is-collapsible' : ''} ${listStyle === 'none' ? 'list-style-none' : ''} ${isSticky ? 'is-sticky' : ''} ${stickyStrategy === 'desktop-only' ? 'sticky-desktop-only' : ''} ${styleClass} ${sepClass} ${smartStickyClass}`.trim(),
+        style,
         'data-seo44-jump-offset': isSticky ? jumpOffset : 30
-	});
+    });
 	
 	// Show More Expand and Contract Arrows
 	const arrowDownIcon = (
