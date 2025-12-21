@@ -161,6 +161,6 @@
   },
   "textdomain": "search-appearance-toolkit-seo-44",
   "title": "SEO 44 Jump Links",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "viewScript": "file:./view.js"
 }
