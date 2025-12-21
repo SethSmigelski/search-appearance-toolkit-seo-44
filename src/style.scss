@@ -274,6 +274,13 @@
 }
 
 /* --- NEW: Separators --- */
+.wp-block-seo44-jump-links.has-separator-space li:not(:last-child):after {
+    content: " ";
+    margin: 0 0.5em;
+    color: currentColor;
+    opacity: 0.5;
+}
+
 .wp-block-seo44-jump-links.has-separator-dot li:not(:last-child):after {
     content: "·";
     font-weight: bold;
