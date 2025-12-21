@@ -326,7 +326,8 @@ export default function Edit({ attributes, setAttributes }) {
 							                label={__('Separator', 'search-appearance-toolkit-seo-44')}
 							                value={separatorType}
 							                options={[
-							                    { label: __('None', 'search-appearance-toolkit-seo-44'), value: 'none' },
+                                                // REPLACED 'None' with 'Space'
+							                    { label: __('Space ( )', 'search-appearance-toolkit-seo-44'), value: 'space' },
 							                    { label: __('Middle Dot (·)', 'search-appearance-toolkit-seo-44'), value: 'dot' },
 							                    { label: __('Pipe (|)', 'search-appearance-toolkit-seo-44'), value: 'pipe' },
 							                    { label: __('Slash (/)', 'search-appearance-toolkit-seo-44'), value: 'slash' },
