@@ -51,50 +51,49 @@ window.addEventListener('load', function () {
         });
 
 		// --- SMART STICKY LOGIC (Scroll-Up-To-Reveal) ---
-	    // Filter for blocks that actually have the 'is-smart-sticky' class
-	    const smartBlocks = Array.from(jumpLinksBlocks).filter(b => b.classList.contains('is-smart-sticky'));
-	
-	    if (smartBlocks.length > 0) {
-	        let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	        let ticking = false; // For throttling
-	        const scrollThreshold = 100; // Only hide after scrolling down X pixels from top
-	        const delta = 10; // Minimum scroll amount to trigger change
-	
-	        window.addEventListener('scroll', function() {
-	            if (!ticking) {
-	                window.requestAnimationFrame(function() {
-	                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	                    
-	                    smartBlocks.forEach(block => {
-	                        // 1. Don't hide if we are at the very top (within threshold)
-	                        if (scrollTop < scrollThreshold) {
-	                            block.classList.remove('is-scroll-hidden');
-	                            return;
-	                        }
-	
-	                        // 2. Determine Direction
-	                        if (Math.abs(lastScrollTop - scrollTop) <= delta) {
-	                            return; // Ignore tiny movements
-	                        }
-	
-	                        if (scrollTop > lastScrollTop) {
-	                            // SCROLLING DOWN -> HIDE
-	                            // Only hide if the block is actually stuck (using our existing sentinel logic)
-	                            // or just hide regardless if it's past the threshold.
-	                            block.classList.add('is-scroll-hidden');
-	                        } else {
-	                            // SCROLLING UP -> SHOW
-	                            block.classList.remove('is-scroll-hidden');
-	                        }
-	                    });
-	
-	                    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-	                    ticking = false;
-	                });
-	                ticking = true;
-	            }
-	        });
-	    }
+        // Filter for blocks that actually have the 'is-smart-sticky' class
+        const smartBlocks = Array.from(jumpLinksBlocks).filter(b => b.classList.contains('is-smart-sticky'));
+    
+        if (smartBlocks.length > 0) {
+            let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            let ticking = false; // For throttling
+            const delta = 10; // Minimum scroll amount to trigger change
+    
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        
+                        smartBlocks.forEach(block => {
+                            // 1. SAFETY CHECK: Is the block actually stuck?
+                            // If the block is NOT stuck (it's sitting normally in the content), 
+                            // we must ensure it is visible and then stop.
+                            if (!block.classList.contains('is-stuck')) {
+                                block.classList.remove('is-scroll-hidden');
+                                return; 
+                            }
+    
+                            // 2. Determine Direction
+                            if (Math.abs(lastScrollTop - scrollTop) <= delta) {
+                                return; // Ignore tiny movements
+                            }
+    
+                            if (scrollTop > lastScrollTop) {
+                                // SCROLLING DOWN -> HIDE
+                                block.classList.add('is-scroll-hidden');
+                            } else {
+                                // SCROLLING UP -> SHOW
+                                block.classList.remove('is-scroll-hidden');
+                            }
+                        });
+    
+                        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        }
 		
         // --- COLLAPSIBLE LOGIC (SIMPLIFIED & ROBUST) ---
         if (block.classList.contains('is-collapsible')) {
