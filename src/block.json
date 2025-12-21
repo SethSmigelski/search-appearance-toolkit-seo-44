@@ -35,7 +35,7 @@
     },
     "separatorType": {
       "type": "string",
-      "default": "none"
+      "default": "space"
     },
     "stickyBehavior": {
       "type": "string",
