@@ -14,7 +14,12 @@
 	/* font-size: calc(var(--jump-link-font-size, 1em) * 1.375); This is no longer necessary with heading selection */
 	flex-basis: 100%;
 }
-/* Keep spacing tight for sticky nav / avoid theme conflicts  */
+/* Keep spacing tight. Good for sticky nav.  Avoid theme conflicts  */
+.wp-block-seo44-jump-links nav > ul,
+.wp-block-seo44-jump-links nav > ol{
+    margin:0;
+}
+/* Keep spacing tight. Good for sticky nav.  Avoid theme conflicts  */
 .wp-block-seo44-jump-links nav > ul li,
 .wp-block-seo44-jump-links nav > ol li{
     margin:0;
