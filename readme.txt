@@ -3,7 +3,7 @@ Contributors: sethsm
 Tags: seo, on-page seo, schema, structured data, xml sitemaps
 Requires at least: 5.5
 Tested up to: 6.9
-Stable tag: 4.3
+Stable tag: 4.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -328,6 +328,15 @@ If you like this plugin, you might also enjoy these WordPress tools:
 * **[Under The Weather](https://wordpress.org/plugins/under-the-weather/)** - A lightweight and customizable weather widget, powered by the OpenWeather API, that caches and presents weather data with multiple style options.
 
 == Changelog ==
+
+
+= 4.4.0 =
+* **NEW** (Jump Links Block): Added a "Plain Text" style option for horizontal layouts, offering a minimalist alternative to the default button style.
+* **NEW** (Jump Links Block): Introduced optional "Smart Sticky" (Scroll-Up-To-Reveal) behavior. The sticky table of contents can now hide automatically when scrolling down to save screen space and reappear when scrolling up.
+* **NEW** (Jump Links Block): Added visual separators (Middle Dot, Pipe, and Slash) for text-based link lists.
+* **ENHANCEMENT** (Jump Links Block): Introduced CSS transitions for sticky elements for a smooth visual experience for Scroll-Up-To-Reveal jump links.
+* **ENHANCEMENT** (Jump Links Block): Optimized editor controls to conditionally display relevant settings, keeping the sidebar clean.
+* **FIX:** Added dynamic border calculation to resolve an issue where thick borders could prevent the navigation bar from sticking or hiding correctly.
 
 = 4.3.0 =
 * FEATURE: **Table of Contents Schema:** Automatically generates `hasPart` schema synchronized with the Jump Links Block to support "Jump-to" links in search results.
