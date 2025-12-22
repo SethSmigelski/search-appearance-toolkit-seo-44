@@ -104,10 +104,10 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 ### Advanced Jump Links Block
 * **Instant Jump Links List Creation:** Automatically generates a customizable "Table of Contents" block from your page's headings to improve user navigation and earn rich "Jump to" links in Google search results.
 * **Full Customization:** Features "Viewing" and "Editing" modes right in the editor. In Editing Mode, you can change link text, reorder links with up/down arrows, and exclude specific headings from the list.
-* **Complete Styling Control:** Use the sidebar controls to change the layout (vertical or horizontal), list style (bullets, numbers, or none), font size, and colors. For the horizontal layout, you can also style the link background, border, and border-radius.
+* **Complete Styling Control:** Use the sidebar controls to change the layout (vertical or horizontal), list style (bullets, numbers, or none), font size, and colors. For the horizontal layout, you can style the link background, border, and border-radius, choosing between a **Button** style or a minimalist **Plain Text** style with separators.
 * **Front-End Interactivity:** Includes built-in smooth scrolling and an optional "Show More" button to collapse long link lists elegantly.
 * **Active Link Indicator (ScrollSpy)**: As your readers scroll through the content, the table of contents automatically highlights the link for the section they are currently reading, giving them instant context on their progress.
-* **Sticky Navigation:** Optionally, keep the table of contents pinned to the viewport as users scroll, ensuring navigation is always accessible for long articles.
+* **Sticky Navigation:** Optionally, keep the table of contents pinned to the viewport as users scroll, ensuring navigation is always accessible for long articles. Use "smart sticky" options like Scroll-Up-To-Reveal if you want the jump links to be visible when needed, but tuck out of view otherwise.
 * **So Much More:** All the other features described in the standalone **[Jump Links Block (SEO 44)](https://wordpress.org/plugins/jump-links-block-seo-44/)** plugin.
 * **Click Tracking:** Want to see which jump links are most popular with your users? Use the plugin's integration settings to enable event tracking for jump links through Google Tag Manager.
 
