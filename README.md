@@ -595,7 +595,7 @@ If you like this plugin, you might also enjoy these WordPress tools:
 * **NEW** (Jump Links Block): Added visual separators (Middle Dot, Pipe, and Slash) for text-based link lists.
 * **ENHANCEMENT** (Jump Links Block): Introduced CSS transitions for sticky elements for a smooth visual experience for Scroll-Up-To-Reveal jump links.
 * **ENHANCEMENT** (Jump Links Block): Optimized editor controls to conditionally display relevant settings, keeping the sidebar clean.
-* **FIX:** Added dynamic border calculation to resolve an issue where thick borders could prevent the navigation bar from sticking or hiding correctly.
+* **FIX** (Jump Links Block): Added dynamic border calculation to resolve an issue where thick borders could prevent the navigation bar from sticking or hiding correctly.
 
 ### 4.3.0
 * **FEATURE:** **Table of Contents Schema:** Automatically generates `hasPart` schema synchronized with the Jump Links Block to support "Jump-to" links in search results.
@@ -603,16 +603,6 @@ If you like this plugin, you might also enjoy these WordPress tools:
 * **TWEAK:** Added a "Generate HowTo Schema" checkbox to the SEO 44 metabox, giving users explicit control over when the advanced scanner runs.
 * **FEATURE:** **YouTube Integration:** Added support for the YouTube Data API v3 to fetch accurate video upload dates for VideoObject schema.
 * **TESTED:** Tested to WordPress Version 6.9
-
-### 4.2.0
-* **FEATURE:** **Rich Organization Schema:** Added a comprehensive settings section to generate Organization structured data for the Knowledge Graph.
-* **FEATURE:** **Knowledge Graph Fields:** Added support for Identity (Name, Logo, Alternate Name), Authority (Founder, Founding Date), Credentials (License/Certifications), Contact (Phone, Email, Address), and Reach (Service Area).
-* **FEATURE:** **Custom Social Profiles:** Added an "Additional Social URLs" field to allow linking to any platform (Wikipedia, BlueSky, Threads, etc.) in the 'sameAs' schema property.
-* **FEATURE:** **Developer Hook:** Added `seo44_organization_schema` filter to allow developers to extend or modify organization data programmatically.
-* **UI:** Reorganized the Social Media settings tab into distinct sections for "Meta Tags" and "Organization Profiles" for better clarity.
-* **FIX:** Resolved a logic issue where Organization schema could be overwritten on sites using a Static Homepage.
-* **PERF:** Hardened PHP 8 compatibility for date and string processing within schema generation.
-* **TWEAK:** Updated the image uploader JavaScript to support multiple distinct upload buttons on the settings page.
 
 ---
 
