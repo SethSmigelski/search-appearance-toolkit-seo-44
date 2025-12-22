@@ -31,7 +31,7 @@ const {
 
 		// sticky positioning
     	'--seo44-sticky-offset': isSticky ? `${stickyOffset}px` : undefined,
-		'--seo44-block-border-thickness': borderWidth,
+		'--seo44-block-border-thickness': borderWidth
 	};
 	
 	const ListTag = listStyle === 'ol' ? 'ol' : 'ul';
