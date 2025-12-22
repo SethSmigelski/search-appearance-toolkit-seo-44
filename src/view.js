@@ -4,6 +4,12 @@ window.addEventListener('load', function () {
     const jumpLinksBlocks = document.querySelectorAll('.wp-block-seo44-jump-links');
 
 	jumpLinksBlocks.forEach(block => {
+		// --- 1. NEW: DYNAMIC BORDER CALCULATION ---
+        // This solves the validation error by moving logic from save.js to view.js.
+        // It correctly handles the border thickness for the sticky offset.
+        const computedStyle = window.getComputedStyle(block);
+        const borderTopWidth = computedStyle.borderTopWidth || '0px';
+        block.style.setProperty('--seo44-block-border-thickness', borderTopWidth);
         
         // --- SMOOTH SCROLLING LOGIC (With Offset) ---
         block.addEventListener('click', function(e) {
