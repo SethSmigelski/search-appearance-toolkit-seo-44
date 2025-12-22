@@ -589,6 +589,15 @@ If you like this plugin, you might also enjoy these WordPress tools:
 
 ## Changelog
 
+### 4.4.0
+* **NEW:** Added a "Plain Text" style option for horizontal layouts, offering a minimalist alternative to the default button style.
+* **NEW:** Introduced optional "Smart Sticky" (Scroll-Up-To-Reveal) behavior. The sticky table of contents can now hide automatically when scrolling down to save screen space and reappear when scrolling up.
+* **NEW:** Added visual separators (Middle Dot, Pipe, and Slash) for text-based link lists.
+* **ENHANCEMENT:** Introduced CSS transitions for sticky elements for a smooth visual experience for Scroll-Up-To-Reveal jump links.
+* **ENHANCEMENT:** Optimized editor controls to conditionally display relevant settings, keeping the sidebar clean.
+* **FIX:** Added dynamic border calculation to resolve an issue where thick borders could prevent the navigation bar from sticking or hiding correctly.
+
+
 ### 4.3.0
 * **FEATURE:** **Table of Contents Schema:** Automatically generates `hasPart` schema synchronized with the Jump Links Block to support "Jump-to" links in search results.
 * **FEATURE:** **Advanced HowTo Schema:** A new "Block-Aware" scanner uses the Jump Links Block to strictly define steps while intelligently mining the introduction for tools, time, yield, and video data.
