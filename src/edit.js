@@ -37,7 +37,10 @@ export default function Edit({ attributes, setAttributes }) {
 		linkBackgroundColor, linkBackgroundColorHover, linkBorderColor, linkBorderRadius, linkStyle, separatorType,
 		isSticky, stickyOffset, jumpOffset, stickyStrategy, stickyBehavior,
 	} = attributes;
-	const borderWidth = attributes.style?.border?.top?.width || attributes.style?.border?.width || '0px';
+	
+	// Calculate Border Width
+    // No fallback. If it's undefined, it should stay undefined for previous blocks.
+    const borderWidth = attributes.style?.border?.top?.width || attributes.style?.border?.width;
 	// Consolidate all dynamic styles onto the parent wrapper
 	const style = {
 		// Text & Font
@@ -54,8 +57,10 @@ export default function Edit({ attributes, setAttributes }) {
 		'--seo44-block-bg': blockBackgroundColor,
 		
 		'--seo44-sticky-offset': isSticky ? `${stickyOffset}px` : undefined,
-		'--seo44-block-border-thickness': borderWidth
 	};
+	if (borderWidth) {
+        style['--seo44-block-border-thickness'] = borderWidth;
+    }
 
 	const ListTag = listStyle === 'ol' ? 'ol' : 'ul';
 	const { createInfoNotice } = useDispatch( 'core/notices' );
