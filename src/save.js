@@ -13,7 +13,6 @@ export default function save({ attributes }) {
 		isSticky, stickyOffset, jumpOffset, stickyStrategy, stickyBehavior,
 	} = attributes;
 	
-	const borderWidth = attributes.style?.border?.top?.width || attributes.style?.border?.width;
 	// Pass the font size as a CSS Custom Property for dynamic height calculations
 	// Consolidate all dynamic styles onto the parent wrapper
 	const style = {
@@ -33,11 +32,6 @@ export default function save({ attributes }) {
 		// sticky positioning
     	'--seo44-sticky-offset': isSticky ? `${stickyOffset}px` : undefined
 	};
-	// CHANGED: Only add this variable if a border actually exists.
-    // This ensures old blocks (which have no border) don't get a new style property, preventing the validation error.
-    if (borderWidth) {
-        style['--seo44-block-border-thickness'] = borderWidth;
-    }
 	
 	const ListTag = listStyle === 'ol' ? 'ol' : 'ul';
 	
