@@ -241,7 +241,7 @@
     /* The sentinel sits at the "sticky threshold" */
     /* CALCULATION EXPLAINED:
        Offset (30px) 
-       + Buffer (2px for safety) 
+       + Buffer (2px for safety / 1px doesn't work) 
        + Border Width (e.g. 5px)
        
        If block sticks at 30px, the top padding edge is actually at 35px.
