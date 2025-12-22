@@ -37,7 +37,7 @@ export default function Edit({ attributes, setAttributes }) {
 		linkBackgroundColor, linkBackgroundColorHover, linkBorderColor, linkBorderRadius, linkStyle, separatorType,
 		isSticky, stickyOffset, jumpOffset, stickyStrategy, stickyBehavior,
 	} = attributes;
-
+	const borderWidth = attributes.style?.border?.top?.width || attributes.style?.border?.width || '0px';
 	// Consolidate all dynamic styles onto the parent wrapper
 	const style = {
 		// Text & Font
