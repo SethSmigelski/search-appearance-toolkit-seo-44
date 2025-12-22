@@ -12,7 +12,8 @@ export default function save({ attributes }) {
 		linkBackgroundColor, linkBackgroundColorHover, linkBorderColor, linkBorderRadius, linkStyle, separatorType,
 		isSticky, stickyOffset, jumpOffset, stickyStrategy, stickyBehavior,
 	} = attributes;
-	const borderWidth = attributes.style?.border?.top?.width || attributes.style?.border?.width || '0px';
+	
+	const borderWidth = attributes.style?.border?.top?.width || attributes.style?.border?.width;
 	// Pass the font size as a CSS Custom Property for dynamic height calculations
 	// Consolidate all dynamic styles onto the parent wrapper
 	const style = {
@@ -30,9 +31,13 @@ export default function save({ attributes }) {
 		'--seo44-link-radius': layout === 'horizontal' && linkBorderRadius ? `${linkBorderRadius}px` : undefined,
 
 		// sticky positioning
-    	'--seo44-sticky-offset': isSticky ? `${stickyOffset}px` : undefined,
-		'--seo44-block-border-thickness': borderWidth
+    	'--seo44-sticky-offset': isSticky ? `${stickyOffset}px` : undefined
 	};
+	// CHANGED: Only add this variable if a border actually exists.
+    // This ensures old blocks (which have no border) don't get a new style property, preventing the validation error.
+    if (borderWidth) {
+        style['--seo44-block-border-thickness'] = borderWidth;
+    }
 	
 	const ListTag = listStyle === 'ol' ? 'ol' : 'ul';
 	
