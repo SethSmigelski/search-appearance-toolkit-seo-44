@@ -238,8 +238,17 @@
     right: 0;
     visibility: hidden;
     pointer-events: none;
-    /* This is the magic: The sentinel sits at the "sticky threshold" */
-    top: calc( (var(--seo44-sticky-offset, 20px) + 3px) * -1 ); 
+    /* The sentinel sits at the "sticky threshold" */
+    /* CALCULATION EXPLAINED:
+       Offset (30px) 
+       + Buffer (2px for safety) 
+       + Border Width (e.g. 5px)
+       
+       If block sticks at 30px, the top padding edge is actually at 35px.
+       We need to move the sentinel up by 30 + 5 + 2 = 37px.
+       35px (current pos) - 37px (move up) = -2px (Off Screen).
+    */
+    top: calc( (var(--seo44-sticky-offset, 30px) + 2px + var(--seo44-block-border-thickness, 0px)) * -1 ); 
     height: 1px;
 }
 
