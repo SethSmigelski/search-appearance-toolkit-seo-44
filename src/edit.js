@@ -53,7 +53,8 @@ export default function Edit({ attributes, setAttributes }) {
 		'--seo44-link-radius': layout === 'horizontal' && linkBorderRadius ? `${linkBorderRadius}px` : undefined,
 		'--seo44-block-bg': blockBackgroundColor,
 		
-		'--seo44-sticky-offset': isSticky ? `${stickyOffset}px` : undefined
+		'--seo44-sticky-offset': isSticky ? `${stickyOffset}px` : undefined,
+		'--seo44-block-border-thickness': borderWidth,
 	};
 
 	const ListTag = listStyle === 'ol' ? 'ol' : 'ul';
