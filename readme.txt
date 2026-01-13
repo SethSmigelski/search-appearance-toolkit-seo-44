@@ -3,7 +3,7 @@ Contributors: sethsm
 Tags: seo, on-page seo, schema, structured data, xml sitemaps
 Requires at least: 5.5
 Tested up to: 6.9
-Stable tag: 4.4.0
+Stable tag: 4.4.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -328,6 +328,8 @@ If you like this plugin, you might also enjoy these WordPress tools:
 * **[Under The Weather](https://wordpress.org/plugins/under-the-weather/)** - A lightweight and customizable weather widget, powered by the OpenWeather API, that caches and presents weather data with multiple style options.
 
 == Changelog ==
+= 4.4.1 =
+* FIX (Jump Links Block): The sticky navigation now remains visible when the list is expanded, preventing it from disappearing unexpectedly during use.
 
 = 4.4.0 =
 * NEW (Jump Links Block): Added a "Plain Text" style option for horizontal layouts, offering a minimalist alternative to the default button style.
