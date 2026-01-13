@@ -71,15 +71,25 @@ window.addEventListener('load', function () {
                         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                         
                         smartBlocks.forEach(block => {
+							
                             // 1. SAFETY CHECK: Is the block actually stuck?
                             // If the block is NOT stuck (it's sitting normally in the content), 
                             // we must ensure it is visible and then stop.
+							
                             if (!block.classList.contains('is-stuck')) {
                                 block.classList.remove('is-scroll-hidden');
                                 return; 
                             }
-    
-                            // 2. Determine Direction
+							// Safety 2: NEW - If the menu is EXPANDED, never hide it.
+                            // This prevents the menu from disappearing while the user is trying to use it.
+                            if (block.classList.contains('is-expanded')) {
+                                block.classList.remove('is-scroll-hidden');
+                                return;
+                            }
+
+							// 3. Determine Direction
+							// Only trigger changes if scrolled significantly
+                        
                             if (Math.abs(lastScrollTop - scrollTop) <= delta) {
                                 return; // Ignore tiny movements
                             }
