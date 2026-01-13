@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 4.4.1 =
+* FIX (Jump Links Block): The sticky navigation now remains visible when the list is expanded, preventing it from disappearing unexpectedly during use.
+
 = 4.4.0 =
 * NEW (Jump Links Block): Added a "Plain Text" style option for horizontal layouts, offering a minimalist alternative to the default button style.
 * NEW (Jump Links Block): Introduced optional "Smart Sticky" (Scroll-Up-To-Reveal) behavior. The sticky table of contents can now hide automatically when scrolling down to save screen space and reappear when scrolling up.
