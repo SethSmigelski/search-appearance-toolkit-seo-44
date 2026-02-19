@@ -589,6 +589,9 @@ If you like this plugin, you might also enjoy these WordPress tools:
 
 ## Changelog
 
+### 4.4.2
+* **FIX** (readme): Updated WebSite schema description
+
 ### 4.4.1
 * **FIX** (Jump Links Block): The sticky navigation now remains visible when the list is expanded, preventing it from disappearing unexpectedly during use.
 
