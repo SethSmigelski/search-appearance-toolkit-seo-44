@@ -60,7 +60,7 @@ Search Appearance Toolkit (SEO 44) is a fast, no-nonsense SEO plugin for users w
 * **Image Handling:**  Set a Default Social Image for content that doesn't have a featured image, and add your Twitter handle and Facebook App ID for better integration. 
 
 = Schema Types Useds =  
-* **WebSite:** Schema for your homepage, enabling Google Sitelinks Search Box potential.
+* **WebSite:** Schema for your homepage and a core component for a site's foundational entity. It uses SearchAction to inform search engines of your site's internal search function.
 * **Organization:** Comprehensive schema for the Google Knowledge Graph, including deep details like Founder, Founding Date, Professional Credentials, and Service Area.
 * **Article:** Rich schema for posts, with details such as publisher, images, and word count. Features an enhanced author property that links to the author's profile URL to strengthen entity connection.
 * **WebPage:** Schema for pages and custom post types, including images. 
