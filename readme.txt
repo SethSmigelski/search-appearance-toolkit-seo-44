@@ -3,7 +3,7 @@ Contributors: sethsm
 Tags: seo, on-page seo, schema, structured data, xml sitemaps
 Requires at least: 5.5
 Tested up to: 6.9
-Stable tag: 4.4.1
+Stable tag: 4.4.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
