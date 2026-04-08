@@ -1,5 +1,7 @@
 <?php
-//4.3 - Added dependencies for block-editor-script.js to access Jump Links Block anchor ids for hasPart and HowTo schema.
+
+if (!defined('ABSPATH')) { exit; } 
+
 class SEO44_Core {
 
     protected static $_instance = null;
