@@ -2,8 +2,6 @@
 
 if (!defined('ABSPATH')) { exit; } 
 
-// Version 4.5
-
 class SEO44_Metabox {
 
     public function __construct() {
