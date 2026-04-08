@@ -1,11 +1,16 @@
 <?php
-// Version 4.3
+
+if (!defined('ABSPATH')) { exit; }
+
+// Version 4.5
+// Added Output canonical URLs for Category, Tag, and Taxonomy archive pages, filling the gap left by WordPress's native rel_canonical() function.
 // Create hasPart and HowTo schema from Jump Links Block using metafield passthrough
 // Added YouTube Data API support for more accurate video upload date
 
 class SEO44_Frontend {
     public function __construct() {
         add_filter('document_title_parts', [$this, 'filter_document_title'], 20);
+        add_action('wp_head', [$this, 'output_archive_canonical'], 1); // Even if standard meta tags are disabled, forcefully run the canonical fix
         add_action('wp_head', [$this, 'output_header_tags']);
         add_action('wp_head', [$this, 'output_schema_json_ld'], 99);
         add_action('init', [$this, 'register_schema_meta_fields']); // Retrieve Jump Links Block data for schema via a hidden metabox field
@@ -76,6 +81,24 @@ class SEO44_Frontend {
         return $title_parts;
     }
     
+    // Output canonical URLs for Category, Tag, and Taxonomy archive pages.
+    public function output_archive_canonical() {
+        if ( is_category() || is_tag() || is_tax() ) {
+            $term = get_queried_object();
+            
+            if ( $term && ! is_wp_error( $term ) ) {
+                $canonical_url = get_term_link( $term );
+                
+                $paged = get_query_var( 'paged' );
+                if ( $paged > 1 ) {
+                    $canonical_url = user_trailingslashit( trailingslashit( $canonical_url ) . 'page/' . $paged );
+                }
+
+                echo '<link rel="canonical" href="' . esc_url( $canonical_url ) . '" />' . "\n";
+            }
+        }
+    } 
+
     // Meta Tags
     public function add_term_meta_fields($term, $taxonomy) {
         $title = get_term_meta($term->term_id, 'seo44_title', true);
