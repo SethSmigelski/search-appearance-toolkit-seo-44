@@ -8,7 +8,7 @@ A lightweight, feature-packed SEO plugin for essential meta tags, advanced struc
 * **Tags:** seo, on-page seo, schema, structured data, xml sitemaps
 * **Requires at least:** 5.5
 * **Tested up to:** 6.9
-* **Stable tag:** 4.4.2
+* **Stable tag:** 4.5
 * **Requires PHP:** 7.4
 * **License:** GPLv2 or later
 * **License URI:** [GLP 2.0](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -588,6 +588,11 @@ If you like this plugin, you might also enjoy these WordPress tools:
 * **[Under The Weather](https://wordpress.org/plugins/under-the-weather/)** - A lightweight and customizable weather widget, powered by the OpenWeather API, that caches and presents weather data with multiple style options.
 
 ## Changelog
+
+### 4.5
+* **ENHANCEMENT:** Now outputs canonical URLs for Category, Tag, and Taxonomy archive pages, filling a gap in WordPress's native rel_canonical() function.
+* **ENHANCEMENT:** Improved sitemap clear cache support for servers with Persistent Object Caching (Memcached/Redis).
+
 
 ### 4.4.2
 * **FIX** (readme): Updated WebSite schema description
