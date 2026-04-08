@@ -1,5 +1,7 @@
 <?php
-// Version 4.3 - Added a Generate HowTo Schema checkbox that appears via activation word
+// Version 4.5
+if (!defined('ABSPATH')) { exit; } 
+
 class SEO44_Metabox {
 
     public function __construct() {
