@@ -1,4 +1,10 @@
 <?php
+
+if (!defined('ABSPATH')) { exit; } 
+
+// v4.5
+// Improved support for servers with Persistent Object Caching (Memcached/Redis).
+
 class SEO44_Sitemaps {
 
     /**
@@ -287,16 +293,44 @@ class SEO44_Sitemaps {
 
     /**
      * Clears all sitemap transients when content is updated.
+     * Supports both standard database transients and Persistent Object Caching (Memcached/Redis).
      */
     public function clear_sitemap_cache() {
-        global $wpdb;
-        $wpdb->query(
-            $wpdb->prepare(
-                "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
-                $wpdb->esc_like('_transient_seo44_sitemap_') . '%',
-                $wpdb->esc_like('_transient_timeout_seo44_sitemap_') . '%'
-            )
-        );
+        // 1. Always delete the main index
+        delete_transient( 'seo44_sitemap_index_data' );
+
+        // 2. If NO object cache is active, use the ultra-fast SQL wildcard to wipe the database
+        if ( ! wp_using_ext_object_cache() ) {
+            global $wpdb;
+            $wpdb->query(
+                $wpdb->prepare(
+                    "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
+                    $wpdb->esc_like('_transient_seo44_sitemap_') . '%',
+                    $wpdb->esc_like('_transient_timeout_seo44_sitemap_') . '%'
+                )
+            );
+            return;
+        }
+
+        // 3. If Object Cache IS active (Memcached), we must delete by exact keys.
+        // Memcached is lightning-fast, so looping through possible keys costs practically zero CPU.
+        $post_types = seo44_get_option( 'sitemap_post_types', array() );
+        if ( ! empty( $post_types ) ) {
+            foreach ( $post_types as $type ) {
+                // Safely clear up to 50 paginated sitemaps (covering 50,000 URLs per post type)
+                for ( $i = 1; $i <= 50; $i++ ) {
+                    delete_transient( "seo44_sitemap_{$type}_{$i}_data" );
+                }
+            }
+        }
+
+        $taxonomies = seo44_get_option( 'sitemap_taxonomies', array() );
+        if ( ! empty( $taxonomies ) ) {
+            foreach ( $taxonomies as $tax ) {
+                // In your generator, taxonomies are currently only outputting to page 1
+                delete_transient( "seo44_sitemap_{$tax}_1_data" );
+            }
+        }
     }
 /**
      * Static method to flush rewrite rules when sitemaps are enabled/disabled.
