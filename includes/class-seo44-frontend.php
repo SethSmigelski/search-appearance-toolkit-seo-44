@@ -4,8 +4,6 @@ if (!defined('ABSPATH')) { exit; }
 
 // Version 4.5
 // Added Output canonical URLs for Category, Tag, and Taxonomy archive pages, filling the gap left by WordPress's native rel_canonical() function.
-// Create hasPart and HowTo schema from Jump Links Block using metafield passthrough
-// Added YouTube Data API support for more accurate video upload date
 
 class SEO44_Frontend {
     public function __construct() {
