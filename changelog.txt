@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 4.5 =
+* ENHANCEMENT: Now outputs canonical URLs for Category, Tag, and Taxonomy archive pages, filling a gap in WordPress's native rel_canonical() function.
+* ENHANCEMENT: Improved sitemap clear cache support for servers with Persistent Object Caching (Memcached/Redis).
+
 = 4.4.2 =
 * FIX (readme): Updated WebSite schema description
 
