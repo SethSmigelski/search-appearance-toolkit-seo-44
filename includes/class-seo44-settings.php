@@ -1,7 +1,7 @@
 <?php
-// Version 4.3 
-// Added hasPart Table of Contents Schema, advanced HowTo Schema
-// Added YouTube Data API to Integrations
+
+if (!defined('ABSPATH')) { exit; } 
+
 class SEO44_Settings {
 
     public function __construct() {
