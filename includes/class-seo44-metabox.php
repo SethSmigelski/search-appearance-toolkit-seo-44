@@ -1,6 +1,8 @@
 <?php
-// Version 4.5
+
 if (!defined('ABSPATH')) { exit; } 
+
+// Version 4.5
 
 class SEO44_Metabox {
 
