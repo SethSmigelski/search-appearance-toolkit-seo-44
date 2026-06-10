@@ -104,7 +104,11 @@ class SEO44_Settings {
             [$this, 'render_text_field'], 
             'seo-44_schema', 
             'seo44_organization_schema_section', 
-            ['id' => 'org_name', 'desc' => __('Leave empty to use the Site Title: ' . esc_html(get_bloginfo('name')) . '', 'search-appearance-toolkit-seo-44')]
+            ['id' => 'org_name', 'desc' => sprintf(
+                /* translators: %s: The site title from WordPress settings. */
+                __('Leave empty to use the Site Title: %s', 'search-appearance-toolkit-seo-44'),
+                esc_html(get_bloginfo('name'))
+            )]
         );
 		add_settings_field(
 		    'org_alternate_name', 
@@ -684,9 +688,9 @@ public function render_homepage_description_field() {
     	<?php
     }
     public function render_schema_disclaimer() { 
-		/* translators: %1$s: URL to Article schema, %2$s: URL to WebPage schema, %3$s: URL to WebSite schema. */
 		$text = sprintf(
 			wp_kses(
+				/* translators: %1$s: URL to Article schema, %2$s: URL to WebPage schema, %3$s: URL to WebSite schema. */
 				__(' Schema.org structured data will be applied using the <a href="%1$s" target="_blank">Article type</a> for posts, the <a href="%2$s" target="_blank">WebPage type</a> for pages, and the <a href="%3$s" target="_blank">WebSite type</a> for your index homepage.', 'search-appearance-toolkit-seo-44'),
 				[ 'a' => [ 'href' => [], 'target' => [] ] ]
 			),
@@ -710,8 +714,8 @@ public function render_homepage_description_field() {
 	
 	    // --- NEW SITEMAP RENDER FUNCTIONS ---
 	public function render_sitemap_image_explainer() {
-        /* translators: %s: An example URL showing how to view the source of a sitemap. */
         $text = sprintf(
+            /* translators: %s: An example URL showing how to view the source of a sitemap. */
             __('To see the &lt;image:image&gt; elements in the sitemap, you will need to open a sitemap and then view its source, for example: %s', 'search-appearance-toolkit-seo-44'),
             '<code>' . esc_html('view-source:' . home_url('/page-sitemap1.xml/')) . '</code>'
         );
@@ -728,6 +732,7 @@ public function render_homepage_description_field() {
         /* translators: %s: The URL of the sitemap index. */
         $text = sprintf(
             wp_kses(
+                /* translators: %s: The URL of the sitemap index. */
                 __('Configure the XML sitemaps generated for your website. Your sitemap index can be found at: %s', 'search-appearance-toolkit-seo-44'),
                 [
                     'a'    => ['href' => [], 'target' => []],
